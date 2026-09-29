@@ -1,0 +1,1 @@
+{"cpu":{"busy_percent":5.7,"labels":[],"values":[]},"net_items":[],"network":{"labels":[],"values":[]},"ram":{"items":[{"label":"total","value":3309.7},{"label":"used","value":673.8},{"label":"available","value":2635.9}],"percent":20.4},"ram_items":[{"label":"total","value":3309.7},{"label":"used","value":673.8},{"label":"available","value":2635.9}],"temperature":46.8}

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Emergency Restore Server</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><mask id='m'><rect width='64' height='64' fill='%23fff'/><circle cx='20' cy='20' r='8' fill='%23000'/><rect x='15' y='-10' width='10' height='30' transform='rotate(-45 20 20)' fill='%23000'/></mask></defs><g mask='url(%23m)' fill='%23ff9800'><circle cx='20' cy='20' r='16'/><rect x='16' y='13' width='44' height='14' rx='7' transform='rotate(45 20 20)'/></g></svg>">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f1117; color: #e0e0e0; min-height: 100vh; }
+.header { background: #1a1d27; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #2a2d3a; }
+.header h1 { font-size: 20px; color: #ff6b6b; }
+.header h1 span { color: #666; font-weight: 400; font-size: 14px; margin-left: 8px; }
+.header a { color: #888; text-decoration: none; font-size: 14px; }
+.header a:hover { color: #ff6b6b; }
+.container { max-width: 800px; margin: 24px auto; padding: 0 16px; }
+.card { background: #1a1d27; border-radius: 12px; padding: 20px; margin-bottom: 16px; border: 1px solid #2a2d3a; }
+.card h2 { font-size: 16px; color: #aaa; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+.status-ok { color: #4caf50; }
+.status-err { color: #ff6b6b; }
+.status-warn { color: #ff9800; }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #2a2d3a; }
+th { color: #888; font-size: 12px; text-transform: uppercase; }
+td { font-size: 14px; }
+.btn { display: inline-block; padding: 8px 16px; border-radius: 8px; border: none; cursor: pointer; font-size: 14px; font-weight: 500; transition: all 0.2s; }
+.btn-danger { background: #ff6b6b; color: #fff; }
+.btn-danger:hover { background: #ff5252; }
+.btn-warn { background: #ff9800; color: #fff; }
+.btn-warn:hover { background: #f57c00; }
+.btn-ok { background: #4caf50; color: #fff; }
+.btn-ok:hover { background: #43a047; }
+.btn-sm { padding: 5px 12px; font-size: 12px; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.flash { padding: 12px 16px; border-radius: 8px; margin-bottom: 16px; font-size: 14px; }
+.flash-ok { background: #1b3a1b; color: #4caf50; border: 1px solid #2d5a2d; }
+.flash-err { background: #3a1b1b; color: #ff6b6b; border: 1px solid #5a2d2d; }
+.info-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #1f222e; font-size: 14px; }
+.info-row:last-child { border-bottom: none; }
+.info-label { color: #888; }
+.warning-box { background: #3a2a1b; border: 1px solid #5a4a2d; border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; color: #ffb74d; font-size: 13px; }
+.empty { color: #555; font-style: italic; padding: 20px; text-align: center; }
+.login-container { max-width: 360px; margin: 80px auto; }
+.login-container h1 { text-align: center; color: #ff6b6b; margin-bottom: 24px; }
+.login-container input { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #2a2d3a; background: #0f1117; color: #e0e0e0; font-size: 14px; margin-bottom: 12px; }
+.login-container .btn { width: 100%; padding: 12px; }
+
+.modal-overlay { display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.7); z-index:100; justify-content:center; align-items:center; }
+.modal-overlay.active { display:flex; }
+.modal { background:#1a1d27; border:1px solid #2a2d3a; border-radius:12px; padding:24px; max-width:400px; width:90%; text-align:center; }
+.modal h3 { margin-bottom:16px; color:#ff9800; }
+.modal p { margin-bottom:16px; font-size:14px; color:#aaa; }
+.modal .btns { display:flex; gap:12px; justify-content:center; }
+.backup-wrap { display:flex; justify-content:space-between; align-items:baseline; }
+.backup-count { color:#555; font-size:12px; }
+.backup-scroll { max-height:340px; overflow-y:auto; border:1px solid #2a2d3a; border-radius:8px; }
+.backup-scroll table { border:0; }
+.backup-scroll thead th { position:sticky; top:0; background:#1a1d27; z-index:1; box-shadow: inset 0 -1px 0 #2a2d3a; }
+.backup-scroll tr:last-child td { border-bottom:none; }
+.backup-scroll::-webkit-scrollbar { width:10px; }
+.backup-scroll::-webkit-scrollbar-track { background:#12141c; border-radius:0 8px 8px 0; }
+.backup-scroll::-webkit-scrollbar-thumb { background:#333a4d; border-radius:5px; }
+.backup-scroll::-webkit-scrollbar-thumb:hover { background:#445070; }
+.backup-scroll { scrollbar-width:thin; scrollbar-color:#333a4d #12141c; }
+</style></head>
+<body>
+
+<div class="header">
+  <h1>Emergency Restore <span>v1.0.0</span></h1>
+  <a href="stub.html?to=logout">Выйти</a>
+</div>
+
+<div class="container">
+  
+  
+
+  <!-- STATUS -->
+  <div class="card">
+    <h2>Состояние</h2>
+    <div class="info-row">
+      <span class="info-label">lan-discovery</span>
+      
+      <span class="status-ok">● Работает</span>
+      
+    </div>
+    <div class="info-row">
+      <span class="info-label">База данных</span>
+      
+      <span class="status-ok">● /opt/lan-discovery/devices.db</span>
+      
+    </div>
+    <div class="info-row">
+      <span class="info-label">eMMC бэкап</span>
+      
+      <span class="status-warn">● Нет бэкапа</span>
+      
+    </div>
+    
+  </div>
+
+  <!-- DB RESTORE -->
+  <div class="card">
+    <div class="backup-wrap">
+      <h2>Восстановление базы данных</h2>
+      <span class="backup-count">бэкапов: 3</span>
+    </div>
+    
+    <div class="backup-scroll">
+    <table>
+      <thead><tr><th>Файл</th><th>Размер</th><th>Дата</th><th></th></tr></thead>
+      <tbody>
+      
+      <tr>
+        <td>devices_20260929-225059.db</td>
+        <td>5.1 MiB</td>
+        <td>29.09.2026 22:50:59</td>
+        <td><button class="btn btn-danger btn-sm" onclick="confirmDbRestore('devices_20260929-225059.db')">Восстановить</button></td>
+      </tr>
+      
+      <tr>
+        <td>devices_20260929-224802.db</td>
+        <td>5.1 MiB</td>
+        <td>29.09.2026 22:48:03</td>
+        <td><button class="btn btn-danger btn-sm" onclick="confirmDbRestore('devices_20260929-224802.db')">Восстановить</button></td>
+      </tr>
+      
+      <tr>
+        <td>devices_20260929-224708.db</td>
+        <td>5.1 MiB</td>
+        <td>29.09.2026 22:47:08</td>
+        <td><button class="btn btn-danger btn-sm" onclick="confirmDbRestore('devices_20260929-224708.db')">Восстановить</button></td>
+      </tr>
+      
+      </tbody>
+    </table>
+    </div>
+    
+  </div>
+
+  <!-- EMC RESTORE -->
+  <div class="card">
+    <h2>Восстановление eMMC</h2>
+    <div class="warning-box">
+      ⚠️ Восстановление eMMC перезапишет всю системную область. Устройство будет перезагружено.
+    </div>
+    
+    <button class="btn btn-danger" disabled>Бэкап eMMC не найден</button>
+    
+  </div>
+
+  <!-- RESTART -->
+  <div class="card">
+    <h2>Управление</h2>
+    <button class="btn btn-ok" onclick="restartLan(this)">Перезапустить lan-discovery</button>
+  </div>
+</div>
+
+<!-- CONFIRM DB RESTORE -->
+<div class="modal-overlay" id="modal-db">
+  <div class="modal">
+    <h3>Восстановить базу данных?</h3>
+    <p id="modal-db-text"></p>
+    <div class="btns">
+      <button class="btn btn-danger" id="modal-db-btn">Восстановить</button>
+      <button class="btn" style="background:#333;color:#aaa" onclick="closeModals()">Отмена</button>
+    </div>
+  </div>
+</div>
+
+<!-- CONFIRM EMC RESTORE -->
+<div class="modal-overlay" id="modal-emmc">
+  <div class="modal">
+    <h3>Восстановить eMMC?</h3>
+    <p>Устройство будет перезагружено. Это займёт несколько минут.</p>
+    <div class="btns">
+      <button class="btn btn-danger" onclick="doEmmcRestore()">Да, восстановить</button>
+      <button class="btn" style="background:#333;color:#aaa" onclick="closeModals()">Отмена</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function closeModals() {
+  document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
+}
+
+function confirmDbRestore(file) {
+  document.getElementById('modal-db-text').textContent = 'Восстановить из ' + file + '? Текущая БД будет заменена.';
+  document.getElementById('modal-db-btn').onclick = function() { doDbRestore(file); };
+  document.getElementById('modal-db').classList.add('active');
+}
+
+function postJson(url, opts) {
+  return fetch(url, opts || {method: 'POST'}).then(r => {
+    const ct = r.headers.get('content-type') || '';
+    if (r.redirected || !ct.includes('application/json')) {
+      showFlash('Сессия истекла — войдите заново', 'err');
+      setTimeout(() => location.href = 'login', 2000);
+      const e = new Error('session'); e.session = true; throw e;
+    }
+    return r.json();
+  });
+}
+
+function onPostError(e) {
+  if (!e.session) showFlash('Ошибка сети: ' + e, 'err');
+}
+
+function doDbRestore(file) {
+  closeModals();
+  postJson('api/restore/db', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({file: file})
+  }).then(d => {
+    if (d.ok) {
+      showFlash(d.message, 'ok');
+      setTimeout(() => location.reload(), 2000);
+    } else {
+      showFlash(d.error, 'err');
+    }
+  }).catch(onPostError);
+}
+
+function confirmEmmcRestore() {
+  document.getElementById('modal-emmc').classList.add('active');
+}
+
+function doEmmcRestore() {
+  closeModals();
+  postJson('api/restore/emmc').then(d => {
+    if (d.ok) {
+      showFlash(d.message, 'ok');
+    } else {
+      showFlash(d.error, 'err');
+    }
+  }).catch(onPostError);
+}
+
+function restartLan(btn) {
+  if (btn) {
+    btn.disabled = true;
+    btn.dataset.old = btn.textContent;
+    btn.textContent = 'Перезапускаю…';
+  }
+  postJson('api/service/restart').then(d => {
+    if (d.ok) {
+      showFlash(d.message + ' — обновляю страницу…', 'ok');
+      setTimeout(() => location.reload(), 2000);
+    } else {
+      showFlash(d.error, 'err');
+      if (btn) { btn.disabled = false; btn.textContent = btn.dataset.old; }
+    }
+  }).catch(e => {
+    onPostError(e);
+    if (btn && !e.session) { btn.disabled = false; btn.textContent = btn.dataset.old; }
+  });
+}
+
+function showFlash(text, type) {
+  const existing = document.querySelector('.flash-dynamic');
+  if (existing) existing.remove();
+  const div = document.createElement('div');
+  div.className = 'flash flash-' + type + ' flash-dynamic';
+  div.textContent = text;
+  document.querySelector('.container').prepend(div);
+  setTimeout(() => div.remove(), 5000);
+}
+</script>
+
+<div style="position:fixed;left:0;right:0;bottom:0;background:#12203a;color:#9fb6e8;font:11px/1.8 system-ui,sans-serif;padding:2px 8px;z-index:99998;text-align:center">Демо-режим · слепок от 30.09.2026 01:31 · данные не обновляются · <a href="index.html" style="color:#ffd54f">главная</a></div>
+<script src="demo.js"></script>
+</body></html>

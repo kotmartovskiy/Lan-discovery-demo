@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>App</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: #0d1117;
+    color: #c9d1d9;
+    margin: 0;
+    padding: 16px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+}
+::-webkit-scrollbar { width: 0; height: 0; }
+
+.app-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+.app-header h2 {
+    font-size: 18px;
+    color: #e6edf3;
+    flex: 1;
+    min-width: 0;
+}
+.app-btn {
+    padding: 8px 16px;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    background: #21262d;
+    color: #c9d1d9;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.15s, border-color 0.15s;
+    white-space: nowrap;
+}
+.app-btn:hover { background: #30363d; border-color: #484f58; }
+.app-btn.primary { background: #238636; border-color: #238636; color: #fff; }
+.app-btn.primary:hover { background: #2ea043; }
+.app-btn.danger { background: #da3633; border-color: #da3633; color: #fff; }
+.app-btn.danger:hover { background: #f85149; }
+.app-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 12px;
+}
+.card-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #e6edf3;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #21262d;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 48px 20px;
+    color: #484f58;
+}
+.empty-state .icon { font-size: 48px; margin-bottom: 12px; }
+.empty-state p { font-size: 14px; line-height: 1.5; }
+
+.badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+}
+.badge-green { background: rgba(35,134,54,0.3); color: #3fb950; }
+.badge-blue { background: rgba(56,132,244,0.2); color: #58a6ff; }
+.badge-yellow { background: rgba(187,128,9,0.2); color: #d29922; }
+.badge-red { background: rgba(218,54,51,0.2); color: #f85149; }
+.badge-gray { background: rgba(110,118,129,0.2); color: #8b949e; }
+
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 14px;
+    z-index: 9999;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s;
+    pointer-events: none;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+.toast.success { background: #238636; }
+.toast.error { background: #da3633; }
+.toast.info { background: #1f6feb; }
+
+.spinner {
+    display: inline-block;
+    width: 16px; height: 16px;
+    border: 2px solid rgba(88,166,255,0.3);
+    border-top-color: #58a6ff;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    vertical-align: middle;
+    margin-right: 6px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid #21262d; font-size: 13px; }
+th { color: #8b949e; font-weight: 600; background: #0d1117; position: sticky; top: 0; }
+td { color: #c9d1d9; }
+
+input[type="text"], input[type="number"], input[type="password"], input[type="search"], select, textarea {
+    background: #0d1117;
+    color: #c9d1d9;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.15s;
+}
+input:focus, select:focus, textarea:focus { border-color: #58a6ff; }
+
+.mono { font-family: 'SF Mono', 'Fira Code', monospace; }
+.truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.flex { display: flex; }
+.flex-center { display: flex; align-items: center; }
+.gap-8 { gap: 8px; }
+.gap-12 { gap: 12px; }
+.flex-1 { flex: 1; min-width: 0; }
+.mb-12 { margin-bottom: 12px; }
+.text-green { color: #3fb950; }
+.text-red { color: #f85149; }
+.text-yellow { color: #d29922; }
+.text-gray { color: #8b949e; }
+.text-blue { color: #58a6ff; }
+</style>
+<meta name="csrf-token" content="ImRiOWFmNmJlYjViOWRiM2Y4NmUwMzE5Mzk2Zjk4MDM1NzZiNTZmNGEi.arw8Xw.Ky6_ZOhrTK89kPNWJgsUaU7qev0">
+<script>
+(function () {
+    var meta = document.querySelector('meta[name="csrf-token"]');
+    if (!meta) return;
+    var token = meta.getAttribute('content');
+    var origFetch = window.fetch.bind(window);
+    window.fetch = function (input, init) {
+        var method = 'GET';
+        if (init && init.method) method = init.method;
+        else if (input && input.method) method = input.method;
+        method = String(method).toUpperCase();
+        if (method !== 'GET' && method !== 'HEAD') {
+            var headers;
+            if (init && init.headers) headers = new Headers(init.headers);
+            else if (input && input.headers) headers = new Headers(input.headers);
+            else headers = new Headers();
+            if (!headers.has('X-CSRFToken')) headers.set('X-CSRFToken', token);
+            init = Object.assign({}, init || {}, {headers: headers});
+        }
+        return origFetch(input, init);
+    };
+})();
+</script>
+</head>
+<body>
+<script>var USER_ROLE = "admin";</script>
+
+<style>
+  
+
+  .section {
+    background: #16213e;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 20px;
+  }
+
+  .section-header {
+    font-size: 16px;
+    color: #8ab4f8;
+    margin-bottom: 12px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  thead th {
+    background: #111;
+    color: #8ab4f8;
+    padding: 8px;
+    text-align: left;
+    border-bottom: 2px solid #333;
+  }
+
+  tbody td {
+    padding: 6px 8px;
+    border-bottom: 1px solid #222;
+  }
+
+  .indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 6px;
+  }
+
+  .indicator.mounted {
+    background: #22c55e;
+  }
+
+  .indicator.unmounted {
+    background: #6b7280;
+  }
+
+  .usage-bar {
+    height: 12px;
+    border-radius: 6px;
+    background: #222;
+    position: relative;
+    min-width: 100px;
+  }
+
+  .usage-bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    transition: width 0.3s;
+  }
+
+  .usage-low {
+    background: #22c55e;
+  }
+
+  .usage-medium {
+    background: #eab308;
+  }
+
+  .usage-high {
+    background: #ef4444;
+  }
+
+  .health-pre {
+    background: #111;
+    color: #ccc;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+
+  .refresh-btn {
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+
+  .refresh-btn:hover {
+    background: #1d4ed8;
+  }
+
+  .loading {
+    color: #666;
+    font-style: italic;
+  }
+</style>
+
+<div class="section">
+  <div class="section-header">📂 Информация о дисках (lsblk)</div>
+  <div id="lsblk-container"><span class="loading">Загрузка...</span></div>
+</div>
+
+<div class="section">
+  <div class="section-header">📊 Использование дисков (df -h)</div>
+  <div id="df-container"><span class="loading">Загрузка...</span></div>
+</div>
+
+<div class="section">
+  <div class="section-header">🏥 Состояние дисков (S.M.A.R.T.)</div>
+  <button class="refresh-btn" onclick="loadData()">🔄 Обновить</button>
+  <div id="smart-container"><span class="loading">Загрузка...</span></div>
+</div>
+
+<script>
+  function parseLsblk(text) {
+    const lines = text.trim().split('\n');
+    if (lines.length === 0) return '';
+    const header = lines[0];
+    const rows = lines.slice(1);
+    let html = '<table><thead><tr>';
+    const cols = header.split(/\s{2,}/);
+    cols.forEach(c => { html += '<th>' + c.trim() + '</th>'; });
+    html += '</tr></thead><tbody>';
+    rows.forEach(row => {
+      const cells = row.split(/\s{2,}/);
+      const name = cells[0] ? cells[0].trim() : '';
+      const mounted = row.includes('part') || row.includes('lvm') || (cells[3] && cells[3].trim() !== '');
+      const indicatorClass = mounted ? 'mounted' : 'unmounted';
+      html += '<tr>';
+      cells.forEach((cell, i) => {
+        if (i === 0) {
+          html += '<td><span class="indicator ' + indicatorClass + '"></span>' + cell.trim() + '</td>';
+        } else {
+          html += '<td>' + (cell ? cell.trim() : '') + '</td>';
+        }
+      });
+      html += '</tr>';
+    });
+    html += '</tbody></table>';
+    return html;
+  }
+
+  function parseDf(text) {
+    const lines = text.trim().split('\n');
+    if (lines.length === 0) return '';
+    const header = lines[0];
+    const rows = lines.slice(1);
+    let html = '<table><thead><tr>';
+    const cols = header.split(/\s{2,}/);
+    cols.forEach(c => { html += '<th>' + c.trim() + '</th>'; });
+    html += '<th>Прогресс</th></tr></thead><tbody>';
+    rows.forEach(row => {
+      const cells = row.split(/\s{2,}/);
+      html += '<tr>';
+      cells.forEach((cell, i) => {
+        const val = cell ? cell.trim() : '';
+        if (i === 4) {
+          const pct = parseInt(val) || 0;
+          let barClass = 'usage-low';
+          if (pct >= 90) barClass = 'usage-high';
+          else if (pct >= 70) barClass = 'usage-medium';
+          html += '<td>' + val + '</td>';
+        } else {
+          html += '<td>' + val + '</td>';
+        }
+      });
+      const pctStr = cells[4] ? cells[4].trim() : '0';
+      const pct = parseInt(pctStr) || 0;
+      let barClass = 'usage-low';
+      if (pct >= 90) barClass = 'usage-high';
+      else if (pct >= 70) barClass = 'usage-medium';
+      html += '<td><div class="usage-bar"><div class="usage-bar-fill ' + barClass + '" style="width:' + pct + '%"></div></div></td>';
+      html += '</tr>';
+    });
+    html += '</tbody></table>';
+    return html;
+  }
+
+  function loadData() {
+    document.getElementById('lsblk-container').innerHTML = '<span class="loading">Загрузка...</span>';
+    document.getElementById('df-container').innerHTML = '<span class="loading">Загрузка...</span>';
+    document.getElementById('smart-container').innerHTML = '<span class="loading">Загрузка...</span>';
+
+    fetch('api/disks')
+      .then(r => r.json())
+      .then(data => {
+        if (data.ok) {
+          document.getElementById('lsblk-container').innerHTML = parseLsblk(data.lsblk || '');
+          document.getElementById('df-container').innerHTML = parseDf(data.df || '');
+          const smartText = data.smart || 'Нет данных';
+          document.getElementById('smart-container').innerHTML = '<pre class="health-pre">' + smartText + '</pre>';
+        } else {
+          document.getElementById('lsblk-container').innerHTML = '<span class="loading">Ошибка загрузки данных</span>';
+          document.getElementById('df-container').innerHTML = '<span class="loading">Ошибка загрузки данных</span>';
+          document.getElementById('smart-container').innerHTML = '<span class="loading">Ошибка загрузки данных</span>';
+        }
+      })
+      .catch(err => {
+        document.getElementById('lsblk-container').innerHTML = '<span class="loading">Ошибка: ' + err.message + '</span>';
+        document.getElementById('df-container').innerHTML = '<span class="loading">Ошибка: ' + err.message + '</span>';
+        document.getElementById('smart-container').innerHTML = '<span class="loading">Ошибка: ' + err.message + '</span>';
+      });
+  }
+
+  loadData();
+</script>
+
+<div style="position:fixed;left:0;right:0;bottom:0;background:#12203a;color:#9fb6e8;font:11px/1.8 system-ui,sans-serif;padding:2px 8px;z-index:99998;text-align:center">Демо-режим · слепок от 30.09.2026 01:31 · данные не обновляются · <a href="index.html" style="color:#ffd54f">главная</a></div>
+<script src="demo.js"></script>
+</body>
+</html>

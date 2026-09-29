@@ -1,0 +1,1 @@
+{"cpu":{"busy_percent":0},"net_items":[],"ram":{"items":[{"label":"free","value":1324.7},{"label":"used","value":553.9},{"label":"cached","value":1363.4},{"label":"buffers","value":67.6}],"percent":16.7},"ram_items":[{"label":"free","value":1324.7},{"label":"used","value":553.9},{"label":"cached","value":1363.4},{"label":"buffers","value":67.6}],"temperature":0}

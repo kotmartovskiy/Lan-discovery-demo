@@ -1,0 +1,2921 @@
+
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="csrf-token" content="ImRiOWFmNmJlYjViOWRiM2Y4NmUwMzE5Mzk2Zjk4MDM1NzZiNTZmNGEi.arw8YQ.YlOaCibmyQbKxR3uTMigUuLvACc">
+<script>
+(function () {
+    var meta = document.querySelector('meta[name="csrf-token"]');
+    if (!meta) return;
+    var token = meta.getAttribute('content');
+    var origFetch = window.fetch.bind(window);
+    window.fetch = function (input, init) {
+        var method = 'GET';
+        if (init && init.method) method = init.method;
+        else if (input && input.method) method = input.method;
+        method = String(method).toUpperCase();
+        if (method !== 'GET' && method !== 'HEAD') {
+            var headers;
+            if (init && init.headers) headers = new Headers(init.headers);
+            else if (input && input.headers) headers = new Headers(input.headers);
+            else headers = new Headers();
+            if (!headers.has('X-CSRFToken')) headers.set('X-CSRFToken', token);
+            init = Object.assign({}, init || {}, {headers: headers});
+        }
+        return origFetch(input, init);
+    };
+})();
+</script>
+
+<title>LAN Discovery</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 5 C55 5, 60 8, 62 12 L58 18 C56 14, 53 12, 50 12 C47 12, 44 14, 42 18 L38 12 C40 8, 45 5, 50 5Z' fill='%237cb342'/%3E%3Cpath d='M58 8 C62 5, 68 4, 72 6 L66 14 C63 12, 60 11, 58 12Z' fill='%239ccc65'/%3E%3Cpath d='M50 15 C68 15, 85 32, 85 50 C85 68, 68 85, 50 85 C32 85, 15 68, 15 50 C15 32, 32 15, 50 15Z' fill='%23ffa726'/%3E%3Cpath d='M50 15 C68 15, 85 32, 85 50 C85 68, 68 85, 50 85 C32 85, 15 68, 15 50 C15 32, 32 15, 50 15Z' fill='none' stroke='%23f57c00' stroke-width='2'/%3E%3Cpath d='M50 22 C64 22, 78 36, 78 50 C78 64, 64 78, 50 78 C36 78, 22 64, 22 50 C22 36, 36 22, 50 22Z' fill='%23fff9c4'/%3E%3Cpath d='M50 30 L50 70' stroke='%23ffcc02' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M50 30 L30 55' stroke='%23ffcc02' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M50 30 L70 55' stroke='%23ffcc02' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M50 30 L35 42' stroke='%23ffcc02' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M50 30 L65 42' stroke='%23ffcc02' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M50 30 L40 65' stroke='%23ffcc02' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M50 30 L60 65' stroke='%23ffcc02' stroke-width='2.5' stroke-linecap='round'/%3E%3Ccircle cx='50' cy='30' r='3' fill='%23ffcc02'/%3E%3C/svg%3E">
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0 25px 25px 25px;
+    background: #111;
+    color: #eee;
+    scrollbar-width: none;
+}
+::-webkit-scrollbar { width: 0; height: 0; }
+
+h1 {
+    margin-bottom: 5px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    background: #111;
+    margin: 0 -25px;
+    padding: 25px 25px 15px 25px;
+}
+
+.clock {
+    flex: 0 0 520px;
+    width: 520px;
+    box-sizing: border-box;
+    text-align: right;
+    color: #9fb7d0;
+    font-size: 16px;
+    font-weight: 600;
+    position: relative;
+}
+
+#clock-date {
+    color: #6ba3d6;
+}
+
+#clock-time {
+    color: #e0e0e0;
+}
+
+@media (max-width: 750px) {
+    .header {
+        flex-wrap: wrap;
+    }
+
+    .clock {
+        flex: 1 1 100%;
+        width: 100%;
+        margin-top: 15px;
+    }
+}
+
+.system-status-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+
+    background: #111;
+    border-top: 1px solid #333;
+
+    padding: 7px 15px;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+body {
+    padding-bottom: 38px;
+}
+
+.system-status {
+    margin-top: 0;
+    margin-left: 0;
+    text-align: left;
+    flex: 1;
+}
+    color: #b8c4d1;
+    font-size: 14px;
+    font-weight: 400;
+    white-space: nowrap;
+    width: 100%;
+    max-width: 100%;
+    text-align: left;
+}
+
+.system-status .status-label {
+    font-weight: 600;
+}
+.system-status .sl-temp { color: #ff6b6b; }
+.system-status .sl-cpu { color: #ffd93d; }
+.system-status .sl-ram { color: #6bcb77; }
+.system-status .sl-emmc { color: #4d96ff; }
+.system-status .sl-hdd { color: #9b59b6; }
+.system-status .sl-sd { color: #e67e22; }
+.system-status .sl-lan { color: #1abc9c; }
+.system-status .sl-wifi { color: #3498db; }
+.system-status .sl-arrow { color: #95a5a6; }
+
+.system-status .status-value {
+    font-weight: 400;
+    font-variant-numeric: tabular-nums;
+    display: inline-block;
+    min-width: 4.5ch;
+    text-align: left;
+}
+
+.system-status .status-item {
+    white-space: nowrap;
+}
+
+.system-status .status-wide {
+    min-width: 8ch;
+}
+
+.system-status .status-warn {
+    color: #ffb84d;
+}
+
+.system-status .status-critical {
+    color: #ff6666;
+}
+
+.internet {
+    margin-top: 4px;
+}
+
+.internet.online {
+    color: #65d46e;
+}
+
+.internet.offline {
+    color: #d46565;
+}
+
+#health-detail {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 10px 14px;
+    min-width: 240px;
+    z-index: 200;
+    text-align: left;
+    box-shadow: 0 4px 16px rgba(0,0,0,.5);
+}
+
+.info {
+    color: #aaa;
+    margin-bottom: 20px;
+}
+
+.info-sticky {
+    position: sticky;
+    top: var(--header-height, 0px);
+    z-index: 90;
+    background: #111;
+    padding: 10px 0;
+    margin-bottom: 0;
+}
+
+.tabs {
+    margin-bottom: 20px;
+}
+
+.tabs a {
+    color: #aaa;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+.tabs a.active {
+    color: #fff;
+    font-weight: bold;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #333;
+    text-align: left;
+}
+
+th {
+    color: #999;
+    position: sticky;
+    top: var(--header-height, 0px);
+    background: #111;
+    z-index: 10;
+}
+
+.device-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.device-link:hover {
+    text-decoration: underline;
+}
+
+.online {
+    color: #65d46e;
+    font-weight: bold;
+}
+
+.offline {
+    color: #666;
+}
+
+.new {
+    color: #ffb84d;
+    font-weight: bold;
+}
+
+.small {
+    color: #888;
+    font-size: 12px;
+}
+
+.weather-grid {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+}
+
+.weather-grid .card {
+    flex-shrink: 0;
+}
+
+.system-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 20px;
+    grid-auto-rows: minmax(180px, auto);
+}
+
+.system-grid .card {
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s;
+}
+
+.system-grid .card:hover {
+    box-shadow: 0 2px 12px rgba(77, 150, 255, 0.08);
+}
+
+@media (max-width: 1100px) {
+    .system-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 700px) {
+    .system-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.card {
+    background: #181818;
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.card h2 {
+    margin-top: 0;
+    margin-bottom: 14px;
+    font-size: 16px;
+    color: #e0e0e0;
+    border-bottom: 1px solid #2a2a2a;
+    padding-bottom: 10px;
+}
+
+.card h3 {
+    margin-top: 14px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #aaa;
+}
+
+.status-ok {
+    color: #65d46e;
+    font-weight: bold;
+}
+
+.status-error {
+    color: #ff6666;
+    font-weight: bold;
+}
+
+.status-running {
+    color: #ffb84d;
+    font-weight: bold;
+}
+
+.info-row {
+    margin: 6px 0;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.service-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 8px 0;
+    border-bottom: 1px solid #222;
+}
+
+.service-row:last-child {
+    border-bottom: none;
+}
+
+.service-buttons {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.button-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.info-label {
+    color: #888;
+}
+
+button {
+    background: #252525;
+    color: #ddd;
+    border: 1px solid #3a3a3a;
+    border-radius: 6px;
+    padding: 7px 14px;
+    cursor: pointer;
+    margin: 4px 4px 4px 0;
+    font-size: 13px;
+    transition: background 0.15s, border-color 0.15s;
+}
+
+button:hover {
+    background: #333;
+    border-color: #555;
+}
+
+button:active {
+    background: #3a3a3a;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+code {
+    color: #ccc;
+    word-break: break-all;
+    white-space: normal;
+}
+
+a {
+    color: #8ab4f8;
+}
+
+.device {
+    max-width: 900px;
+}
+
+.device table {
+    margin-top: 20px;
+}
+
+.device td:first-child {
+    width: 220px;
+    color: #999;
+}
+
+input[type="text"] {
+    background: #222;
+    color: #eee;
+    border: 1px solid #555;
+    padding: 8px;
+    width: 350px;
+    font-size: 14px;
+}
+
+button {
+    background: #333;
+    color: #eee;
+    border: 1px solid #666;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #444;
+}
+
+.back {
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.system-pre {
+    margin: 0;
+    padding: 14px;
+    overflow-x: auto;
+    white-space: pre;
+    font-family: monospace;
+    font-size: 13px;
+    line-height: 1.45;
+}
+
+.mono {
+    font-family: monospace;
+}
+
+.device-block {
+    padding: 12px 0;
+    border-top: 1px solid rgba(128,128,128,.18);
+}
+
+.device-block:first-of-type {
+    border-top: 0;
+}
+
+.device-block h3 {
+    margin: 0 0 10px 0;
+}
+
+.subsection-title {
+    margin-top: 14px;
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.badge {
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    opacity: .7;
+}
+
+</style>
+</head>
+
+<body>
+
+<body>
+
+<div class="header">
+
+<div>
+<h1><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="35" height="35" style="vertical-align:middle; margin-right:6px;">
+<path d="M50 5 C55 5, 60 8, 62 12 L58 18 C56 14, 53 12, 50 12 C47 12, 44 14, 42 18 L38 12 C40 8, 45 5, 50 5Z" fill="#7cb342"/>
+<path d="M58 8 C62 5, 68 4, 72 6 L66 14 C63 12, 60 11, 58 12Z" fill="#9ccc65"/>
+<path d="M50 15 C68 15, 85 32, 85 50 C85 68, 68 85, 50 85 C32 85, 15 68, 15 50 C15 32, 32 15, 50 15Z" fill="#ffa726"/>
+<path d="M50 15 C68 15, 85 32, 85 50 C85 68, 68 85, 50 85 C32 85, 15 68, 15 50 C15 32, 32 15, 50 15Z" fill="none" stroke="#f57c00" stroke-width="2"/>
+<path d="M50 22 C64 22, 78 36, 78 50 C78 64, 64 78, 50 78 C36 78, 22 64, 22 50 C22 36, 36 22, 50 22Z" fill="#fff9c4"/>
+<path d="M50 30 L50 70" stroke="#ffcc02" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M50 30 L30 55" stroke="#ffcc02" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M50 30 L70 55" stroke="#ffcc02" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M50 30 L35 42" stroke="#ffcc02" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M50 30 L65 42" stroke="#ffcc02" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M50 30 L40 65" stroke="#ffcc02" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M50 30 L60 65" stroke="#ffcc02" stroke-width="2.5" stroke-linecap="round"/>
+<circle cx="50" cy="30" r="3" fill="#ffcc02"/>
+</svg>LAN Discovery</h1>
+
+<div class="tabs">
+
+<a href="stub.html?to=" class="">
+Устройства
+</a>
+
+<a href="stub.html?to=inventory" class="">
+Инвентаризация
+</a>
+
+<a href="stub.html?to=monitoring" class="">
+Мониторинг
+</a>
+
+<a href="stub.html?to=torrent" class="">
+Торрент
+</a>
+
+<a href="stub.html?to=currencies" class="">
+Валюты
+</a>
+
+<a href="stub.html?to=weather" class="">
+Погода
+</a>
+
+<a href="stub.html?to=apps" class="">
+Приложения
+</a>
+
+<a href="stub.html?to=system" class="">
+Система
+</a>
+
+<a href="stub.html?to=about" class="">
+О системе
+</a>
+
+<a href="stub.html?to=help" class="active">
+Справка
+</a>
+
+
+<a href="stub.html?to=modules" class="">
+Модули
+</a>
+
+</div>
+</div>
+
+<div class="clock">
+
+<div id="clock"><span id="clock-date">--.--.----</span> <span id="clock-time">--:--:--</span></div>
+
+<div id="weather-status" style="font-size:13px; color:#8ab4f8; margin:2px 0;"></div>
+
+<div class="internet online">
+● Интернет: доступен
+</div>
+
+<div id="health-widget" style="margin-top:4px; font-size:13px; cursor:pointer;" onclick="toggleHealthDetail()">● Загрузка...</div>
+<div id="health-detail"></div>
+
+</div>
+
+</div>
+
+
+<style>
+.help-layout { display:flex; gap:24px; align-items:flex-start; }
+.help-sidebar { position:sticky; top:100px; flex:0 0 260px; background:#181818; border:1px solid #2a2a2a; border-radius:10px; padding:16px; max-height:calc(100vh - 130px); overflow-y:auto; }
+.help-sidebar a { color:#8ab4f8; text-decoration:none; display:block; padding:4px 8px; font-size:13px; border-radius:4px; margin-bottom:2px; }
+.help-sidebar a:hover { background:#1a1a2e; color:#fff; }
+.help-sidebar .toc-group { color:#888; font-size:11px; text-transform:uppercase; letter-spacing:1px; margin:12px 0 4px 8px; font-weight:600; }
+.help-main { flex:1; min-width:0; }
+.help-section { margin-bottom:28px; }
+.help-section h3 { color:#8ab4f8; border-bottom:1px solid #333; padding-bottom:8px; margin-bottom:14px; font-size:16px; }
+.help-section h4 { color:#ccc; margin:16px 0 8px; font-size:14px; }
+.help-section p, .help-section li { color:#bbb; line-height:1.7; font-size:14px; }
+.help-section ul { padding-left:20px; }
+.help-section li { margin-bottom:4px; }
+.help-section code { background:#1a1a2e; padding:2px 6px; border-radius:4px; font-size:13px; color:#8ab4f8; }
+.help-table { width:100%; border-collapse:collapse; margin:12px 0; }
+.help-table th { text-align:left; padding:8px 12px; background:#1a1a2e; color:#8ab4f8; border:1px solid #333; font-size:13px; }
+.help-table td { padding:8px 12px; border:1px solid #333; font-size:13px; color:#bbb; }
+.help-badge { display:inline-block; background:#2563eb; color:#fff; padding:2px 8px; border-radius:4px; font-size:11px; margin-left:6px; }
+.help-badge.green { background:#2e7d32; }
+.help-badge.orange { background:#e65100; }
+.help-badge.purple { background:#6a1b9a; }
+
+@media (max-width: 900px) {
+    .help-layout { flex-direction:column; }
+    .help-sidebar { position:static; flex:none; width:100%; max-height:none; }
+}
+</style>
+
+<div class="page-title">
+    <h2>📖 Справка</h2>
+    <div class="muted">Полное руководство по панели управления LAN Discovery</div>
+</div>
+
+<div class="help-layout">
+
+<nav class="help-sidebar">
+    <div class="toc-group">Обзор</div>
+    <a href="#overview">1. Обзор проекта</a>
+    <a href="#hardware">2. Оборудование</a>
+    <a href="#pages">3. Страницы панели</a>
+    <div class="toc-group">Функции</div>
+    <a href="#weather">4. Погода и мониторинг</a>
+    <a href="#network">5. Сетевые функции</a>
+    <a href="#economics">6. Экономика</a>
+    <a href="#multimedia">7. Мультимедиа</a>
+    <a href="#apps">8. Приложения и утилиты</a>
+    <a href="#games">9. Игры</a>
+    <a href="#system-features">10. Системные функции</a>
+    <div class="toc-group">Справочник</div>
+    <a href="#api">11. API (JSON)</a>
+    <a href="#admin">12. Администрирование</a>
+    <a href="#troubleshoot">13. Решение проблем</a>
+    <a href="#faq">14. FAQ</a>
+    
+    <div class="toc-group">Модули</div>
+    <a href="#mod-bluetooth">Bluetooth</a><a href="#mod-camera">Камеры</a><a href="#mod-currencies">Валюты</a><a href="#mod-disks">Диски</a><a href="#mod-dlna">DLNA</a><a href="#mod-downloads">Загрузки</a><a href="#mod-filemanager">Файловый менеджер</a><a href="#mod-inventory">Инвентаризация</a><a href="#mod-monitoring">Мониторинг</a><a href="#mod-nettools">Сетевые инструменты</a><a href="#mod-notes">Заметки</a><a href="#mod-passwords">Пароли</a><a href="#mod-player">Плеер</a><a href="#mod-radio">Радио</a><a href="#mod-terminal">Терминал</a><a href="#mod-torrent">Торренты</a><a href="#mod-upnp">UPnP</a><a href="#mod-weather">Погода</a><a href="#mod-wifianalyzer">Wi-Fi анализатор</a>
+    
+</nav>
+
+<div class="help-main">
+
+<!-- 1. Обзор -->
+<div class="help-section" id="overview">
+<h3>1. Обзор проекта</h3>
+<p>
+Веб-панель управления домашней инфраструктурой на базе X96 Max (Amlogic S905X, Armbian).
+Единое приложение (Flask + SQLite) для мониторинга сети, устройств, погоды, валют,
+управления мультимедией, встроенных утилит и игр.
+</p>
+
+<h4>Технологии</h4>
+<ul>
+<li><strong>Сервер:</strong> Python 3 + Flask (порт 8080)</li>
+<li><strong>База данных:</strong> SQLite (<code>/opt/lan-discovery/devices.db</code>)</li>
+<li><strong>Сканирование сети:</strong> nmap (ARP-сканирование)</li>
+<li><strong>Погода:</strong> Open-Meteo API (57.0°N, 41.0°E)</li>
+<li><strong>Валюты:</strong> CoinGecko + Frankfurter + Yahoo Finance</li>
+<li><strong>Модули:</strong> вкл/выкл разделов, установка зависимостей — страница «Модули»</li>
+<li><strong>Системный сервис:</strong> <code>lan-discovery.service</code> (systemd)</li>
+</ul>
+</div>
+
+<!-- 2. Оборудование -->
+<div class="help-section" id="hardware">
+<h3>2. Оборудование</h3>
+
+<h4>Основное устройство</h4>
+<table class="help-table">
+<tr><th>Параметр</th><th>Значение</th></tr>
+<tr><td>Плата</td><td>X96 Max (Amlogic S905X), Armbian, hostname <code>armbian</code></td></tr>
+<tr><td>LAN IP</td><td><code>192.168.3.243</code></td></tr>
+<tr><td>WiFi IP</td><td><code>192.168.3.244</code></td></tr>
+<tr><td>SSH</td><td>root / 1234</td></tr>
+<tr><td>Веб-панель</td><td><code>http://192.168.3.243:8080</code></td></tr>
+<tr><td>Аварийный restore-сервер</td><td><code>http://192.168.3.243:8081</code></td></tr>
+</table>
+
+<h4>Накопители</h4>
+<table class="help-table">
+<tr><th>Устройство</th><th>Размер</th><th>Точка монтирования</th><th>Назначение</th></tr>
+<tr><td><code>/dev/mmcblk1</code> (SD)</td><td>29 ГБ</td><td><code>/boot</code>, <code>/</code></td><td>SD-карта — системный диск (панель, данные)</td></tr>
+<tr><td><code>/dev/mmcblk2</code></td><td>29.1 ГБ</td><td>—</td><td>eMMC — пустая (не используется)</td></tr>
+<tr><td>HDD</td><td>—</td><td>—</td><td>отсутствует; <code>/srv</code> — на системном разделе SD</td></tr>
+</table>
+
+<h4>Сетевые устройства</h4>
+<table class="help-table">
+<tr><th>Устройство</th><th>IP</th><th>Описание</th></tr>
+<tr><td>X96 Max (панель)</td><td><code>192.168.3.243</code></td><td>Основной сервер, эта панель</td></tr>
+<tr><td>X96 Max (WiFi)</td><td><code>192.168.3.244</code></td><td>WiFi-интерфейс</td></tr>
+<tr><td>Orange Pi (LAN)</td><td><code>192.168.3.234</code></td><td>Удалённый сервер (кабель отвален — не отвечает)</td></tr>
+<tr><td>Orange Pi (WiFi AP)</td><td><code>192.168.3.235</code></td><td>Доступ к Orange Pi через его WiFi AP</td></tr>
+<tr><td>ThinkPad T480</td><td><code>192.168.3.236</code> / <code>.239</code></td><td>Рабочая станция</td></tr>
+<tr><td>Роутер</td><td><code>192.168.3.1</code></td><td>Шлюз, веб-интерфейс</td></tr>
+<tr><td>DNS-сервер</td><td><code>192.168.3.51</code></td><td>Локальный DNS</td></tr>
+</table>
+</div>
+
+<!-- 3. Страницы панели -->
+<div class="help-section" id="pages">
+<h3>3. Страницы панели</h3>
+
+<h4>🏠 Устройства (<code>/</code>)</h4>
+<p>Главная страница. Автоматическое сканирование сети (ARP via nmap).</p>
+<ul>
+<li>Список всех найденных устройств с IP, MAC, именем, статусом онлайн/офлайн</li>
+<li>Цветовая индикация: зелёный — онлайн, серый — оффлайн, жёлтый — новое устройство</li>
+<li>Клик по устройству → детальная страница с историей</li>
+<li>Возможность задать имя устройству</li>
+</ul>
+
+<h4>📊 Мониторинг (<code>/monitoring</code>)</h4>
+<p>Агрегация данных по хостам в реальном времени.</p>
+<ul>
+<li>CPU, RAM, диск, сеть, нагрузка — в реальном времени</li>
+<li>Аккордеон по хостам с детальными метриками</li>
+<li>Прогресс-бары с цветовой индикацией (норма/предупреждение/критично)</li>
+</ul>
+
+<h4>💱 Валюты (<code>/currencies</code>)</h4>
+<p>Курсы валют и драгоценных металлов.</p>
+<ul>
+<li>Фиатные: USD, EUR, GBP, CNY</li>
+<li>Драгоценные металлы: золото, серебро, платина, палладий</li>
+<li>Промышленные металлы: медь, алюминий, никель, олово, цинк, свинец</li>
+<li>Динамика цен (24h%, неделя, месяц)</li>
+<li>Графики истории курсов</li>
+</ul>
+
+<h4>🌤 Погода (<code>/weather</code>)</h4>
+<p>Погода для Иваново (57.0°N, 41.0°E).</p>
+<ul>
+<li>Текущая погода: температура, ветер, осадки, давление, UV</li>
+<li>Карточки: влажность, давление, ощущается как, видимость, UV-индекс</li>
+<li>Прогноз на 5 дней с иконками погоды</li>
+<li>Исторические данные (графики, сравнение влажности/температуры/давления за 24ч)</li>
+<li>Радиационный фон (мкЗв/ч)</li>
+<li>Качество воздуха AQI (PM2.5, PM10, CO, NO₂)</li>
+</ul>
+
+<h4>🖥 Система (<code>/system</code>)</h4>
+<p>Управление сервером X96 Max.</p>
+<ul>
+<li>Карточки: uptime, нагрузка, температура, RAM, SD, eMMC</li>
+<li>Управление сервисами (Transmission, MiniDLNA, Samba, LAN Discovery, Netdata)</li>
+<li>Резервное копирование (файлы панели, база данных)</li>
+<li>Проверка сети, зоны RU, провайдера</li>
+<li>Клонирование SD ↔ eMMC</li>
+<li>IPTV: управление плейлистами</li>
+<li>Управление питанием (перезагрузка, выключение)</li>
+</ul>
+
+<h4>📱 Приложения (<code>/apps</code>)</h4>
+<p>Встроенные утилиты и игры — подробнее в разделах 8 и 9.</p>
+
+<h4>ℹ️ О системе (<code>/about</code>)</h4>
+<p>Подробная информация о сервере: плата, процессор, память, накопители, сеть, USB, файловые системы, ПО, сервисы.</p>
+
+<h4>📖 Справка (<code>/help</code>)</h4>
+<p>Эта страница.</p>
+</div>
+
+<!-- 4. Погода и мониторинг окружающей среды -->
+<div class="help-section" id="weather">
+<h3>4. Погода и мониторинг <span class="help-badge green">Стандарт</span></h3>
+
+<h4>Погода и прогноз</h4>
+<ul>
+<li>Карточки с температурой, осадками, влажностью, давлением, ветром</li>
+<li>UV-индекс, видимость, «ощущается как», время восхода/заката (sunrise/sunset)</li>
+<li>Прогноз на 5 дней с иконками погоды</li>
+<li>Обновление каждые 30 минут</li>
+</ul>
+
+<h4>UV-индекс</h4>
+<ul>
+<li>Шкала 0–11+ с цветовыми зонами</li>
+<li>Рекомендации по защите от ультрафиолета</li>
+</ul>
+
+<h4>Радиационный фон</h4>
+<ul>
+<li>Единицы: мкЗв/ч</li>
+<li>Статусы: Normal / Warning / Danger</li>
+<li>Норма: 0.05–0.1 мкЗв/ч</li>
+</ul>
+
+<h4>Качество воздуха (AQI)</h4>
+<ul>
+<li>Шкала 0–500</li>
+<li>Параметры: PM2.5, PM10, CO, NO₂</li>
+<li>Рекомендации по здоровью</li>
+</ul>
+
+<h4>Исторические данные</h4>
+<ul>
+<li>Графики за 24 часа</li>
+<li>Сравнение влажности, температуры, давления</li>
+</ul>
+
+<h4>Пульс сервера</h4>
+<ul>
+<li>Latency (задержка ответа)</li>
+<li>CPU, RAM, Disk, Uptime</li>
+</ul>
+
+<h4>Технические детали</h4>
+<ul>
+<li>Кэширование API-ответов: 15 минут</li>
+<li>Rate limiting для предотвращения злоупотреблений</li>
+<li>Дата/время с часовым поясом Europe/Moscow</li>
+</ul>
+</div>
+
+<!-- 5. Сетевые функции -->
+<div class="help-section" id="network">
+<h3>5. Сетевые функции <span class="help-badge">Сеть</span></h3>
+
+<h4>Сканирование LAN</h4>
+<ul>
+<li><code>nmap -sn</code> — быстрое сканирование (обнаружение хостов)</li>
+<li><code>nmap -sV</code> — полное сканирование (определение сервисов и версий)</li>
+<li>ARP-таблица для построения топологии сети</li>
+</ul>
+
+<h4>Топология и устройства</h4>
+<ul>
+<li>Количество устройств: online / offline</li>
+<li>История событий (за 24 часа)</li>
+<li>Цветовая индикация статусов</li>
+</ul>
+
+<h4>Информация о дисках</h4>
+<ul>
+<li><code>lsblk</code> — список блочных устройств</li>
+<li><code>df</code> — использование дискового пространства</li>
+<li>S.M.A.R.T. — состояние здоровья накопителей</li>
+</ul>
+
+<h4>Мониторинг Wi-Fi сетей</h4>
+<ul>
+<li>Сканер Wi-Fi сетей (<code>iw</code>)</li>
+<li>Каналы, RSSI (уровень сигнала), шум</li>
+<li>Список доступных сетей с параметрами</li>
+</ul>
+</div>
+
+<!-- 6. Экономика -->
+<div class="help-section" id="economics">
+<h3>6. Экономика <span class="help-badge orange">Валюты</span></h3>
+
+<h4>Курсы валют</h4>
+<ul>
+<li>Фиатные: USD, EUR, GBP, CNY</li>
+<li>Драгоценные металлы: Gold, Silver, Platinum, Palladium</li>
+<li>Промышленные металлы: Copper, Aluminum, Nickel, Tin, Zinc, Lead (Yahoo Finance)</li>
+</ul>
+
+<h4>Динамика цен</h4>
+<ul>
+<li>Изменение за 24 часа (%)</li>
+<li>Изменение за неделю</li>
+<li>Изменение за месяц</li>
+</ul>
+
+<h4>История курсов</h4>
+<ul>
+<li>Графики изменения цен за выбранный период</li>
+<li>Экспорт данных в JSON/CSV</li>
+</ul>
+
+<h4>Цены на переработку</h4>
+<ul>
+<li>Пластик, стекло, бумага, металл</li>
+<li>Актуальные цены приёмных пунктов</li>
+</ul>
+</div>
+
+<!-- 7. Мультимедиа -->
+<div class="help-section" id="multimedia">
+<h3>7. Мультимедиа <span class="help-badge purple">Медиа</span></h3>
+
+<h4>IPTV</h4>
+<ul>
+<li>Загрузка m3u-плейлистов по URL</li>
+<li>Добавление, удаление, редактирование плейлистов</li>
+<li>Автоматическое обновление по расписанию</li>
+</ul>
+
+<h4>Веб-камеры</h4>
+<ul>
+<li>Поддержка RTSP и HTTP потоков</li>
+<li>Добавление и удаление камер</li>
+<li>Просмотр в реальном времени</li>
+</ul>
+
+<h4>Плеер видео/аудио</h4>
+<ul>
+<li>Встроенный HTML5-плеер</li>
+<li>Полноэкранный режим</li>
+<li>Поддержка видео и аудио форматов</li>
+</ul>
+
+<h4>Radio</h4>
+<ul>
+<li>Онлайн-радио станции</li>
+<li>Добавление своих станций</li>
+<li>Прослушивание прямо из браузера</li>
+</ul>
+
+<h4>Радиационный мониторинг</h4>
+<ul>
+<li>Данные МЧС России</li>
+<li>API radiationweather.com</li>
+<li>Карта уровня радиации</li>
+</ul>
+</div>
+
+<!-- 8. Приложения и утилиты -->
+<div class="help-section" id="apps">
+<h3>8. Приложения и утилиты <span class="help-badge green">Утилиты</span></h3>
+
+<h4>🧮 Калькулятор</h4>
+<p>Обычный + инженерный режимы. Поддержка тригонометрии, логарифмов, степеней.</p>
+
+<h4>⏱ Таймер</h4>
+<p>Обратный отсчёт с настраиваемым временем. Звуковое оповещение по окончании.</p>
+
+<h4>⏳ Секундомер</h4>
+<p>Точный секундомер с функцией фиксации кругов (laps).</p>
+
+<h4>📅 Календарь</h4>
+<p>Ежедневные задачи с хранением в localStorage. Создание, редактирование, удаление задач.</p>
+
+<h4>⏰ Будильник</h4>
+<p>Выбор времени, настройка повторения (одноразовый / ежедневный / по дням недели), мелодия.</p>
+
+<h4>🔗 Сетевые инструменты</h4>
+<ul>
+<li><strong>Ping</strong> — проверка доступности хоста</li>
+<li><strong>DNS</strong> — разрешение имён (lookup)</li>
+<li><strong>Порты</strong> — сканирование открытых TCP-портов</li>
+<li><strong>Traceroute</strong> — маршрут до хоста</li>
+</ul>
+
+<h4>💾 Диски</h4>
+<ul>
+<li><code>lsblk</code> — список блочных устройств</li>
+<li><code>df</code> — использование дисков</li>
+<li>S.M.A.R.T. — диагностика состояния дисков</li>
+</ul>
+
+<h4>📝 Заметки</h4>
+<p>Двухпанельный Markdown-редактор. Предпросмотр результата в реальном времени.</p>
+
+<h4>🔐 Пароли</h4>
+<ul>
+<li>Генератор безопасных паролей (настройка длины, символов)</li>
+<li>Зашифрованное хранилище паролей</li>
+<li>Копирование в буфер обмена</li>
+</ul>
+
+<h4>📁 Файловый менеджер</h4>
+<p>Двухпанельный файловый менеджер. Загрузка файлов на сервер, просмотр содержимого.</p>
+
+<h4>📶 Wi-Fi</h4>
+<ul>
+<li>Сканер доступных Wi-Fi сетей</li>
+<li>Информация о каналах, RSSI, уровне шума</li>
+<li>Подробные характеристики сети</li>
+</ul>
+
+<h4>📦 Загрузки</h4>
+<p>Менеджер загрузок на базе Transmission RPC. Добавление торрентов, управление загрузками.</p>
+
+<h4>💻 Терминал</h4>
+<p>Веб-терминал с доступом к командной строке сервера (только admin).</p>
+
+<h4>📺 DLNA</h4>
+<p>Обнаружение UPnP/DLNA-устройств в сети. Просмотр доступных медиа-серверов.</p>
+
+<h4>📶 Bluetooth</h4>
+<p>Менеджер Bluetooth: поиск устройств, подключение, управление сопряжением.</p>
+
+<h4>📺 UPnP Control Point</h4>
+<ul>
+<li>Обнаружение UPnP-рендереров и медиа-серверов в сети (SSDP)</li>
+<li>Управление воспроизведением: Play, Pause, Stop, Next, Prev</li>
+<li>Регулировка громкости, Mute</li>
+<li>Просмотр контента медиа-серверов (MiniDLNA и др.)</li>
+<li>Воспроизведение файлов с сервера на найденный рендерер</li>
+</ul>
+</div>
+
+<!-- 9. Игры -->
+<div class="help-section" id="games">
+<h3>9. Игры <span class="help-badge purple">Игры</span></h3>
+
+<h4>🐍 Змейка</h4>
+<p>Классическая игра «Змейка». Управление: WASD или стрелки клавиатуры.</p>
+
+<h4>🟦 Тетрис</h4>
+<p>Фигуры, уровни сложности, удержание (hold) фигуры. Нарастающая скорость.</p>
+
+<h4>🟩 2048</h4>
+<p>Объединение чисел на поле 4×4. Цель — собрать плитку 2048.</p>
+
+<h4>🟪 Арканоид</h4>
+<p>Разрушение блоков мячом с ракеткой. Управление мышью или клавиатурой.</p>
+</div>
+
+<!-- 10. Системные функции -->
+<div class="help-section" id="system-features">
+<h3>10. Системные функции <span class="help-badge orange">Система</span></h3>
+
+<h4>Аутентификация и авторизация</h4>
+<ul>
+<li>Три роли: admin, user, guest</li>
+<li>Role-based access control (управление доступом по ролям)</li>
+<li>Система пользователей: добавление, удаление, изменение роли и пароля</li>
+</ul>
+
+<h4>Настройки</h4>
+<ul>
+<li>IP сервера, сетевые интерфейсы, порт</li>
+<li>Параметры сканирования сети</li>
+<li>Настройки погоды (координаты, интервал обновления)</li>
+<li>API-ключи</li>
+</ul>
+
+<h4>Резервное копирование и восстановление</h4>
+<ul>
+<li>Файловые бэкапы — рядом с исходными файлами (<code>app.py.backup-*</code>, <code>devices.db.backup-*</code>)</li>
+<li>Бэкап/восстановление БД — страница «Система» (каталог <code>/srv/backup-db</code>)</li>
+<li>Бэкап eMMC выполняется только при загрузке системы с eMMC <b>и</b> подключённом HDD: при загрузке с SD-карты (проблемы с eMMC / тестовый запуск) или без HDD копия eMMC не создаётся — панель показывает причину отказа</li>
+<li>Аварийный доступ — <code>restore-server.service</code> (порт 8081)</li>
+<li>Импорт настроек (JSON)</li>
+</ul>
+
+<h4>Экспорт данных</h4>
+<ul>
+<li>Экспорт в JSON и CSV</li>
+<li>Экспорт истории курсов, событий, настроек</li>
+</ul>
+
+<h4>Rate Limiting</h4>
+<p>Ограничение количества запросов для защиты от злоупотреблений API.</p>
+</div>
+
+<!-- 11. API -->
+<div class="help-section" id="api">
+<h3>11. API (JSON)</h3>
+<table class="help-table">
+<tr><th>Эндпоинт</th><th>Метод</th><th>Описание</th></tr>
+<tr><td><code>/api/status</code></td><td>GET</td><td>Общий статус системы</td></tr>
+<tr><td><code>/api/weather-status</code></td><td>GET</td><td>Статус обновления погоды</td></tr>
+<tr><td><code>/api/currencies</code></td><td>GET</td><td>Курсы валют</td></tr>
+<tr><td><code>/api/monitoring/&lt;ip&gt;</code></td><td>GET</td><td>Метрики хоста</td></tr>
+<tr><td><code>/api/inventory/&lt;ip&gt;</code></td><td>GET</td><td>Данные инвентаризации</td></tr>
+<tr><td><code>/api/disk/check</code></td><td>GET</td><td>Проверка нового диска</td></tr>
+<tr><td><code>/api/disk/info</code></td><td>GET</td><td>Информация о диске</td></tr>
+<tr><td><code>/api/disk/prepare</code></td><td>POST</td><td>Подготовка диска</td></tr>
+<tr><td><code>/api/disk/transfer</code></td><td>POST</td><td>Копирование данных</td></tr>
+<tr><td><code>/api/disk/verify</code></td><td>POST</td><td>Проверка целостности</td></tr>
+<tr><td><code>/api/disk/poweroff</code></td><td>POST</td><td>Выключение питания</td></tr>
+<tr><td><code>/api/reboot</code></td><td>POST</td><td>Перезагрузка</td></tr>
+<tr><td><code>/api/sd-info</code></td><td>GET</td><td>Информация о SD-карте</td></tr>
+<tr><td><code>/api/clone/start</code></td><td>POST</td><td>Запуск клонирования eMMC→SD</td></tr>
+<tr><td><code>/api/clone/status</code></td><td>GET</td><td>Статус клонирования</td></tr>
+<tr><td><code>/api/service/&lt;name&gt;/&lt;action&gt;</code></td><td>POST</td><td>Управление сервисом (start/stop/restart)</td></tr>
+<tr><td><code>/api/network/check</code></td><td>GET</td><td>Проверка сети</td></tr>
+<tr><td><code>/api/network/check_host</code></td><td>POST</td><td>Проверка конкретного хоста</td></tr>
+<tr><td><code>/api/network/config</code></td><td>GET/POST</td><td>Конфигурация тестовых хостов</td></tr>
+<tr><td><code>/api/backup-status</code></td><td>GET</td><td>Статус резервного копирования</td></tr>
+</table>
+</div>
+
+<!-- 12. Администрирование -->
+<div class="help-section" id="admin">
+<h3>12. Администрирование</h3>
+
+<h4>Структура файлов</h4>
+<table class="help-table">
+<tr><th>Путь</th><th>Описание</th></tr>
+<tr><td><code>/opt/lan-discovery/app.py</code></td><td>Основной Flask-сервер</td></tr>
+<tr><td><code>/opt/lan-discovery/devices.db</code></td><td>SQLite база данных</td></tr>
+<tr><td><code>/opt/lan-discovery/modules/</code></td><td>Модули панели (роуты, парсеры)</td></tr>
+<tr><td><code>/opt/lan-discovery/modules/&lt;id&gt;/module.json</code></td><td>Манифесты модульной системы</td></tr>
+<tr><td><code>/opt/lan-discovery/core/</code></td><td>Загрузчик модулей (навигация, справка, состояние)</td></tr>
+<tr><td><code>/opt/lan-discovery/network_check.py</code></td><td>Проверка сетевой связности</td></tr>
+<tr><td><code>/etc/lan-discovery/</code></td><td>Настройки: settings.json, users.json, modules.json</td></tr>
+<tr><td><code>/srv/downloads/</code></td><td>Загрузки Transmission</td></tr>
+<tr><td><code>/srv/backup-db/</code></td><td>Резервные копии БД</td></tr>
+</table>
+
+<h4>Systemd-сервисы</h4>
+<table class="help-table">
+<tr><th>Сервис</th><th>Описание</th></tr>
+<tr><td><code>lan-discovery</code></td><td>Веб-панель (Flask, порт 8080)</td></tr>
+<tr><td><code>restore-server</code></td><td>Аварийный HTTP-сервер (порт 8081)</td></tr>
+<tr><td><code>transmission-daemon</code></td><td>Торрент-клиент (web: 9091)</td></tr>
+<tr><td><code>minidlna</code></td><td>DLNA-сервер (порт 8200)</td></tr>
+<tr><td><code>smbd</code> / <code>nmbd</code></td><td>Samba-шары (порт 445)</td></tr>
+<tr><td><code>netdata</code></td><td>Мониторинг (порт 19999)</td></tr>
+</table>
+
+<h4>Полезные команды</h4>
+<table class="help-table">
+<tr><th>Команда</th><th>Описание</th></tr>
+<tr><td><code>systemctl status lan-discovery</code></td><td>Статус веб-панели</td></tr>
+<tr><td><code>systemctl restart lan-discovery</code></td><td>Рестарт панели</td></tr>
+<tr><td><code>journalctl -u lan-discovery -f</code></td><td>Логи в реальном времени</td></tr>
+<tr><td><code>nmap -sn -PR 192.168.3.0/24</code></td><td>Ручное сканирование сети</td></tr>
+<tr><td><code>python3 -c "import py_compile; py_compile.compile('opt/lan-discovery/app.py', doraise=True)"</code></td><td>Проверка синтаксиса Python</td></tr>
+<tr><td><code>lsblk</code></td><td>Список блочных устройств</td></tr>
+<tr><td><code>df -h</code></td><td>Использование дисков</td></tr>
+</table>
+
+<h4>Резервные копии</h4>
+<p>Бэкапы хранятся рядом с исходными файлами и в <code>/srv/backup-db</code> (системный раздел SD). Рекомендации:</p>
+<ul>
+<li>Перед любым изменением <code>app.py</code> — бэкап: <code>cp /opt/lan-discovery/app.py /opt/lan-discovery/app.py.backup-$(date +%Y%m%d-%H%M%S)</code></li>
+<li>Бэкап БД вручную: <code>cp /opt/lan-discovery/devices.db /opt/lan-discovery/devices.db.backup-$(date +%Y%m%d-%H%M%S)</code></li>
+<li>Восстановление — из файлов <code>.backup-*</code> или через страницу «Система»</li>
+</ul>
+</div>
+
+<!-- 13. Решение проблем -->
+<div class="help-section" id="troubleshoot">
+<h3>13. Решение проблем</h3>
+
+<h4>Панель не открывается</h4>
+<ul>
+<li>Проверьте статус: <code>systemctl status lan-discovery</code></li>
+<li>Посмотрите логи: <code>journalctl -u lan-discovery -n 50</code></li>
+<li>Проверьте порт: <code>ss -tlnp | grep 8080</code></li>
+<li>Перезапустите: <code>systemctl restart lan-discovery</code></li>
+</ul>
+
+<h4>Устройства не обнаруживаются</h4>
+<ul>
+<li>Убедитесь что устройства в одной подсети (192.168.3.0/24)</li>
+<li>Проверьте nmap: <code>nmap -sn -PR 192.168.3.0/24</code></li>
+<li>Убедитесь что ARP-сканирование не блокируется файрволом</li>
+</ul>
+
+<h4>Погода не обновляется</h4>
+<ul>
+<li>Кэш погоды — 15–30 минут, обновляется при обращении к странице/шапке</li>
+<li>Проверьте доступность API: <code>curl "https://api.open-meteo.com/v1/forecast?latitude=57&longitude=41&current_weather=true"</code></li>
+<li>Посмотрите логи панели: <code>journalctl -u lan-discovery -n 50</code></li>
+</ul>
+
+<h4>Бэкап БД не создаётся</h4>
+<ul>
+<li>Вручную: <code>cp /opt/lan-discovery/devices.db /opt/lan-discovery/devices.db.backup-$(date +%Y%m%d-%H%M%S)</code></li>
+<li>Проверьте место: <code>df -h /</code></li>
+<li>Бэкап со страницы «Система» пишет в <code>/srv/backup-db</code></li>
+</ul>
+
+<h4>Ошибка синтаксиса Python</h4>
+<ul>
+<li>Проверка: <code>python3 -c "import py_compile; py_compile.compile('opt/lan-discovery/app.py', doraise=True)"</code></li>
+<li>Восстановление из бэкапа: <code>cp /opt/lan-discovery/app.py.backup-XXXXXX /opt/lan-discovery/app.py</code></li>
+</ul>
+
+<h4>Клонирование не запускается</h4>
+<ul>
+<li><b>Клонирование отключено при загрузке с SD-карты</b> — <code>dd</code> перезаписал бы работающую систему (на этой панели система живёт на SD, поэтому eMMC → SD недоступно: панель показывает причину)</li>
+<li>Если система загружена с eMMC: нажмите «Проверить SD» и убедитесь, что разделы SD не смонтированы: <code>umount /dev/mmcblk1*</code></li>
+<li>eMMC = <code>/dev/mmcblk2</code></li>
+</ul>
+</div>
+
+<!-- 14. FAQ -->
+<div class="help-section" id="faq">
+<h3>14. FAQ</h3>
+
+<h4>Как добавить IPTV-плейлист?</h4>
+<p>На странице «Система» → блок «IPTV» → введите URL m3u-файла → нажмите «Добавить».</p>
+
+<h4>Как добавить веб-камеру?</h4>
+<p>На странице «Система» или в разделе «Мультимедиа» → введите URL потока (RTSP/HTTP) → нажмите «Добавить».</p>
+
+<h4>Как добавить онлайн-радио?</h4>
+<p>В разделе «Приложения» → Radio → введите URL потока и название станции → «Добавить».</p>
+
+<h4>Как пользоваться калькулятором?</h4>
+<p>Откройте вкладку «Приложения» → Калькулятор. Переключайтесь между обычным и инженерным режимами кнопкой.</p>
+
+<h4>Как работает генератор паролей?</h4>
+<p>Откройте «Приложения» → Пароли → настройте длину и типы символов → нажмите «Сгенерировать». Пароли хранятся в зашифрованном виде.</p>
+
+<h4>Как добавить тестовый адрес для проверки сети?</h4>
+<p>На странице «Система» → блок «Сеть» → нажмите «Изменить» рядом с нужным адресом.</p>
+
+<h4>Как сделать полный backup системы?</h4>
+<p>Файловые бэкапы создаются вручную (см. раздел 12, «Резервные копии»), БД — через страницу «Система» или <code>cp</code>. Образ SD можно сделать утилитой <code>dd</code> на другой диск.</p>
+
+<h4>Как восстановить систему из backup?</h4>
+<p>Восстановление файлов — из <code>.backup-*</code> рядом с файлами; БД — через страницу «Система» («Восстановить БД»). Аварийный доступ — <code>restore-server.service</code> (порт 8081).</p>
+
+<h4>Как подключиться к серверу по SSH?</h4>
+<p><code>ssh root@192.168.3.243</code> (пароль: 1234). Рекомендуется настроить SSH-ключи для безопасности.</p>
+
+<h4>Как перезагрузить сервер через веб-панель?</h4>
+<p>Страница «Система» → «Управление питанием» → «Перезагрузить». Подтвердите действие.</p>
+
+<h4>Как выключить сервер?</h4>
+<p>Страница «Система» → «Управление питанием» → «Выключить питание». После команды можно отключить кабель питания.</p>
+
+<h4>Где хранятся данные torrent-клиента?</h4>
+<p><code>/srv/downloads/</code> — загруженные файлы (системный раздел SD); конфигурация Transmission — в <code>/etc/transmission-daemon/</code>.</p>
+
+<h4>Как обновить панель?</h4>
+<p>Отредактируйте <code>/opt/lan-discovery/app.py</code>, затем: <code>systemctl restart lan-discovery</code>. Перед изменением обязательно сделайте бэкап!</p>
+
+<h4>Как играть в Змейку?</h4>
+<p>Откройте «Приложения» → Змейка. Управление: клавиши WASD или стрелки.</p>
+
+<h4>Как работает секундомер?</h4>
+<p>Откройте «Приложения» → Секундомер. Нажмите «Старт» для запуска, «Круг» для фиксации промежуточного времени, «Стоп» для остановки.</p>
+</div>
+
+
+<div class="help-section" id="mod-bluetooth">
+<h3>📦 Bluetooth</h3>
+<p><strong>Где это:</strong> плитка «Bluetooth» на /apps (оверлей).</p>
+<ul>
+<li>Статус адаптера (MAC, имя, вкл/выкл), видимость, поиск и подключение устройств (колонки, гарнитуры), управление парами.</li>
+<li>API: <code>GET /api/bluetooth/status|devices|paired|discovered</code>, <code>POST /api/bluetooth/scan|power|connect|disconnect|pair|remove|discoverable|trust</code>.</li>
+<li>Статус читается из <code>/sys/class/bluetooth</code>, управление — через <code>bluetoothctl</code>.</li>
+<li>Зависимости модуля: пакет <code>bluez</code> (apt), сервис <code>bluetooth</code>.</li>
+<li>Выключенный модуль: плитка скрыта, <code>/apps/bluetooth</code> и <code>/api/bluetooth</code> → 404.</li>
+</ul>
+</div>
+
+<div class="help-section" id="mod-camera">
+<h3>📦 Камеры</h3>
+<p><strong>Где это:</strong> плитка «Камеры» на /apps (оверлей).</p>
+<ul>
+<li>IP-камеры: добавление/удаление (RTSP-URL), запуск/остановка трансляций, просмотр потока в браузере.</li>
+<li>API: <code>GET/POST /api/cameras</code>, <code>PUT/DELETE /api/cameras/&lt;id&gt;</code>, <code>POST /api/cameras/&lt;id&gt;/start|stop</code>, <code>POST /api/cameras/start_all|stop_all</code>, <code>GET /api/cameras/stream/&lt;id&gt;</code>.</li>
+<li>Трансляции тянет <code>ffmpeg</code> — камеры должны быть доступны с сети сервера.</li>
+<li>Выключенный модуль: плитка скрыта, <code>/api/cameras</code> → 404.</li>
+</ul>
+</div>
+
+<div class="help-section" id="mod-currencies">
+<h3>📦 Валюты</h3>
+<p><strong>Где это:</strong> вкладка «Валюты».</p>
+<ul>
+<li>Фиатные валюты: USD, EUR, GBP, CNY; драгоценные металлы: золото, серебро, платина, палладий;
+  промышленные металлы: медь, алюминий, никель, олово, цинк, свинец.</li>
+<li>Динамика: 24 часа / неделя / месяц / год, графики истории, экспорт.</li>
+<li>Отдельный блок — цены на переработку (утилизация).</li>
+<li>Источники данных: CoinGecko, Frankfurter, Yahoo Finance; обновление фоном во время работы панели.</li>
+<li>Зависимости модуля: нет (только внешние API, пакеты не нужны).</li>
+<li>Выключенный модуль: вкладка скрыта, <code>/currencies</code> и <code>/api/currencies</code> → 404.</li>
+</ul>
+</div>
+
+<div class="help-section" id="mod-disks">
+<h3>📦 Диски</h3>
+<p><strong>Где это:</strong> плитка «Диски» на /apps (оверлей).</p>
+<ul>
+<li>Инфо о дисках: <code>lsblk</code>, <code>df</code>, S.M.A.R.T.-атрибуты (если установлен <code>smartmontools</code> и есть физический диск).</li>
+<li>API: <code>GET /api/disks</code>.</li>
+<li>Выключенный модуль: плитка скрыта, <code>/apps/disks</code> и <code>/api/disks</code> → 404.</li>
+</ul>
+</div>
+
+<div class="help-section" id="mod-dlna">
+<h3>📦 DLNA</h3>
+<p><strong>Где это:</strong> плитка «DLNA» на /apps (оверлей).</p>
+<ul>
+<li>Просмотр медиасерверов DLNA/UPnP в локальной сети: SSDP-скан, навигация по папкам, URL файла для воспроизведения.</li>
+<li>На панели работает <code>minidlna</code> (<code>:8200</code>) — собственная библиотека <code>/srv/media</code> тоже видна как сервер.</li>
+<li>API: <code>POST /api/dlna/scan</code>, <code>GET /api/dlna/content?ip=&lt;сервер&gt;&amp;id=&lt;object_id&gt;</code>, <code>GET /api/dlna/file_url?...</code>.</li>
+<li>Сначала «Сканировать» — без выбранного сервера content вернёт <code>No IP</code>.</li>
+<li>Выключенный модуль: плитка скрыта, <code>/apps/dlna</code> и <code>/api/dlna</code> → 404.</li>
+</ul>
+</div>
+
+<div class="help-section" id="mod-downloads">
+<h3>📦 Загрузки</h3>
+<p><strong>Где это:</strong> плитка «Загрузки» на /apps (оверлей).</p>
+<ul>
+<li>Веб-обёртка над Transmission: список торрентов, добавление по URL/файл-маршруту, старт/стоп/удаление, очередь.</li>
+<li>Файлы качаются в <code>/srv/downloads</code> (демон <code>transmission-daemon</code>).</li>
+<li>API: <code>GET /api/transmission/torrents</code>, <code>POST /api/transmission/add|action|queue</code> (JSON).</li>
+<li>Выключенный модуль: плитка скрыта, <code>/apps/downloads</code> и <code>/api/transmission</code> → 404.</li>
+</ul>
+</div>
+
+<div class="help-section" id="mod-filemanager">
+<h3>📦 Файловый менеджер</h3>
+<p><strong>Где это:</strong> плитка «Файлы» на /apps (оверлей).</p>
+<ul>
+<li>Двухпанельный файловый менеджер: список, чтение файла, копирование/перемещение, переименование, удаление, создание каталогов.</li>
+<li>Пути абсолютные (с <code>/</code>); права — от пользователя, под которым работает сервис панели.</li>
+<li>API: <code>GET /api/filemanager/list?path=</code>, <code>GET /api/filemanager/read?path=</code>, <code>POST /api/filemanager/rename|delete|copy|move|mkdir</code> (JSON).</li>
+<li>Выключенный модуль: плитка скрыта, <code>/apps/filemanager</code> и <code>/api/filemanager</code> → 404.</li>
+</ul>
+</div>
+
+<div class="help-section" id="mod-inventory">
+<h3>📦 Инвентаризация</h3>
+<p><strong>Где это:</strong> вкладка «Инвентаризация».</p>
+<ul>
+<li>Кнопка «Сканировать» — обнаружение хостов и определение ОС/сервисов через <code>nmap</code> (OS detection, mDNS, UPnP).</li>
+<li>Карточка устройства: открытые порты, версии сервисов, инвентарные поля (место установки, состояние, ответственный, заметки).</li>
+<li>API: <code>GET /api/inventory/&lt;ip&gt;</code> — данные инвентаря, <code>POST /inventory/scan</code> — запуск сканирования.</li>
+<li>Зависимости модуля: пакет <code>nmap</code> (apt) — ставится кнопкой «Установить зависимости» на странице «Модули».</li>
+<li>Выключенный модуль: вкладка скрыта, <code>/inventory</code> и <code>/api/inventory</code> отвечают 404.</li>
+</ul>
+</div>
+
+<div class="help-section" id="mod-monitoring">
+<h3>📦 Мониторинг</h3>
+<p><strong>Где это:</strong> вкладка «Мониторинг».</p>
+<ul>
+<li>Список хостов панели: X96 Max (<code>192.168.3.243</code>) и остальные из <code>monitoring.hosts</code> (<code>/etc/lan-discovery/settings.json</code>).</li>
+<li>Метрики (CPU, RAM, диск, сеть) читаются из Netdata каждого хоста — порт <code>19999</code>.</li>
+<li>Хост помечен ONLINE/OFFLINE; клик по строке — детальные графики Netdata.</li>
+<li>API: <code>GET /api/monitoring/&lt;ip&gt;</code> — метрики хоста (503, если хост недоступен).</li>
+<li>Зависимости модуля: пакет <code>netdata</code> (apt), сервис <code>netdata</code>.
+  На X96 Max: <code>bind socket to IP = 0.0.0.0</code> в <code>/etc/netdata/netdata.conf</code>, чтобы хост был виден извне.</li>
+<li>Выключенный модуль: вкладка скрыта, <code>/monitoring</code> и <code>/api/monitoring</code> → 404.</li>
+</ul>
+</div>
+
+<div class="help-section" id="mod-nettools">
+<h3>📦 Сетевые инструменты</h3>
+<p><strong>Где это:</strong> плитка «Сеть» на /apps (оверлей).</p>
+<ul>
+<li>Утилиты сети: ping, DNS-резолвер, сканер портов, traceroute — по кнопкам интерфейса.</li>
+<li>API: <code>POST /api/nettools/ping|dns|ports|trace</code> (JSON: <code>host</code>; для ports — ещё <code>ports</code>, например <code>"22,80,443"</code>).</li>
+<li>Выключенный модуль: плитка скрыта, <code>/apps/nettools</code> и <code>/api/nettools</code> → 404.</li>
+</ul>
+</div>
+
+<div class="help-section" id="mod-notes">
+<h3>📦 Заметки</h3>
+<p><strong>Где это:</strong> плитка «Заметки» на /apps (оверлей).</p>
+<ul>
+<li>Текстовые заметки: создание, редактирование, удаление, поиск по списку.</li>
+<li>API: <code>GET /api/notes</code>, <code>POST /api/notes</code> (JSON <code>title</code>, <code>content</code>), <code>PUT/DELETE /api/notes/&lt;id&gt;</code>.</li>
+<li>Данные хранятся в БД панели (<code>devices.db</code>), бэкап — см. «Система» → Backup БД.</li>
+<li>Выключенный модуль: плитка скрыта, <code>/apps/notes</code> и <code>/api/notes</code> → 404.</li>
+</ul>
+</div>
+
+<div class="help-section" id="mod-passwords">
+<h3>📦 Пароли</h3>
+<p><strong>Где это:</strong> плитка «Пароли» на /apps (оверлей).</p>
+<ul>
+<li>Менеджер секретов: логин/пароль/URL/заметка, показ и копирование значения.</li>
+<li>API: <code>GET /api/secrets</code>, <code>POST /api/secrets</code>, <code>PUT/DELETE /api/secrets/&lt;id&gt;</code> (JSON).</li>
+<li>Хранение — в БД панели; доступ только под учётной записью с ролью не ниже администратора.</li>
+<li>Выключенный модуль: плитка скрыта, <code>/apps/passwords</code> и <code>/api/secrets</code> → 404.</li>
+</ul>
+</div>
+
+<div class="help-section" id="mod-player">
+<h3>📦 Плеер</h3>
+<p><strong>Где это:</strong> плитка «Плеер» на /apps (оверлей).</p>
+<ul>
+<li>Плеер медиафайлов сервера: обзор каталогов, плейлисты (сохранение/удаление), play/stop/next/prev, случайный порядок. Воспроизведение — через <code>mpv</code>.</li>
+<li>API: <code>GET /api/player/browse</code>, <code>GET /api/player/playlists</code>, <code>GET /api/player/status</code>, <code>POST /api/player/play|stop|next|prev|random|playlist</code>.</li>
+<li>Выключенный модуль: плитка скрыта, <code>/api/player/*</code> → 404.</li>
+</ul>
+</div>
+
+<div class="help-section" id="mod-radio">
+<h3>📦 Радио</h3>
+<p><strong>Где это:</strong> плитка «Радио» на /apps (оверлей).</p>
+<ul>
+<li>Интернет-радио: список станций и плейлистов; play/stop/next/prev. Звук воспроизводится <strong>на сервере</strong> через <code>mpv</code> (без видео).</li>
+<li>API: <code>GET /api/radio/stations</code>, <code>GET /api/radio/playlists</code>, <code>GET /api/radio/status</code>, <code>POST /api/radio/play|stop|next|prev</code>.</li>
+<li>Выключенный модуль: плитка скрыта, <code>/api/radio/*</code> → 404.</li>
+</ul>
+</div>
+
+<div class="help-section" id="mod-terminal">
+<h3>📦 Терминал</h3>
+<p><strong>Где это:</strong> плитка «Терминал» на /apps (оверлей).</p>
+<ul>
+<li>Веб-терминал сервера: xterm.js в браузере + Socket.IO (тот же порт <code>8080</code>, что и панель).</li>
+<li>Команды выполняются от пользователя сервиса панели — учитывайте права при работе с системными файлами.</li>
+<li>Выключенный модуль: плитка скрыта, <code>/apps/terminal</code> → 404.</li>
+</ul>
+</div>
+
+<div class="help-section" id="mod-torrent">
+<h3>📦 Торренты</h3>
+<p><strong>Где это:</strong> вкладка «Торрент» в верхнем меню.</p>
+<ul>
+<li>Веб-интерфейс Transmission v4 встроен прямо во вкладку (порт <code>9091</code>).</li>
+<li>Скачанные файлы: <code>/srv/downloads</code> (общий шары также видны в Samba/DLNA).</li>
+<li>Входящие соединения: TCP/UDP <code>51413</code>.</li>
+<li>RPC без пароля — только для локальной сети; из интернета порт не открывать.</li>
+</ul>
+<p><strong>Сервис и конфиг:</strong></p>
+<ul>
+<li><code>systemctl status transmission-daemon</code> — состояние.</li>
+<li><code>/etc/transmission-daemon/settings.json</code> — настройки; после правки: <code>systemctl restart transmission-daemon</code>.</li>
+</ul>
+<p><strong>Очередь и управление</strong> — через API панели: <code>/api/transmission/queue</code>, <code>/api/transmission/action</code>, <code>/api/transmission/add</code>.</p>
+<p><strong>Зависимости модуля:</strong> <code>transmission-daemon</code> (apt), сервис <code>transmission-daemon</code>, папка <code>/srv/downloads</code> — ставятся кнопкой «Установить зависимости» на странице «Модули».</p>
+<p><strong>Если вкладка выключена:</strong> страница и API <code>/torrent</code>, <code>/api/transmission</code> отвечают 404, пункт меню скрыт. Включить обратно можно на странице «Модули» (админ).</p>
+</div>
+
+<div class="help-section" id="mod-upnp">
+<h3>📦 UPnP</h3>
+<p><strong>Где это:</strong> плитка «UPnP» на /apps (оверлей).</p>
+<ul>
+<li>Управление UPnP-рендерерами (колонки/ТВ): выбор рендера, play/pause/stop/next/prev, громкость, mute; обзор содержимого UPnP-серверов (SOAP Browse).</li>
+<li>API: <code>GET /api/upnp/renderers|servers|status|browse</code>, <code>POST /api/upnp/play|pause|stop|next|prev|volume|mute</code>.</li>
+<li>Списки пустые — если устройства не отвечают на SSDP-обнаружение в сети.</li>
+<li>Выключенный модуль: плитка скрыта, <code>/apps/upnp</code> и <code>/api/upnp</code> → 404.</li>
+</ul>
+</div>
+
+<div class="help-section" id="mod-weather">
+<h3>📦 Погода</h3>
+<p><strong>Где это:</strong> вкладка «Погода» + краткий статус в шапке панели.</p>
+<ul>
+<li>Локация: Иваново (57.0°N, 41.0°E), часовой пояс Europe/Moscow, источник — Open-Meteo API.</li>
+<li>Карточки: температура, «ощущается как», ветер, влажность, давление, UV-индекс, видимость, восход/закат.</li>
+<li>Прогноз: почасовой + на 5 дней, история за 24 часа, радиационный фон (мкЗв/ч), качество воздуха AQI.</li>
+<li>Выходные дни в таблице прогноза подсвечены красным.</li>
+<li>Статус обновления в шапке: <code>GET /api/weather-status</code> (элемент <code>#weather-status</code>).</li>
+<li>Кэширование ответов ~15–30 минут; при недоступности API показываются последние данные.</li>
+<li>Зависимости модуля: нет (Open-Meteo API, пакеты не нужны).</li>
+<li>Выключенный модуль: вкладка скрыта, <code>/weather</code> и <code>/api/weather*</code> → 404.</li>
+</ul>
+</div>
+
+<div class="help-section" id="mod-wifianalyzer">
+<h3>📦 Wi-Fi анализатор</h3>
+<p><strong>Где это:</strong> плитка «Wi-Fi» на /apps (оверлей).</p>
+<ul>
+<li>Скан окрестных Wi-Fi сетей: SSID, BSSID, канал, уровень сигнала, шифрование; диаграмма каналов для поиска перегруженности.</li>
+<li>API: <code>GET /api/wifi/scan</code> — несколько секунд идёт реальный скан (<code>nmcli dev wifi rescan</code>).</li>
+<li>Нужен Wi-Fi адаптер с поддержкой скана (на X96 Max — <code>wlan0</code>).</li>
+<li>Выключенный модуль: плитка скрыта, <code>/apps/wifianalyzer</code> и <code>/api/wifi</code> → 404.</li>
+</ul>
+</div>
+
+
+</div>
+</div>
+
+
+<script>
+var USER_ROLE = "admin";
+function updateClock() {
+    const now = new Date();
+
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const year = now.getFullYear();
+
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+
+    const dateEl = document.getElementById("clock-date");
+    const timeEl = document.getElementById("clock-time");
+    if (dateEl) dateEl.textContent = day + "." + month + "." + year;
+    if (timeEl) timeEl.textContent = hours + ":" + minutes + ":" + seconds;
+}
+
+function weatherIcon(code) {
+    if (code === null || code === undefined) return "🌡";
+    if (code >= 0 && code <= 1) return "☀";
+    if (code >= 2 && code <= 3) return "⛅";
+    if (code >= 45 && code <= 48) return "🌫";
+    if (code >= 51 && code <= 67) return "🌧";
+    if (code >= 71 && code <= 77) return "❄";
+    if (code >= 80 && code <= 82) return "🌧";
+    if (code >= 85 && code <= 86) return "❄";
+    if (code >= 95) return "⛈";
+    return "🌡";
+}
+
+function windDirName(dir) {
+    if (dir === null || dir === undefined) return "";
+    const dirs = ["С","ССВ","СВ","ВСВ","В","ВЮВ","ЮВ","ЮЮВ","Ю","ЮЮЗ","ЮЗ","ЗЮЗ","З","ЗСЗ","СЗ","ССЗ"];
+    return dirs[Math.round(dir / 22.5) % 16] || "";
+}
+
+let prevTemp = null;
+
+function updateWeatherStatus() {
+    fetch("api/weather-status")
+        .then(r => r.json())
+        .then(d => {
+            const el = document.getElementById("weather-status");
+            if (!el || d.temp === null) return;
+
+            let arrow = "";
+            if (d.trend > 0) arrow = " <span style='color:#ff6b6b'>↑</span>";
+            else if (d.trend < 0) arrow = " <span style='color:#6bcb77'>↓</span>";
+
+            const icon = weatherIcon(d.code);
+            const wdir = windDirName(d.wind_dir);
+            const wspd = d.wind_speed ? (d.wind_speed / 3.6).toFixed(0) : "0";
+
+            el.innerHTML = icon + " " + d.temp.toFixed(1) + " °C" + arrow +
+                " · <span style='color:#aaa'>" + wdir + "</span> <span style='color:#6ba3d6'>" + wspd + " м/с</span>";
+        })
+        .catch(() => {});
+}
+
+updateClock();
+setInterval(updateClock, 1000);
+updateWeatherStatus();
+setInterval(updateWeatherStatus, 60000);
+
+/* Auto-check network on system page */
+if (document.getElementById("net-internet")) {
+    checkAllNet();
+}
+
+/* ========== Disk Replacement ========== */
+
+let diskTarget = null;
+
+function diskCheck() {
+    const btn = document.getElementById("disk-check-btn");
+    const result = document.getElementById("disk-check-result");
+    btn.disabled = true;
+    btn.textContent = "Проверка...";
+    result.style.display = "block";
+    result.innerHTML = "<span style='color:#888;'>Поиск диска...</span>";
+
+    fetch("api/disk/check")
+        .then(r => r.json())
+        .then(d => {
+            btn.disabled = false;
+            btn.textContent = "Проверить подключение нового диска";
+
+            if (d.found) {
+                diskTarget = d.disk.name;
+                result.innerHTML =
+                    "<div style='border:1px solid #e74c3c; border-radius:8px; padding:12px; margin-top:8px;'>" +
+                    "<div style='color:#e74c3c; font-weight:bold; margin-bottom:8px;'>⚠ Обнаружен новый диск</div>" +
+                    "<div class='info-row'><span class='info-label'>Диск:</span> " + d.disk.name + "</div>" +
+                    "<div class='info-row'><span class='info-label'>Размер:</span> " + d.disk.size + "</div>" +
+                    "<div class='info-row'><span class='info-label'>Модель:</span> " + (d.disk.model || "—") + "</div>" +
+                    "<div style='margin-top:12px; color:#e74c3c; font-weight:bold;'>" +
+                    "⚠ ВНИМАНИЕ: Все данные на целевом диске будут уничтожены!" +
+                    "</div>" +
+                    "<div style='display:flex; gap:8px; margin-top:12px;'>" +
+                    "<button type='button' onclick='diskProceed()'>Продолжить</button>" +
+                    "<button type='button' onclick='diskCancel()' style='background:#555;'>Отмена</button>" +
+                    "</div>" +
+                    "</div>";
+            } else {
+                result.innerHTML =
+                    "<div style='border:1px solid #333; border-radius:8px; padding:12px; margin-top:8px;'>" +
+                    "<div style='color:#888;'>Новый жёсткий диск не обнаружен.</div>" +
+                    "<div style='color:#888; font-size:12px; margin-top:4px;'>Подключите новый диск и нажмите проверку ещё раз.</div>" +
+                    "</div>";
+            }
+        })
+        .catch(err => {
+            btn.disabled = false;
+            btn.textContent = "Проверить подключение нового диска";
+            result.innerHTML = "<span style='color:#e74c3c;'>Ошибка: " + err + "</span>";
+        });
+}
+
+function diskCancel() {
+    diskTarget = null;
+    document.getElementById("disk-check-result").style.display = "none";
+}
+
+function diskProceed() {
+    if (!diskTarget) return;
+
+    const result = document.getElementById("disk-check-result");
+    result.innerHTML =
+        "<div style='border:1px solid #f39c12; border-radius:8px; padding:12px;'>" +
+        "<div style='color:#f39c12; font-weight:bold;'>⚙ Подготовка диска...</div>" +
+        "<div id='disk-progress' style='margin-top:8px; color:#888;'>Создание раздела и файловой системы</div>" +
+        "</div>";
+
+    fetch("api/disk/prepare", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({target: diskTarget})
+    })
+    .then(r => r.json())
+    .then(d => {
+        if (d.success) {
+            diskTarget = d.partition;
+            diskTransfer();
+        } else {
+            result.innerHTML =
+                "<div style='border:1px solid #e74c3c; border-radius:8px; padding:12px;'>" +
+                "<div style='color:#e74c3c; font-weight:bold;'>❌ Ошибка подготовки диска</div>" +
+                "</div>";
+        }
+    })
+    .catch(err => {
+        result.innerHTML = "<span style='color:#e74c3c;'>Ошибка: " + err + "</span>";
+    });
+}
+
+function diskTransfer() {
+    const result = document.getElementById("disk-check-result");
+    result.innerHTML =
+        "<div style='border:1px solid #f39c12; border-radius:8px; padding:12px;'>" +
+        "<div style='color:#f39c12; font-weight:bold;'>⚙ Копирование данных...</div>" +
+        "<div id='disk-progress' style='margin-top:8px; color:#888;'>Это может занять длительное время в зависимости от объёма данных</div>" +
+        "</div>";
+
+    fetch("api/disk/transfer", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({target: diskTarget})
+    })
+    .then(r => r.json())
+    .then(d => {
+        if (d.success) {
+            diskVerify();
+        } else {
+            result.innerHTML =
+                "<div style='border:1px solid #e74c3c; border-radius:8px; padding:12px;'>" +
+                "<div style='color:#e74c3c; font-weight:bold;'>❌ Ошибка копирования данных</div>" +
+                "</div>";
+        }
+    })
+    .catch(err => {
+        result.innerHTML = "<span style='color:#e74c3c;'>Ошибка: " + err + "</span>";
+    });
+}
+
+function diskVerify() {
+    const result = document.getElementById("disk-check-result");
+    result.innerHTML =
+        "<div style='border:1px solid #f39c12; border-radius:8px; padding:12px;'>" +
+        "<div style='color:#f39c12; font-weight:bold;'>⚙ Проверка целостности...</div>" +
+        "</div>";
+
+    fetch("api/disk/verify", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({target: diskTarget})
+    })
+    .then(r => r.json())
+    .then(d => {
+        if (d.match) {
+            result.innerHTML =
+                "<div style='border:1px solid #27ae60; border-radius:8px; padding:12px;'>" +
+                "<div style='color:#27ae60; font-weight:bold;'>✅ Данные успешно скопированы и проверены</div>" +
+                "<div class='info-row'><span class='info-label'>Файлов:</span> " + d.target_files + " (источник: " + d.source_files + ")</div>" +
+                "<div class='info-row'><span class='info-label'>Размер:</span> " + d.target_size + " (источник: " + d.source_size + ")</div>" +
+                "<div style='margin-top:12px; color:#f39c12;'>" +
+                "Теперь выключите питание, отключите старый диск и подключите на его место новый." +
+                "</div>" +
+                "<div style='display:flex; gap:8px; margin-top:12px;'>" +
+                "<button type='button' onclick='diskPowerOff()' style='background:#e74c3c;'>Выключить питание</button>" +
+                "</div>" +
+                "</div>";
+        } else {
+            result.innerHTML =
+                "<div style='border:1px solid #e74c3c; border-radius:8px; padding:12px;'>" +
+                "<div style='color:#e74c3c; font-weight:bold;'>❌ Ошибка проверки целостности</div>" +
+                "<div>Файлов на целевом: " + d.target_files + " (ожидается: " + d.source_files + ")</div>" +
+                "<div>Размер на целевом: " + d.target_size + " (ожидается: " + d.source_size + ")</div>" +
+                "</div>";
+        }
+    })
+    .catch(err => {
+        result.innerHTML = "<span style='color:#e74c3c;'>Ошибка: " + err + "</span>";
+    });
+}
+
+/* ========== Network Check ========== */
+
+function dismissNew(ip, cb) {
+    cb.disabled = true;
+    fetch('api/device/' + ip + 'dismiss-new', {method: 'POST'})
+    .then(function() { var row = cb.closest('tr'); if (row) row.remove(); })
+    .catch(function() { cb.disabled = false; });
+}
+
+function setNetStatus(id, online) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (online) {
+        el.className = "internet online";
+        el.textContent = "● " + el.textContent.split(":")[0].trim() + ": доступен";
+    } else {
+        el.className = "internet offline";
+        el.textContent = "● " + el.textContent.split(":")[0].trim() + ": недоступен";
+    }
+}
+
+function checkAllNet() {
+    document.getElementById("net-internet").textContent = "● Интернет: проверка...";
+    document.getElementById("net-internet").className = "internet";
+    document.getElementById("net-ru").textContent = "● Зона RU: проверка...";
+    document.getElementById("net-ru").className = "internet";
+    document.getElementById("net-provider").textContent = "● Провайдер: проверка...";
+    document.getElementById("net-provider").className = "internet";
+
+    fetch("api/network/check")
+        .then(r => r.json())
+        .then(d => {
+            setNetStatus("net-internet", d.internet);
+            setNetStatus("net-ru", d.ru_zone);
+            /* Check provider using first test address */
+            const host1 = getNetHost(1);
+            if (host1) {
+                return fetch("api/network/check_host", {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify({host: host1})
+                }).then(r => r.json()).then(pd => {
+                    setNetStatus("net-provider", pd.online);
+                });
+            } else {
+                setNetStatus("net-provider", false);
+            }
+        })
+        .catch(() => {
+            setNetStatus("net-internet", false);
+            setNetStatus("net-ru", false);
+            setNetStatus("net-provider", false);
+        });
+}
+
+let netEditNum = 0;
+
+function editNetHost(num) {
+    netEditNum = num;
+    const display = document.getElementById("net-host" + num + "-display");
+    const modal = document.getElementById("net-edit-modal");
+    const input = document.getElementById("net-edit-input");
+    const numLabel = document.getElementById("net-edit-num");
+    
+    input.value = display.textContent;
+    numLabel.textContent = num;
+    modal.style.display = "flex";
+    input.focus();
+}
+
+function closeNetEdit() {
+    document.getElementById("net-edit-modal").style.display = "none";
+}
+
+function saveNetHost() {
+    const input = document.getElementById("net-edit-input");
+    const display = document.getElementById("net-host" + netEditNum + "-display");
+    const val = input.value.trim();
+    
+    if (val) {
+        display.textContent = val;
+    }
+    closeNetEdit();
+    
+    /* Save all hosts to server */
+    const hosts = [
+        getNetHost(1),
+        getNetHost(2),
+        getNetHost(3)
+    ];
+    fetch("api/network/config", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({hosts: hosts})
+    }).catch(() => {});
+}
+
+function getNetHost(num) {
+    return document.getElementById("net-host" + num + "-display").textContent.trim();
+}
+
+function checkNetHost(num) {
+    const host = getNetHost(num);
+    if (!host) return;
+
+    const result = document.getElementById("net-host-result");
+    result.textContent = "Проверка " + host + "...";
+    result.style.color = "#888";
+
+    fetch("api/network/check_host", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({host: host})
+    })
+    .then(r => r.json())
+    .then(d => {
+        if (d.online) {
+            result.textContent = "✅ " + host + " — доступен";
+            result.style.color = "#65d46e";
+        } else {
+            result.textContent = "❌ " + host + " — недоступен";
+            result.style.color = "#ff6666";
+        }
+    })
+    .catch(err => {
+        result.textContent = "❌ Ошибка: " + err;
+        result.style.color = "#ff6666";
+    });
+}
+
+/* ========== Backup Buttons ========== */
+
+var _backupPollTimer = null;
+
+function startBackup() {
+    var btn = document.getElementById("btn-backup-create");
+    if (!btn) return;
+    btn.disabled = true;
+    btn.textContent = "Создается backup...";
+    
+    var prog = document.getElementById("emmc-backup-progress");
+    var bar = document.getElementById("emmc-backup-progress-bar");
+    var txt = document.getElementById("emmc-backup-progress-text");
+    if (prog) prog.style.display = "block";
+    if (bar) bar.style.width = "30%";
+    if (txt) txt.textContent = "Создание backup eMMC...";
+    
+    fetch("system/backup", {
+        method: "POST",
+        headers: {"X-CSRFToken": (document.querySelector('meta[name="csrf-token"]') || {}).content || ""}
+    })
+        .then(function(r) { return r.json().catch(function() { return {ok: true}; }); })
+        .then(function(d) {
+            if (d && d.ok === false) {
+                if (txt) txt.textContent = d.reason || "Бэкап eMMC недоступен";
+                if (bar) bar.style.width = "0%";
+                if (btn) { btn.disabled = false; btn.textContent = "Создать backup сейчас"; }
+                setTimeout(function() { if (prog) prog.style.display = "none"; }, 6000);
+                return;
+            }
+            pollBackupProgress();
+        })
+        .catch(function() {
+            btn.disabled = false;
+            btn.textContent = "Создать backup сейчас";
+            if (prog) prog.style.display = "none";
+        });
+}
+
+function pollBackupProgress() {
+    if (_backupPollTimer) clearInterval(_backupPollTimer);
+    var btn = document.getElementById("btn-backup-create");
+    var bar = document.getElementById("emmc-backup-progress-bar");
+    var txt = document.getElementById("emmc-backup-progress-text");
+    var prog = document.getElementById("emmc-backup-progress");
+    var step = 0;
+    
+    _backupPollTimer = setInterval(function() {
+        fetch("api/backup-status").then(function(r) { return r.json(); }).then(function(d) {
+            step++;
+            if (d.emmc_running) {
+                var pct = Math.min(30 + step * 5, 90);
+                if (bar) bar.style.width = pct + "%";
+                if (txt) txt.textContent = "Создание backup eMMC... " + pct + "%";
+            } else {
+                clearInterval(_backupPollTimer);
+                _backupPollTimer = null;
+                if (bar) bar.style.width = "100%";
+                if (txt) txt.textContent = d.emmc_ok ? "Backup завершён успешно" : "Backup завершён с ошибкой";
+                if (btn) { btn.disabled = false; btn.textContent = "Создать backup сейчас"; }
+                setTimeout(function() { if (prog) prog.style.display = "none"; }, 3000);
+            }
+        }).catch(function() {
+            clearInterval(_backupPollTimer);
+            _backupPollTimer = null;
+            if (btn) { btn.disabled = false; btn.textContent = "Создать backup сейчас"; }
+            if (prog) prog.style.display = "none";
+        });
+    }, 3000);
+}
+
+function testBackup() {
+    var btn = document.getElementById("btn-backup-test");
+    if (!btn) return;
+    btn.disabled = true;
+    btn.textContent = "Проверка backup...";
+    
+    fetch("system/backup-test", {method: "POST"})
+        .then(function() {
+            setTimeout(function() { btn.disabled = false; btn.textContent = "Проверить backup"; }, 5000);
+        })
+        .catch(function() {
+            btn.disabled = false;
+            btn.textContent = "Проверить backup";
+        });
+}
+
+function startEmmcRestore() {
+    if (!confirm("Восстановить eMMC из backup? Это перезапишет системный раздел!")) return;
+    if (!confirm("Вы УВЕРЕНЫ? Все данные на eMMC будут заменены!")) return;
+    
+    var btn = document.getElementById("btn-emmc-restore");
+    if (btn) { btn.disabled = true; btn.textContent = "Восстановление..."; }
+    
+    fetch("system/emmc-restore", {method: "POST"})
+        .then(function() {
+            if (btn) btn.textContent = "Восстановление запущено...";
+        })
+        .catch(function() {
+            if (btn) { btn.disabled = false; btn.textContent = "Восстановить из backup"; }
+        });
+}
+
+/* ========== Database Backup Buttons ========== */
+
+var _dbBackupPollTimer = null;
+
+function startDbBackup() {
+    var btn = document.getElementById("btn-db-backup-create");
+    if (!btn) return;
+    btn.disabled = true;
+    btn.textContent = "Создается backup...";
+    
+    var prog = document.getElementById("db-backup-progress");
+    var bar = document.getElementById("db-backup-progress-bar");
+    var txt = document.getElementById("db-backup-progress-text");
+    if (prog) prog.style.display = "block";
+    if (bar) bar.style.width = "30%";
+    if (txt) txt.textContent = "Создание backup БД...";
+    
+    fetch("system/db-backup", {
+        method: "POST",
+        headers: {"X-CSRFToken": (document.querySelector('meta[name="csrf-token"]') || {}).content || ""}
+    })
+        .then(function() {
+            pollDbBackupProgress();
+        })
+        .catch(function() {
+            btn.disabled = false;
+            btn.textContent = "Создать backup сейчас";
+            if (prog) prog.style.display = "none";
+        });
+}
+
+function pollDbBackupProgress() {
+    if (_dbBackupPollTimer) clearInterval(_dbBackupPollTimer);
+    var btn = document.getElementById("btn-db-backup-create");
+    var bar = document.getElementById("db-backup-progress-bar");
+    var txt = document.getElementById("db-backup-progress-text");
+    var prog = document.getElementById("db-backup-progress");
+    var step = 0;
+    
+    _dbBackupPollTimer = setInterval(function() {
+        fetch("api/backup-status").then(function(r) { return r.json(); }).then(function(d) {
+            step++;
+            if (d.db_running) {
+                var pct = Math.min(30 + step * 10, 90);
+                if (bar) bar.style.width = pct + "%";
+                if (txt) txt.textContent = "Создание backup БД... " + pct + "%";
+            } else {
+                clearInterval(_dbBackupPollTimer);
+                _dbBackupPollTimer = null;
+                if (bar) bar.style.width = "100%";
+                if (txt) txt.textContent = d.db_ok ? "Backup БД завершён" : "Ошибка backup БД";
+                if (btn) { btn.disabled = false; btn.textContent = "Создать backup сейчас"; }
+                setTimeout(function() {
+                    if (prog) prog.style.display = "none";
+                    location.reload();
+                }, 2000);
+            }
+        }).catch(function() {
+            clearInterval(_dbBackupPollTimer);
+            _dbBackupPollTimer = null;
+            if (btn) { btn.disabled = false; btn.textContent = "Создать backup сейчас"; }
+            if (prog) prog.style.display = "none";
+        });
+    }, 1500);
+}
+
+function showDbRestore() {
+    var sec = document.getElementById("db-restore-section");
+    if (sec) sec.style.display = sec.style.display === "none" ? "block" : "none";
+}
+
+function hideDbRestore() {
+    var sec = document.getElementById("db-restore-section");
+    if (sec) sec.style.display = "none";
+}
+
+function doDbRestore() {
+    var sel = document.getElementById("db-restore-select");
+    if (!sel || !sel.value) return;
+    if (!confirm("Восстановить БД из копии " + sel.value + "? " + "Текущая база данных будет заменена!")) return;
+    
+    var btn = document.getElementById("btn-db-restore");
+    if (btn) { btn.disabled = true; btn.textContent = "Восстановление..."; }
+    
+    var prog = document.getElementById("db-restore-progress");
+    var bar = document.getElementById("db-restore-progress-bar");
+    var txt = document.getElementById("db-restore-progress-text");
+    if (prog) prog.style.display = "block";
+    if (bar) bar.style.width = "50%";
+    if (txt) txt.textContent = "Восстановление БД...";
+    
+    fetch("system/db-restore", {
+        method: "POST",
+        headers: {"Content-Type": "application/json", "X-CSRFToken": (document.querySelector('meta[name="csrf-token"]') || {}).content || ""},
+        body: JSON.stringify({file: sel.value})
+    }).then(function(r) { return r.json(); }).then(function(d) {
+        if (bar) bar.style.width = "100%";
+        if (txt) txt.textContent = d.ok ? "Восстановление завершено" : "Ошибка: " + (d.error || "неизвестная");
+        if (btn) { btn.disabled = false; btn.textContent = "Восстановить"; }
+        if (d.ok) setTimeout(function() { location.reload(); }, 1500);
+        else setTimeout(function() { if (prog) prog.style.display = "none"; }, 3000);
+    }).catch(function(e) {
+        if (txt) txt.textContent = "Ошибка сети";
+        if (btn) { btn.disabled = false; btn.textContent = "Восстановить"; }
+        setTimeout(function() { if (prog) prog.style.display = "none"; }, 3000);
+    });
+}
+
+function pollDbRestoreProgress() {
+    var prog = document.getElementById("db-restore-progress");
+    if (!prog) return;
+    prog.style.display = "block";
+    var bar = document.getElementById("db-restore-progress-bar");
+    var txt = document.getElementById("db-restore-progress-text");
+    var step = 0;
+    
+    var timer = setInterval(function() {
+        fetch("api/backup-status").then(function(r) { return r.json(); }).then(function(d) {
+            step++;
+            if (d.db_restore_running) {
+                var pct = Math.min(step * 15, 90);
+                if (bar) bar.style.width = pct + "%";
+                if (txt) txt.textContent = "Восстановление БД... " + pct + "%";
+            } else {
+                clearInterval(timer);
+                if (bar) bar.style.width = "100%";
+                if (txt) txt.textContent = "Восстановление завершено";
+                setTimeout(function() { location.reload(); }, 1500);
+            }
+        });
+    }, 1000);
+}
+
+function diskPowerOff() {
+    if (!confirm("Выключить питание X96 Max?")) return;
+
+    fetch("api/disk/poweroff", {method: "POST"})
+        .then(r => r.json())
+        .then(d => {
+            document.body.innerHTML =
+                "<div style='display:flex; justify-content:center; align-items:center; height:100vh; background:#1a1a2e; color:#fff; font-family:sans-serif;'>" +
+                "<div style='text-align:center;'>" +
+                "<h1>⚡ Питание отключается</h1>" +
+                "<p>Можно отключить кабель питания</p>" +
+                "</div></div>";
+        })
+        .catch(() => {
+            alert("Команда на выключение отправлена. Отключите кабель питания вручную.");
+        });
+}
+
+function powerOff() {
+    diskPowerOff();
+}
+
+function checkSd() {
+    var btn = document.getElementById("sd-check-btn");
+    var result = document.getElementById("sd-check-result");
+    var info = document.getElementById("sd-info");
+    btn.disabled = true;
+    btn.textContent = "Проверка...";
+    info.textContent = "определение...";
+    info.style.color = "#888";
+    result.style.display = "none";
+
+    fetch("api/sd-info")
+        .then(r => r.json())
+        .then(d => {
+            btn.disabled = false;
+            btn.textContent = "Проверить SD";
+            if (d.found) {
+                info.textContent = d.model ? d.model + " (" + d.size + ")" : d.size;
+                info.style.color = "#6bcb77";
+                var html = "<div class='info-row'><span class='info-label'>Устройство:</span> <code>" + d.device + "</code></div>";
+                html += "<div class='info-row'><span class='info-label'>Размер:</span> " + d.size + "</div>";
+                if (d.model) html += "<div class='info-row'><span class='info-label'>Модель:</span> " + d.model + "</div>";
+                if (d.mountpoint) html += "<div class='info-row'><span class='info-label'>Точка монтирования:</span> <code>" + d.mountpoint + "</code></div>";
+                if (d.fs) html += "<div class='info-row'><span class='info-label'>Файловая система:</span> " + d.fs + "</div>";
+                if (d.used != null && d.total != null && d.total > 0) {
+                    var usedGB = (d.used / 1073741824).toFixed(1);
+                    var totalGB = (d.total / 1073741824).toFixed(1);
+                    var pct = Math.round(d.used / d.total * 100);
+                    html += "<div class='info-row'><span class='info-label'>Использование:</span> " + usedGB + " / " + totalGB + " ГБ (" + pct + "%)</div>";
+                }
+                if (!d.mountpoint) {
+                    html += "<div class='info-row'><span class='info-label'>Монтирование:</span> не смонтирована</div>";
+                }
+                result.innerHTML = html;
+                result.style.display = "block";
+            } else {
+                info.textContent = "не обнаружена";
+                info.style.color = "#e74c3c";
+                result.innerHTML = "";
+                result.style.display = "none";
+            }
+        })
+        .catch(e => {
+            btn.disabled = false;
+            btn.textContent = "Проверить SD";
+            info.textContent = "ошибка";
+            info.style.color = "#e74c3c";
+            result.innerHTML = "<span style='color:#e74c3c;'>Ошибка: " + e.message + "</span>";
+            result.style.display = "block";
+        });
+}
+
+var cloneInterval = null;
+
+function startClone() {
+    if (!confirm("Клонировать eMMC на SD-карту? Все данные на SD будут уничтожены!")) return;
+    var btn = document.getElementById("clone-btn");
+    if (btn) { btn.disabled = true; btn.textContent = "Клонирование..."; }
+    var prog = document.getElementById("clone-progress");
+    var bar = document.getElementById("clone-bar");
+    var txt = document.getElementById("clone-text");
+    if (prog) prog.style.display = "block";
+    if (bar) bar.style.width = "10%";
+    if (txt) txt.textContent = "Запуск клонирования...";
+    fetch("api/clone/start", {method: "POST"})
+        .then(r => r.json())
+        .then(d => {
+            if (d.error) {
+                if (txt) txt.textContent = "Ошибка: " + d.error;
+                if (btn) { btn.disabled = false; btn.textContent = "Клонировать eMMC → SD"; }
+                return;
+            }
+            pollClone();
+        })
+        .catch(e => {
+            if (txt) txt.textContent = "Ошибка: " + e.message;
+            if (btn) { btn.disabled = false; btn.textContent = "Клонировать eMMC → SD"; }
+        });
+}
+
+function pollClone() {
+    if (cloneInterval) return;
+    cloneInterval = setInterval(function() {
+        fetch("api/clone/status")
+            .then(r => r.json())
+            .then(d => {
+                var bar = document.getElementById("clone-bar");
+                var txt = document.getElementById("clone-text");
+                var status = document.getElementById("clone-status");
+                if (bar) bar.style.width = (d.percent || 0) + "%";
+                if (txt) txt.textContent = d.text || "";
+                if (status) status.textContent = d.running ? "● ВЫПОЛНЯЕТСЯ" : (d.ok ? "● OK" : (d.error ? "● ОШИБКА" : "—"));
+                if (!d.running) {
+                    clearInterval(cloneInterval);
+                    cloneInterval = null;
+                    var btn = document.getElementById("clone-btn");
+                    if (btn) { btn.disabled = false; btn.textContent = "Клонировать eMMC → SD"; }
+                    if (d.ok && txt) txt.textContent = "Клонирование завершено!";
+                } else {
+                    var runningBtn = document.getElementById("clone-btn");
+                    if (runningBtn) {
+                        runningBtn.disabled = true;
+                        runningBtn.textContent = "Клонирование...";
+                    }
+                }
+            })
+            .catch(() => {});
+    }, 2000);
+}
+
+function updateHeaderHeight() {
+    const header = document.querySelector(".header");
+
+    if (header) {
+        document.documentElement.style.setProperty(
+            "--header-height",
+            header.offsetHeight + "px"
+        );
+    }
+}
+
+updateHeaderHeight();
+window.addEventListener("resize", updateHeaderHeight);
+
+let previousRx = null;
+let previousTx = null;
+let previousTime = null;
+
+let previousWifiRx = null;
+let previousWifiTx = null;
+
+let previousCpuTimes = null;
+let previousEmmcIoTicks = null;
+let previousHddIoTicks = null;
+
+function formatSpeed(bytesPerSecond) {
+
+    if (bytesPerSecond >= 1024 * 1024) {
+        return (bytesPerSecond / 1024 / 1024).toFixed(1) + " МБ/с";
+    }
+
+    if (bytesPerSecond >= 1024) {
+        return (bytesPerSecond / 1024).toFixed(1) + " КБ/с";
+    }
+
+    return Math.round(bytesPerSecond) + " Б/с";
+}
+
+async function controlService(service, action) {
+
+    let message = "Выполнить операцию?";
+
+    if (action === "restart") {
+        message = "Перезапустить сервис?";
+    } else if (action === "start") {
+        message = "Запустить сервис?";
+    } else if (action === "stop") {
+        message = "Остановить сервис?";
+    }
+
+    if (!confirm(message)) {
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            "api/service/" + service + "/" + action,
+            {
+                method: "POST",
+                cache: "no-store"
+            }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok || !data.ok) {
+            throw new Error(
+                data.error || "Ошибка операции"
+            );
+        }
+
+        await updateOrangePiStatus();
+
+    } catch (error) {
+
+        alert(
+            "Не удалось выполнить операцию: " +
+            error.message
+        );
+    }
+}
+
+async function updateSystemStatus() {
+
+    try {
+
+        const response = await fetch(
+            "api/status",
+            { cache: "no-store" }
+        );
+
+        if (!response.ok) {
+            throw new Error("HTTP " + response.status);
+        }
+
+        const data = await response.json();
+
+        const now = Date.now();
+
+        let rxSpeed = null;
+        let txSpeed = null;
+        let wifiRxSpeed = null;
+        let wifiTxSpeed = null;
+
+        let cpuPercent = null;
+        let emmcActive = null;
+        let hddActive = null;
+
+        if (previousTime !== null) {
+
+            const seconds =
+                (now - previousTime) / 1000;
+
+            if (seconds > 0) {
+
+                if (
+                    previousRx !== null &&
+                    previousTx !== null
+                ) {
+
+                    rxSpeed = Math.max(
+                        0,
+                        (data.lan_rx_bytes - previousRx) / seconds
+                    );
+
+                    txSpeed = Math.max(
+                        0,
+                        (data.lan_tx_bytes - previousTx) / seconds
+                    );
+                }
+
+                if (
+                    data.wifi_rx_bytes !== null &&
+                    data.wifi_tx_bytes !== null &&
+                    previousWifiRx !== null &&
+                    previousWifiTx !== null
+                ) {
+
+                    wifiRxSpeed = Math.max(
+                        0,
+                        (data.wifi_rx_bytes - previousWifiRx) / seconds
+                    );
+
+                    wifiTxSpeed = Math.max(
+                        0,
+                        (data.wifi_tx_bytes - previousWifiTx) / seconds
+                    );
+                }
+
+                if (
+                    Array.isArray(data.cpu_times) &&
+                    Array.isArray(previousCpuTimes) &&
+                    data.cpu_times.length === previousCpuTimes.length
+                ) {
+
+                    let totalDelta = 0;
+                    let idleDelta = 0;
+
+                    for (
+                        let i = 0;
+                        i < data.cpu_times.length;
+                        i++
+                    ) {
+
+                        const delta =
+                            data.cpu_times[i] -
+                            previousCpuTimes[i];
+
+                        totalDelta += delta;
+
+                        if (i === 3 || i === 4) {
+                            idleDelta += delta;
+                        }
+                    }
+
+                    if (totalDelta > 0) {
+
+                        cpuPercent = Math.max(
+                            0,
+                            Math.min(
+                                100,
+                                (1 - idleDelta / totalDelta) * 100
+                            )
+                        );
+                    }
+                }
+
+                if (
+                    data.emmc_io_ticks !== null &&
+                    previousEmmcIoTicks !== null
+                ) {
+
+                    emmcActive = Math.max(
+                        0,
+                        Math.min(
+                            100,
+                            (
+                                (data.emmc_io_ticks -
+                                 previousEmmcIoTicks) /
+                                (seconds * 1000)
+                            ) * 100
+                        )
+                    );
+                }
+
+                if (
+                    data.hdd_io_ticks !== null &&
+                    previousHddIoTicks !== null
+                ) {
+
+                    hddActive = Math.max(
+                        0,
+                        Math.min(
+                            100,
+                            (
+                                (data.hdd_io_ticks -
+                                 previousHddIoTicks) /
+                                (seconds * 1000)
+                            ) * 100
+                        )
+                    );
+                }
+            }
+        }
+
+        previousRx = data.lan_rx_bytes;
+        previousTx = data.lan_tx_bytes;
+
+        previousWifiRx = data.wifi_rx_bytes;
+        previousWifiTx = data.wifi_tx_bytes;
+
+        previousCpuTimes = data.cpu_times;
+
+        previousEmmcIoTicks = data.emmc_io_ticks;
+        previousHddIoTicks = data.hdd_io_ticks;
+
+        previousTime = now;
+
+        const element =
+            document.getElementById("system-status");
+
+        if (!element) {
+            return;
+        }
+
+        const temperature =
+            data.temperature !== null
+                ? data.temperature.toFixed(1) + "°C"
+                : "--";
+
+        const cpu =
+            cpuPercent !== null
+                ? Math.round(cpuPercent) + "%"
+                : "--";
+
+        const ram =
+            data.ram_percent !== null
+                ? data.ram_percent + "%"
+                : "--";
+
+        function formatStorage(free, total) {
+
+            if (
+                free === null ||
+                total === null
+            ) {
+                return "--/-- ГБ";
+            }
+
+            return (
+                (free / 1024 / 1024 / 1024).toFixed(1) +
+                "/" +
+                (total / 1024 / 1024 / 1024).toFixed(1) +
+                " ГБ"
+            );
+        }
+
+        const emmc =
+            formatStorage(
+                data.root_free,
+                data.root_total
+            );
+
+        const hdd =
+            formatStorage(
+                data.srv_free,
+                data.srv_total
+            );
+
+        const sd = (function () {
+            if (data.sd_free != null && data.sd_total != null) {
+                return formatStorage(data.sd_free, data.sd_total);
+            }
+            if (!data.sd_present) {
+                return "извлечена";
+            }
+            var sdGiB = data.sd_size
+                ? (data.sd_size / 1073741824).toFixed(1) + " ГБ"
+                : "установлена";
+            return sdGiB + (data.sd_writing ? " (идёт запись)" : " (не смонтирована)");
+        })();
+
+        const emmcLoad =
+            emmcActive !== null
+                ? Math.round(emmcActive) + "%"
+                : "--";
+
+        const hddLoad =
+            hddActive !== null
+                ? Math.round(hddActive) + "%"
+                : "--";
+
+        const rx =
+            rxSpeed !== null
+                ? formatSpeed(rxSpeed)
+                : "--";
+
+        const tx =
+            txSpeed !== null
+                ? formatSpeed(txSpeed)
+                : "--";
+
+        const wifiRx =
+            wifiRxSpeed !== null
+                ? formatSpeed(wifiRxSpeed)
+                : "--";
+
+        const wifiTx =
+            wifiTxSpeed !== null
+                ? formatSpeed(wifiTxSpeed)
+                : "--";
+
+        function si(label, val, wide, cls) {
+            var vcls = wide ? 'status-value status-wide' : 'status-value';
+            var lcls = 'status-label' + (cls ? ' ' + cls : '');
+            return '<span class="status-item">' +
+                '<span class="' + lcls + '">' + label + '</span> ' +
+                '<span class="' + vcls + '">' + val + '</span></span>';
+        }
+
+        element.innerHTML =
+            si('CPU', temperature, false, 'sl-temp') + ' · ' +
+            si('CPU', cpu, false, 'sl-cpu') + ' · ' +
+            si('RAM', ram, false, 'sl-ram') + ' · ' +
+            si('eMMC', emmc, true, 'sl-emmc') + ' · ' +
+            si('eMMC', emmcLoad, false, 'sl-emmc') + ' · ' +
+            si('HDD', hdd, true, 'sl-hdd') + ' · ' +
+            si('HDD', hddLoad, false, 'sl-hdd') + ' · ' +
+            si('SD', sd, true, 'sl-sd') + ' · ' +
+            '<span class="status-item"><span class="status-label sl-lan">LAN</span> ↓ ' +
+            '<span class="status-value">' + rx + '</span>' +
+            ' ↑ <span class="status-value">' + tx + '</span></span> · ' +
+            '<span class="status-item"><span class="status-label sl-wifi">Wi-Fi</span> ↓ ' +
+            '<span class="status-value">' + wifiRx + '</span>' +
+            ' ↑ <span class="status-value">' + wifiTx + '</span></span>';
+
+        element.classList.remove(
+            "status-warn",
+            "status-critical"
+        );
+
+        if (data.temperature >= 80) {
+
+            element.classList.add(
+                "status-critical"
+            );
+
+        } else if (data.temperature >= 70) {
+
+            element.classList.add(
+                "status-warn"
+            );
+        }
+
+    } catch (error) {
+
+        const element =
+            document.getElementById("system-status");
+
+        if (element) {
+
+            element.textContent =
+                "CPU --°C · CPU --% · RAM --% · " +
+                "eMMC --/-- ГБ · eMMC --% · " +
+                "HDD --/-- ГБ · HDD --% · " +
+                "SD --/-- ГБ · " +
+                "LAN ↓ -- ↑ -- · Wi-Fi ↓ -- ↑ --";
+        }
+    }
+}
+
+updateSystemStatus();
+setInterval(updateSystemStatus, 3000);
+
+function initCloneStatus() {
+    var prog = document.getElementById("clone-progress");
+    if (!prog) return;
+    fetch("api/clone/status")
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+            if (d.running) {
+                prog.style.display = "block";
+                var btn = document.getElementById("clone-btn");
+                if (btn) { btn.disabled = true; btn.textContent = "Клонирование..."; }
+                pollClone();
+                return;
+            }
+            var status = document.getElementById("clone-status");
+            if (!status) return;
+            if (d.ok) {
+                prog.style.display = "block";
+                var bar = document.getElementById("clone-bar");
+                var txt = document.getElementById("clone-text");
+                if (bar) bar.style.width = "100%";
+                if (txt) txt.textContent = "Клонирование завершено!";
+                status.textContent = "\u25cf OK";
+            } else if (d.error) {
+                status.textContent = "\u25cf ОШИБКА: " + d.error;
+            }
+        })
+        .catch(function () {});
+}
+
+initCloneStatus();
+
+function formatUptime(seconds) {
+
+    if (seconds === null || seconds === undefined) {
+        return "--";
+    }
+
+    seconds = Math.floor(seconds);
+
+    const days = Math.floor(
+        seconds / 86400
+    );
+
+    seconds %= 86400;
+
+    const hours = Math.floor(
+        seconds / 3600
+    );
+
+    seconds %= 3600;
+
+    const minutes = Math.floor(
+        seconds / 60
+    );
+
+    if (days > 0) {
+        return days + " дн. " +
+               hours + " ч. " +
+               minutes + " мин.";
+    }
+
+    if (hours > 0) {
+        return hours + " ч. " +
+               minutes + " мин.";
+    }
+
+    return minutes + " мин.";
+}
+
+function setServiceStatus(id, state) {
+
+    const element =
+        document.getElementById(id);
+
+    if (!element) {
+        return;
+    }
+
+    element.classList.remove(
+        "status-ok",
+        "status-error"
+    );
+
+    if (state === true) {
+
+        element.textContent = "● работает";
+        element.classList.add("status-ok");
+
+    } else {
+
+        element.textContent = "● остановлен";
+        element.classList.add("status-error");
+    }
+
+    let service =
+        id.replace("service-", "");
+
+    if (service === "smbd") {
+        service = "smb";
+    }
+
+    const startButton =
+        document.getElementById(
+            "service-" + service + "-start"
+        );
+
+    const restartButton =
+        document.getElementById(
+            "service-" + service + "-restart"
+        );
+
+    const stopButton =
+        document.getElementById(
+            "service-" + service + "-stop"
+        );
+
+    if (startButton) {
+        startButton.style.display =
+            state === true ? "none" : "";
+    }
+
+    if (restartButton) {
+        restartButton.style.display =
+            state === true ? "" : "none";
+    }
+
+    if (stopButton) {
+        stopButton.style.display =
+            state === true ? "" : "none";
+    }
+}
+
+async function updateOrangePiStatus() {
+
+    try {
+
+        const response = await fetch(
+            "api/status",
+            { cache: "no-store" }
+        );
+
+        if (!response.ok) {
+            throw new Error(
+                "HTTP " + response.status
+            );
+        }
+
+        const data =
+            await response.json();
+
+        const uptime =
+            document.getElementById(
+                "pi-uptime"
+            );
+
+        if (uptime) {
+            uptime.textContent =
+                formatUptime(data.uptime);
+        }
+
+        const load =
+            document.getElementById(
+                "pi-load"
+            );
+
+        if (load) {
+
+            if (
+                data.load1 !== null &&
+                data.load5 !== null &&
+                data.load15 !== null
+            ) {
+
+                load.textContent =
+                    data.load1.toFixed(2) +
+                    " / " +
+                    data.load5.toFixed(2) +
+                    " / " +
+                    data.load15.toFixed(2);
+
+            } else {
+
+                load.textContent = "--";
+            }
+        }
+
+        const temperature =
+            document.getElementById(
+                "pi-temperature"
+            );
+
+        if (temperature) {
+
+            temperature.textContent =
+                data.temperature !== null
+                    ? data.temperature.toFixed(1) + " °C"
+                    : "--";
+        }
+
+        const ram =
+            document.getElementById(
+                "pi-ram"
+            );
+
+        if (ram) {
+
+            ram.textContent =
+                data.ram_percent !== null
+                    ? data.ram_percent + "%"
+                    : "--";
+        }
+
+        const emmc =
+            document.getElementById(
+                "pi-emmc"
+            );
+
+        if (emmc) {
+
+            emmc.textContent =
+                data.root_percent !== null
+                    ? data.root_percent + "%"
+                    : "--";
+        }
+
+        const hdd =
+            document.getElementById(
+                "pi-hdd"
+            );
+
+        if (hdd) {
+
+            hdd.textContent =
+                data.srv_percent !== null
+                    ? data.srv_percent + "%"
+                    : "--";
+        }
+
+        const services =
+            data.services || {};
+
+        setServiceStatus(
+            "service-transmission",
+            services["transmission-daemon"]
+        );
+
+        setServiceStatus(
+            "service-minidlna",
+            services["minidlna"]
+        );
+
+        setServiceStatus(
+            "service-smbd",
+            services["smbd"]
+        );
+
+        setServiceStatus(
+            "service-lan-discovery",
+            services["lan-discovery"]
+        );
+
+    } catch (error) {
+
+        console.error(
+            "X96 Max status:",
+            error
+        );
+    }
+}
+
+var healthOpen = false;
+function toggleHealthDetail() {
+    var el = document.getElementById('health-detail');
+    healthOpen = !healthOpen;
+    el.style.display = healthOpen ? 'block' : 'none';
+}
+function checkHealth() {
+    fetch('api/system/health', {cache:'no-store'})
+    .then(function(r){return r.json()})
+    .then(function(d){
+        var w = document.getElementById('health-widget');
+        var det = document.getElementById('health-detail');
+        if (d.ok) {
+            w.style.color = '#65d46e';
+            w.innerHTML = '● Система OK';
+            det.innerHTML = '<div style="padding:4px 0;font-size:13px;color:#bbb;">Все проверки пройдены</div><div style="font-size:11px;color:#484f58;margin-top:6px;">Проверено: ' + d.checked_at + '</div>';
+        } else {
+            w.style.color = '#f85149';
+            w.innerHTML = '● Проблемы (' + d.warnings.length + ')';
+            var detHtml = '';
+            d.warnings.forEach(function(x){
+                detHtml += '<div style="padding:4px 0;font-size:13px;color:#bbb;">' + x.icon + ' ' + x.text + '</div>';
+            });
+            detHtml += '<div style="font-size:11px;color:#484f58;margin-top:6px;">Проверено: ' + d.checked_at + '</div>';
+            det.innerHTML = detHtml;
+        }
+    })
+    .catch(function(){});
+}
+document.addEventListener('click', function(e) {
+    var w = document.getElementById('health-widget');
+    var d = document.getElementById('health-detail');
+    if (w && d && !w.contains(e.target) && !d.contains(e.target)) {
+        d.style.display = 'none';
+        healthOpen = false;
+    }
+});
+checkHealth();
+setInterval(checkHealth, 60000);
+
+updateOrangePiStatus();
+setInterval(
+    updateOrangePiStatus,
+    3000
+);
+
+</script>
+
+<div class="system-status-bar">
+<div id="system-status" class="system-status">
+CPU --°C · RAM --% · eMMC --% · HDD --% · ↓ -- · ↑ --
+</div>
+<div style="font-size:12px; color:#888; white-space:nowrap; display:flex; align-items:center; gap:10px;">
+<a href="restore.html" target="_blank" style="color:#ff9800; text-decoration:none; font-size:11px; opacity:0.7;" title="Emergency Restore Server — работает даже если app упал">⚠ Restore</a>
+<span>Admin (admin)</span>
+<a href="stub.html?to=logout" style="color:#e74c3c; text-decoration:none;">выйти</a>
+</div>
+</div>
+
+<div style="position:fixed;left:0;right:0;bottom:0;background:#12203a;color:#9fb6e8;font:11px/1.8 system-ui,sans-serif;padding:2px 8px;z-index:99998;text-align:center">Демо-режим · слепок от 30.09.2026 01:31 · данные не обновляются · <a href="index.html" style="color:#ffd54f">главная</a></div>
+<script src="demo.js"></script>
+</body>
+</html>
