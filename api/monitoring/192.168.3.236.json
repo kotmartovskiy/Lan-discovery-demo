@@ -1,1 +1,1 @@
-{"cpu": {"busy_percent": 4.9}, "net_items": [], "ram": {"items": [{"label": "free", "value": 26175.4}, {"label": "used", "value": 14659.2}], "percent": 35.9}, "ram_items": [{"label": "free", "value": 26175.4}, {"label": "used", "value": 14659.2}], "temperature": 0}
+{"cpu": {"busy_percent": 4.3}, "net_items": [], "ram": {"items": [{"label": "free", "value": 26177.8}, {"label": "used", "value": 14656.8}], "percent": 35.9}, "ram_items": [{"label": "free", "value": 26177.8}, {"label": "used", "value": 14656.8}], "temperature": 0}
