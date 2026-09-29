@@ -15,8 +15,9 @@
   var a=e.target.closest?e.target.closest('a'):null;
   if(!a)return;
   var href=a.getAttribute('href');
-  if(!href||href.charAt(0)==='#'||/^(javascript|mailto|data):/i.test(href))return;
-  if(/^(https?:)?\/\//i.test(href)){e.preventDefault();location.href=STUB+encodeURIComponent(href);return;}
+   if(!href||href.charAt(0)==='#'||/^(javascript|mailto|data):/i.test(href))return;
+   if(/^logout([?#]|$)/.test(href)){e.preventDefault();toast('Демо-режим: выход отключён');return;}
+   if(/^(https?:)?\/\//i.test(href)){e.preventDefault();location.href=STUB+encodeURIComponent(href);return;}
   if(!/\.html([?#]|$)/.test(href)&&!/^stub\.html/.test(href)){
    e.preventDefault();location.href=STUB+encodeURIComponent(href);
   }

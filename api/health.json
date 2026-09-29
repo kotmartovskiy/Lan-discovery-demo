@@ -1,1 +1,1 @@
-{"checks":{"cpu_temp":"ok (50.8\u00b0C)","database":"ok","disk":"ok (83.2% free)","ram":"ok (20.4%)"},"ok":true,"timestamp":"30.09.2026 01:32:18"}
+{"checks": {"cpu_temp": "ok (47.8°C)", "database": "ok", "disk": "ok (83.1% free)", "ram": "ok (20.6%)"}, "ok": true, "timestamp": "30.09.2026 02:21:17"}
