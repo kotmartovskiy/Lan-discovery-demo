@@ -4,7 +4,7 @@
 <head>
 <script src="demo.js"></script>
 <meta charset="utf-8">
-<meta name="csrf-token" content="Ijk5NmMwNWVlNzk1YjQzYzcwOTE3MWJiZmUyZmJhMDhkNmM4YTJhYTgi.arxKhQ.joxvaQ54KNRP-ln-jG87Alg28Xc">
+<meta name="csrf-token" content="IjUzNTMwM2VjNDJhOGIwYTIwYTEwYTc3YzA0YzU1ZjkwZTdjYTU2MTYi.aryVgw.O8BzV6oL0vRvVbdBgz2CMji5SZ4">
 <script>
 (function () {
     var meta = document.querySelector('meta[name="csrf-token"]');
@@ -683,11 +683,11 @@ button:hover {
 <table class="help-table">
 <tr><th>Параметр</th><th>Значение</th></tr>
 <tr><td>Плата</td><td>X96 Max (Amlogic S905X), Armbian, hostname <code>armbian</code></td></tr>
-<tr><td>LAN IP</td><td><code>192.168.3.243</code></td></tr>
-<tr><td>WiFi IP</td><td><code>192.168.3.244</code></td></tr>
-<tr><td>SSH</td><td>root / 1234</td></tr>
-<tr><td>Веб-панель</td><td><code>http://192.168.3.243:8080</code></td></tr>
-<tr><td>Аварийный restore-сервер</td><td><code>http://192.168.3.243:8081</code></td></tr>
+<tr><td>LAN IP</td><td><code>192.168.1.243</code></td></tr>
+<tr><td>WiFi IP</td><td><code>192.168.1.244</code></td></tr>
+<tr><td>SSH</td><td>root / пароль задан при установке</td></tr>
+<tr><td>Веб-панель</td><td><code>http://192.168.1.243:8080</code></td></tr>
+<tr><td>Аварийный restore-сервер</td><td><code>http://192.168.1.243:8081</code></td></tr>
 </table>
 
 <h4>Накопители</h4>
@@ -701,13 +701,13 @@ button:hover {
 <h4>Сетевые устройства</h4>
 <table class="help-table">
 <tr><th>Устройство</th><th>IP</th><th>Описание</th></tr>
-<tr><td>X96 Max (панель)</td><td><code>192.168.3.243</code></td><td>Основной сервер, эта панель</td></tr>
-<tr><td>X96 Max (WiFi)</td><td><code>192.168.3.244</code></td><td>WiFi-интерфейс</td></tr>
-<tr><td>Orange Pi (LAN)</td><td><code>192.168.3.234</code></td><td>Удалённый сервер (кабель отвален — не отвечает)</td></tr>
-<tr><td>Orange Pi (WiFi AP)</td><td><code>192.168.3.235</code></td><td>Доступ к Orange Pi через его WiFi AP</td></tr>
-<tr><td>ThinkPad T480</td><td><code>192.168.3.236</code> / <code>.239</code></td><td>Рабочая станция</td></tr>
-<tr><td>Роутер</td><td><code>192.168.3.1</code></td><td>Шлюз, веб-интерфейс</td></tr>
-<tr><td>DNS-сервер</td><td><code>192.168.3.51</code></td><td>Локальный DNS</td></tr>
+<tr><td>X96 Max (панель)</td><td><code>192.168.1.243</code></td><td>Основной сервер, эта панель</td></tr>
+<tr><td>X96 Max (WiFi)</td><td><code>192.168.1.244</code></td><td>WiFi-интерфейс</td></tr>
+<tr><td>Orange Pi (LAN)</td><td><code>192.168.1.234</code></td><td>Удалённый сервер (кабель отвален — не отвечает)</td></tr>
+<tr><td>Orange Pi (WiFi AP)</td><td><code>192.168.1.235</code></td><td>Доступ к Orange Pi через его WiFi AP</td></tr>
+<tr><td>ThinkPad T480</td><td><code>192.168.1.236</code> / <code>.239</code></td><td>Рабочая станция</td></tr>
+<tr><td>Роутер</td><td><code>192.168.1.1</code></td><td>Шлюз, веб-интерфейс</td></tr>
+<tr><td>DNS-сервер</td><td><code>192.168.1.51</code></td><td>Локальный DNS</td></tr>
 </table>
 </div>
 
@@ -1125,7 +1125,7 @@ button:hover {
 <tr><td><code>systemctl status lan-discovery</code></td><td>Статус веб-панели</td></tr>
 <tr><td><code>systemctl restart lan-discovery</code></td><td>Рестарт панели</td></tr>
 <tr><td><code>journalctl -u lan-discovery -f</code></td><td>Логи в реальном времени</td></tr>
-<tr><td><code>nmap -sn -PR 192.168.3.0/24</code></td><td>Ручное сканирование сети</td></tr>
+<tr><td><code>nmap -sn -PR 192.168.1.0/24</code></td><td>Ручное сканирование сети</td></tr>
 <tr><td><code>python3 -c "import py_compile; py_compile.compile('opt/lan-discovery/app.py', doraise=True)"</code></td><td>Проверка синтаксиса Python</td></tr>
 <tr><td><code>lsblk</code></td><td>Список блочных устройств</td></tr>
 <tr><td><code>df -h</code></td><td>Использование дисков</td></tr>
@@ -1154,8 +1154,8 @@ button:hover {
 
 <h4>Устройства не обнаруживаются</h4>
 <ul>
-<li>Убедитесь что устройства в одной подсети (192.168.3.0/24)</li>
-<li>Проверьте nmap: <code>nmap -sn -PR 192.168.3.0/24</code></li>
+<li>Убедитесь что устройства в одной подсети (192.168.1.0/24)</li>
+<li>Проверьте nmap: <code>nmap -sn -PR 192.168.1.0/24</code></li>
 <li>Убедитесь что ARP-сканирование не блокируется файрволом</li>
 </ul>
 
@@ -1216,7 +1216,7 @@ button:hover {
 <p>Восстановление файлов — из <code>.backup-*</code> рядом с файлами; БД — через страницу «Система» («Восстановить БД»). Аварийный доступ — <code>restore-server.service</code> (порт 8081).</p>
 
 <h4>Как подключиться к серверу по SSH?</h4>
-<p><code>ssh root@192.168.3.243</code> (пароль: 1234). Рекомендуется настроить SSH-ключи для безопасности.</p>
+<p><code>ssh root@192.168.1.243</code> (пароль — от root-аккаунта; не храните его в открытом виде). Рекомендуется настроить SSH-ключи для безопасности.</p>
 
 <h4>Как перезагрузить сервер через веб-панель?</h4>
 <p>Страница «Система» → «Управление питанием» → «Перезагрузить». Подтвердите действие.</p>
@@ -1335,7 +1335,7 @@ button:hover {
 <h3>📦 Мониторинг</h3>
 <p><strong>Где это:</strong> вкладка «Мониторинг».</p>
 <ul>
-<li>Список хостов панели: X96 Max (<code>192.168.3.243</code>) и остальные из <code>monitoring.hosts</code> (<code>/etc/lan-discovery/settings.json</code>).</li>
+<li>Список хостов панели: X96 Max (<code>192.168.1.243</code>) и остальные из <code>monitoring.hosts</code> (<code>/etc/lan-discovery/settings.json</code>).</li>
 <li>Метрики (CPU, RAM, диск, сеть) читаются из Netdata каждого хоста — порт <code>19999</code>.</li>
 <li>Хост помечен ONLINE/OFFLINE; клик по строке — детальные графики Netdata.</li>
 <li>API: <code>GET /api/monitoring/&lt;ip&gt;</code> — метрики хоста (503, если хост недоступен).</li>
@@ -2916,5 +2916,5 @@ CPU --°C · RAM --% · eMMC --% · HDD --% · ↓ -- · ↑ --
 </div>
 </div>
 
-<div style="position:fixed;left:0;right:0;bottom:0;background:#12203a;color:#9fb6e8;font:11px/1.8 system-ui,sans-serif;padding:2px 8px;z-index:99998;text-align:center">Демо-режим · слепок от 30.09.2026 02:32 · данные не обновляются · <a href="index.html" style="color:#ffd54f">главная</a></div></body>
+<div style="position:fixed;left:0;right:0;bottom:0;background:#12203a;color:#9fb6e8;font:11px/1.8 system-ui,sans-serif;padding:2px 8px;z-index:99998;text-align:center">Демо-режим · слепок от 30.09.2026 07:52 · данные не обновляются · <a href="index.html" style="color:#ffd54f">главная</a></div></body>
 </html>

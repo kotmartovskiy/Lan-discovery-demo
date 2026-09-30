@@ -100,13 +100,20 @@ td { font-size: 14px; }
   <div class="card">
     <div class="backup-wrap">
       <h2>Восстановление базы данных</h2>
-      <span class="backup-count">бэкапов: 3</span>
+      <span class="backup-count">бэкапов: 4</span>
     </div>
     
     <div class="backup-scroll">
     <table>
       <thead><tr><th>Файл</th><th>Размер</th><th>Дата</th><th></th></tr></thead>
       <tbody>
+      
+      <tr>
+        <td>devices_20260930-033000.db</td>
+        <td>5.2 MiB</td>
+        <td>30.09.2026 03:30:00</td>
+        <td><button class="btn btn-danger btn-sm" onclick="confirmDbRestore('devices_20260930-033000.db')">Восстановить</button></td>
+      </tr>
       
       <tr>
         <td>devices_20260929-225059.db</td>
@@ -266,4 +273,4 @@ function showFlash(text, type) {
 }
 </script>
 
-<div style="position:fixed;left:0;right:0;bottom:0;background:#12203a;color:#9fb6e8;font:11px/1.8 system-ui,sans-serif;padding:2px 8px;z-index:99998;text-align:center">Демо-режим · слепок от 30.09.2026 02:32 · данные не обновляются · <a href="index.html" style="color:#ffd54f">главная</a></div></body></html>
+<div style="position:fixed;left:0;right:0;bottom:0;background:#12203a;color:#9fb6e8;font:11px/1.8 system-ui,sans-serif;padding:2px 8px;z-index:99998;text-align:center">Демо-режим · слепок от 30.09.2026 07:52 · данные не обновляются · <a href="index.html" style="color:#ffd54f">главная</a></div></body></html>

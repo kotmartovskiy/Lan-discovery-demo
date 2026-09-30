@@ -1,1 +1,1 @@
-{"ok": true, "servers": [{"ip": "192.168.3.243", "location": "http://192.168.3.243:8200/rootDesc.xml", "manufacturer": "Justin Maggard", "name": "X96 Max DLNA", "port": "8200"}]}
+{"ok": true, "servers": [{"ip": "192.168.1.243", "location": "http://192.168.1.243:8200/rootDesc.xml", "manufacturer": "Justin Maggard", "name": "X96 Max DLNA", "port": "8200"}, {"ip": "192.168.1.235", "location": "http://192.168.1.235:8200/rootDesc.xml", "manufacturer": "Justin Maggard", "name": "Orange Pi DLNA", "port": "8200"}]}

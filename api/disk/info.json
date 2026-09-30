@@ -1,1 +1,1 @@
-{"disk": "/dev/sda", "mount": "/srv", "mounted": false, "part": "/dev/sda1", "usage": {"free": "24G", "percent": "17%", "total": "28G", "used": "4.7G"}, "uuid": ""}
+{"disk": "/dev/sda", "mount": "/srv", "mounted": false, "part": "/dev/sda1", "usage": {"free": "24G", "percent": "18%", "total": "28G", "used": "4.8G"}, "uuid": ""}
