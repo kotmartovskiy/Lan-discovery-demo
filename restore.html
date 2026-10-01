@@ -100,13 +100,41 @@ td { font-size: 14px; }
   <div class="card">
     <div class="backup-wrap">
       <h2>Восстановление базы данных</h2>
-      <span class="backup-count">бэкапов: 4</span>
+      <span class="backup-count">бэкапов: 8</span>
     </div>
     
     <div class="backup-scroll">
     <table>
       <thead><tr><th>Файл</th><th>Размер</th><th>Дата</th><th></th></tr></thead>
       <tbody>
+      
+      <tr>
+        <td>devices_20261001-033000.db</td>
+        <td>7.8 MiB</td>
+        <td>01.10.2026 03:30:00</td>
+        <td><button class="btn btn-danger btn-sm" onclick="confirmDbRestore('devices_20261001-033000.db')">Восстановить</button></td>
+      </tr>
+      
+      <tr>
+        <td>devices_20260930-233341.db</td>
+        <td>7.8 MiB</td>
+        <td>30.09.2026 23:33:41</td>
+        <td><button class="btn btn-danger btn-sm" onclick="confirmDbRestore('devices_20260930-233341.db')">Восстановить</button></td>
+      </tr>
+      
+      <tr>
+        <td>devices_20260930-233107.db</td>
+        <td>7.8 MiB</td>
+        <td>30.09.2026 23:31:07</td>
+        <td><button class="btn btn-danger btn-sm" onclick="confirmDbRestore('devices_20260930-233107.db')">Восстановить</button></td>
+      </tr>
+      
+      <tr>
+        <td>devices_20260930-232951.db</td>
+        <td>7.8 MiB</td>
+        <td>30.09.2026 23:29:51</td>
+        <td><button class="btn btn-danger btn-sm" onclick="confirmDbRestore('devices_20260930-232951.db')">Восстановить</button></td>
+      </tr>
       
       <tr>
         <td>devices_20260930-033000.db</td>
@@ -273,4 +301,4 @@ function showFlash(text, type) {
 }
 </script>
 
-<div style="position:fixed;left:0;right:0;bottom:0;background:#12203a;color:#9fb6e8;font:11px/1.8 system-ui,sans-serif;padding:2px 8px;z-index:99998;text-align:center">Демо-режим · слепок от 30.09.2026 07:52 · данные не обновляются · <a href="index.html" style="color:#ffd54f">главная</a></div></body></html>
+<div style="position:fixed;left:0;right:0;bottom:0;background:#12203a;color:#9fb6e8;font:11px/1.8 system-ui,sans-serif;padding:2px 8px;z-index:99998;text-align:center">Демо-режим · слепок от 01.10.2026 20:19 · данные не обновляются · <a href="index.html" style="color:#ffd54f">главная</a></div></body></html>

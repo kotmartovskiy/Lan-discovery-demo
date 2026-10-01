@@ -1,0 +1,1 @@
+{"enabled": true, "ok": true, "shares": {"downloads": {"enabled": true, "guest_ok": true, "restricted": false}, "media": {"enabled": true, "guest_ok": true, "restricted": false}, "share": {"enabled": true, "guest_ok": true, "restricted": false}}}

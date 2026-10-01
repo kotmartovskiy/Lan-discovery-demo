@@ -4,7 +4,8 @@
 <head>
 <script src="demo.js"></script>
 <meta charset="utf-8">
-<meta name="csrf-token" content="IjUzNTMwM2VjNDJhOGIwYTIwYTEwYTc3YzA0YzU1ZjkwZTdjYTU2MTYi.aryVhg.5QtBUWT5L-3GASuxvCG5xgO1ch8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="csrf-token" content="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQw.KVVEDdZU1DemW5r-EsqCU3DOszw">
 <script>
 (function () {
     var meta = document.querySelector('meta[name="csrf-token"]');
@@ -29,487 +30,21 @@
 })();
 </script>
 
-<title>LAN Discovery</title>
+<title>LAN Discovery (x96max)</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 5 C55 5, 60 8, 62 12 L58 18 C56 14, 53 12, 50 12 C47 12, 44 14, 42 18 L38 12 C40 8, 45 5, 50 5Z' fill='%237cb342'/%3E%3Cpath d='M58 8 C62 5, 68 4, 72 6 L66 14 C63 12, 60 11, 58 12Z' fill='%239ccc65'/%3E%3Cpath d='M50 15 C68 15, 85 32, 85 50 C85 68, 68 85, 50 85 C32 85, 15 68, 15 50 C15 32, 32 15, 50 15Z' fill='%23ffa726'/%3E%3Cpath d='M50 15 C68 15, 85 32, 85 50 C85 68, 68 85, 50 85 C32 85, 15 68, 15 50 C15 32, 32 15, 50 15Z' fill='none' stroke='%23f57c00' stroke-width='2'/%3E%3Cpath d='M50 22 C64 22, 78 36, 78 50 C78 64, 64 78, 50 78 C36 78, 22 64, 22 50 C22 36, 36 22, 50 22Z' fill='%23fff9c4'/%3E%3Cpath d='M50 30 L50 70' stroke='%23ffcc02' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M50 30 L30 55' stroke='%23ffcc02' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M50 30 L70 55' stroke='%23ffcc02' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M50 30 L35 42' stroke='%23ffcc02' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M50 30 L65 42' stroke='%23ffcc02' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M50 30 L40 65' stroke='%23ffcc02' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M50 30 L60 65' stroke='%23ffcc02' stroke-width='2.5' stroke-linecap='round'/%3E%3Ccircle cx='50' cy='30' r='3' fill='%23ffcc02'/%3E%3C/svg%3E">
 
-<style>
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0 25px 25px 25px;
-    background: #111;
-    color: #eee;
-    scrollbar-width: none;
-}
-::-webkit-scrollbar { width: 0; height: 0; }
+<link rel="stylesheet" href="stub.html?to=static%2Fstyle.css%3Fv%3D20261001d">
 
-h1 {
-    margin-bottom: 5px;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-
-    position: sticky;
-    top: 0;
-    z-index: 100;
-
-    background: #111;
-    margin: 0 -25px;
-    padding: 25px 25px 15px 25px;
-}
-
-.clock {
-    flex: 0 0 520px;
-    width: 520px;
-    box-sizing: border-box;
-    text-align: right;
-    color: #9fb7d0;
-    font-size: 16px;
-    font-weight: 600;
-    position: relative;
-}
-
-#clock-date {
-    color: #6ba3d6;
-}
-
-#clock-time {
-    color: #e0e0e0;
-}
-
-@media (max-width: 750px) {
-    .header {
-        flex-wrap: wrap;
-    }
-
-    .clock {
-        flex: 1 1 100%;
-        width: 100%;
-        margin-top: 15px;
-    }
-}
-
-.system-status-bar {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1000;
-
-    background: #111;
-    border-top: 1px solid #333;
-
-    padding: 7px 15px;
-    box-sizing: border-box;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-body {
-    padding-bottom: 38px;
-}
-
-.system-status {
-    margin-top: 0;
-    margin-left: 0;
-    text-align: left;
-    flex: 1;
-}
-    color: #b8c4d1;
-    font-size: 14px;
-    font-weight: 400;
-    white-space: nowrap;
-    width: 100%;
-    max-width: 100%;
-    text-align: left;
-}
-
-.system-status .status-label {
-    font-weight: 600;
-}
-.system-status .sl-temp { color: #ff6b6b; }
-.system-status .sl-cpu { color: #ffd93d; }
-.system-status .sl-ram { color: #6bcb77; }
-.system-status .sl-emmc { color: #4d96ff; }
-.system-status .sl-hdd { color: #9b59b6; }
-.system-status .sl-sd { color: #e67e22; }
-.system-status .sl-lan { color: #1abc9c; }
-.system-status .sl-wifi { color: #3498db; }
-.system-status .sl-arrow { color: #95a5a6; }
-
-.system-status .status-value {
-    font-weight: 400;
-    font-variant-numeric: tabular-nums;
-    display: inline-block;
-    min-width: 4.5ch;
-    text-align: left;
-}
-
-.system-status .status-item {
-    white-space: nowrap;
-}
-
-.system-status .status-wide {
-    min-width: 8ch;
-}
-
-.system-status .status-warn {
-    color: #ffb84d;
-}
-
-.system-status .status-critical {
-    color: #ff6666;
-}
-
-.internet {
-    margin-top: 4px;
-}
-
-.internet.online {
-    color: #65d46e;
-}
-
-.internet.offline {
-    color: #d46565;
-}
-
-#health-detail {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 8px;
-    padding: 10px 14px;
-    min-width: 240px;
-    z-index: 200;
-    text-align: left;
-    box-shadow: 0 4px 16px rgba(0,0,0,.5);
-}
-
-.info {
-    color: #aaa;
-    margin-bottom: 20px;
-}
-
-.info-sticky {
-    position: sticky;
-    top: var(--header-height, 0px);
-    z-index: 90;
-    background: #111;
-    padding: 10px 0;
-    margin-bottom: 0;
-}
-
-.tabs {
-    margin-bottom: 20px;
-}
-
-.tabs a {
-    color: #aaa;
-    text-decoration: none;
-    margin-right: 20px;
-}
-
-.tabs a.active {
-    color: #fff;
-    font-weight: bold;
-}
-
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-th, td {
-    padding: 8px 10px;
-    border-bottom: 1px solid #333;
-    text-align: left;
-}
-
-th {
-    color: #999;
-    position: sticky;
-    top: var(--header-height, 0px);
-    background: #111;
-    z-index: 10;
-}
-
-.device-link {
-    color: inherit;
-    text-decoration: none;
-}
-
-.device-link:hover {
-    text-decoration: underline;
-}
-
-.online {
-    color: #65d46e;
-    font-weight: bold;
-}
-
-.offline {
-    color: #666;
-}
-
-.new {
-    color: #ffb84d;
-    font-weight: bold;
-}
-
-.small {
-    color: #888;
-    font-size: 12px;
-}
-
-.weather-grid {
-    display: flex;
-    gap: 12px;
-    overflow-x: auto;
-    padding-bottom: 8px;
-}
-
-.weather-grid .card {
-    flex-shrink: 0;
-}
-
-.system-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-top: 20px;
-    grid-auto-rows: minmax(180px, auto);
-}
-
-.system-grid .card {
-    display: flex;
-    flex-direction: column;
-    transition: box-shadow 0.2s;
-}
-
-.system-grid .card:hover {
-    box-shadow: 0 2px 12px rgba(77, 150, 255, 0.08);
-}
-
-@media (max-width: 1100px) {
-    .system-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 700px) {
-    .system-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-.card {
-    background: #181818;
-    border: 1px solid #2a2a2a;
-    border-radius: 10px;
-    padding: 20px;
-}
-
-.card h2 {
-    margin-top: 0;
-    margin-bottom: 14px;
-    font-size: 16px;
-    color: #e0e0e0;
-    border-bottom: 1px solid #2a2a2a;
-    padding-bottom: 10px;
-}
-
-.card h3 {
-    margin-top: 14px;
-    margin-bottom: 8px;
-    font-size: 14px;
-    color: #aaa;
-}
-
-.status-ok {
-    color: #65d46e;
-    font-weight: bold;
-}
-
-.status-error {
-    color: #ff6666;
-    font-weight: bold;
-}
-
-.status-running {
-    color: #ffb84d;
-    font-weight: bold;
-}
-
-.info-row {
-    margin: 6px 0;
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-.service-row {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-    padding: 8px 0;
-    border-bottom: 1px solid #222;
-}
-
-.service-row:last-child {
-    border-bottom: none;
-}
-
-.service-buttons {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-}
-
-.button-row {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    margin-top: 8px;
-}
-
-.info-label {
-    color: #888;
-}
-
-button {
-    background: #252525;
-    color: #ddd;
-    border: 1px solid #3a3a3a;
-    border-radius: 6px;
-    padding: 7px 14px;
-    cursor: pointer;
-    margin: 4px 4px 4px 0;
-    font-size: 13px;
-    transition: background 0.15s, border-color 0.15s;
-}
-
-button:hover {
-    background: #333;
-    border-color: #555;
-}
-
-button:active {
-    background: #3a3a3a;
-}
-
-button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-code {
-    color: #ccc;
-    word-break: break-all;
-    white-space: normal;
-}
-
-a {
-    color: #8ab4f8;
-}
-
-.device {
-    max-width: 900px;
-}
-
-.device table {
-    margin-top: 20px;
-}
-
-.device td:first-child {
-    width: 220px;
-    color: #999;
-}
-
-input[type="text"] {
-    background: #222;
-    color: #eee;
-    border: 1px solid #555;
-    padding: 8px;
-    width: 350px;
-    font-size: 14px;
-}
-
-button {
-    background: #333;
-    color: #eee;
-    border: 1px solid #666;
-    padding: 8px 16px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #444;
-}
-
-.back {
-    display: inline-block;
-    margin-bottom: 20px;
-}
-
-.system-pre {
-    margin: 0;
-    padding: 14px;
-    overflow-x: auto;
-    white-space: pre;
-    font-family: monospace;
-    font-size: 13px;
-    line-height: 1.45;
-}
-
-.mono {
-    font-family: monospace;
-}
-
-.device-block {
-    padding: 12px 0;
-    border-top: 1px solid rgba(128,128,128,.18);
-}
-
-.device-block:first-of-type {
-    border-top: 0;
-}
-
-.device-block h3 {
-    margin: 0 0 10px 0;
-}
-
-.subsection-title {
-    margin-top: 14px;
-    margin-bottom: 4px;
-    font-weight: 600;
-}
-
-.badge {
-    font-size: 11px;
-    padding: 2px 6px;
-    border-radius: 4px;
-    opacity: .7;
-}
-
-</style>
 </head>
 
 <body>
 
-<body>
+<a class="skip-link" href="#main">Перейти к содержимому</a>
 
-<div class="header">
+<header class="header">
 
 <div>
-<h1><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="35" height="35" style="vertical-align:middle; margin-right:6px;">
+<h1><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="35" height="35" style="vertical-align:middle; margin-right:6px;" aria-hidden="true">
 <path d="M50 5 C55 5, 60 8, 62 12 L58 18 C56 14, 53 12, 50 12 C47 12, 44 14, 42 18 L38 12 C40 8, 45 5, 50 5Z" fill="#7cb342"/>
 <path d="M58 8 C62 5, 68 4, 72 6 L66 14 C63 12, 60 11, 58 12Z" fill="#9ccc65"/>
 <path d="M50 15 C68 15, 85 32, 85 50 C85 68, 68 85, 50 85 C32 85, 15 68, 15 50 C15 32, 32 15, 50 15Z" fill="#ffa726"/>
@@ -523,9 +58,13 @@ button:hover {
 <path d="M50 30 L40 65" stroke="#ffcc02" stroke-width="2.5" stroke-linecap="round"/>
 <path d="M50 30 L60 65" stroke="#ffcc02" stroke-width="2.5" stroke-linecap="round"/>
 <circle cx="50" cy="30" r="3" fill="#ffcc02"/>
-</svg>LAN Discovery</h1>
+</svg>LAN Discovery <span style="font-size:0.5em;font-weight:normal;opacity:0.7;">(x96max)</span></h1>
 
-<div class="tabs">
+<nav class="tabs" aria-label="Разделы панели">
+
+<span class="nav-group">
+<span class="nav-group-label">Устройства</span>
+<span class="nav-group-items">
 
 <a href="index.html" class="">
 Устройства
@@ -535,12 +74,19 @@ button:hover {
 Инвентаризация
 </a>
 
+</span>
+</span>
+
+<span class="nav-group">
+<span class="nav-group-label">Мониторинг</span>
+<span class="nav-group-items">
+
 <a href="monitoring.html" class="">
 Мониторинг
 </a>
 
-<a href="torrent.html" class="">
-Торрент
+<a href="history.html" class="">
+История
 </a>
 
 <a href="currencies.html" class="">
@@ -551,28 +97,63 @@ button:hover {
 Погода
 </a>
 
+</span>
+</span>
+
+<span class="nav-group">
+<span class="nav-group-label">Приложения</span>
+<span class="nav-group-items">
+
+<a href="torrent.html" class="">
+Торрент
+</a>
+
 <a href="apps.html" class="">
 Приложения
 </a>
 
+</span>
+</span>
+
+<span class="nav-group">
+<span class="nav-group-label">Система</span>
+<span class="nav-group-items">
+
 <a href="system.html" class="">
 Система
+</a>
+
+<a href="stub.html?to=capabilities" class="">
+Возможности
+</a>
+
+<a href="stub.html?to=roles" class="">
+Роли
+</a>
+
+<a href="modules.html" class="">
+Модули
 </a>
 
 <a href="about.html" class="">
 О системе
 </a>
 
+</span>
+</span>
+
+<span class="nav-group">
+<span class="nav-group-label">Помощь</span>
+<span class="nav-group-items">
+
 <a href="help.html" class="">
 Справка
 </a>
 
+</span>
+</span>
 
-<a href="modules.html" class="">
-Модули
-</a>
-
-</div>
+</nav>
 </div>
 
 <div class="clock">
@@ -581,7 +162,7 @@ button:hover {
 
 <div id="weather-status" style="font-size:13px; color:#8ab4f8; margin:2px 0;"></div>
 
-<div class="internet online">
+<div id="internet-status" class="internet online">
 ● Интернет: доступен
 </div>
 
@@ -590,8 +171,9 @@ button:hover {
 
 </div>
 
-</div>
+</header>
 
+<main id="main" tabindex="-1">
 
 <style>
 .weekend td { color: #ff5f5f !important; }
@@ -613,22 +195,22 @@ button:hover {
 
 <div class="info-row" style="display:flex; justify-content:space-between;">
 <span class="info-label">Темп.:</span>
-<span>7.3 °C</span>
+<span>10.7 °C</span>
 </div>
 
 <div class="info-row" style="display:flex; justify-content:space-between;">
 <span class="info-label">Ощущ.:</span>
-<span>5.0 °C</span>
+<span>6.7 °C</span>
 </div>
 
 <div class="info-row" style="display:flex; justify-content:space-between;">
 <span class="info-label">Влаж.:</span>
-<span>93 %</span>
+<span>53 %</span>
 </div>
 
 <div class="info-row" style="display:flex; justify-content:space-between;">
 <span class="info-label">Давл.:</span>
-<span>764 мм</span>
+<span>765 мм</span>
 </div>
 
 <div class="info-row" style="display:flex; justify-content:space-between;">
@@ -638,20 +220,20 @@ button:hover {
 
 <div class="info-row" style="display:flex; justify-content:space-between;">
 <span class="info-label">Ветер:</span>
-<span>ЗСЗ 2 м/с</span>
+<span>С 4 м/с</span>
 </div>
 
 
 <div class="info-row" style="display:flex; justify-content:space-between;">
 <span class="info-label">Обл.:</span>
-<span>44 %</span>
+<span>86 %</span>
 </div>
 
 
 
 <div class="info-row" style="display:flex; justify-content:space-between; font-size:14px; color:#888;">
-<span>↑ 06:12</span>
-<span>↓ 18:01</span>
+<span>↑ 06:19</span>
+<span>↓ 17:50</span>
 </div>
 </div>
 
@@ -688,110 +270,20 @@ button:hover {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="card" style="min-width:120px;">
 <h2>Утро</h2>
 <div class="info-row" style="font-size:13px;">
-Преимущественно ясно
+Ясно
 </div>
 <div class="info-row" style="font-size:18px; font-weight:bold;">
-6…14 °C
+99…-99 °C
 </div>
 
 <div class="info-row" style="font-size:12px; color:#888;">
-С 2 м/с
- · ☁ 37 %
+С 0 м/с
+
 </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -831,32 +323,14 @@ button:hover {
 Пасмурно
 </div>
 <div class="info-row" style="font-size:18px; font-weight:bold;">
-15…16 °C
+10…11 °C
 </div>
 
 <div class="info-row" style="font-size:12px; color:#888;">
-С 3 м/с
- · ☁ 72 %
+ССВ 4 м/с
+ · ☁ 93 %
 </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -917,35 +391,17 @@ button:hover {
 <div class="card" style="min-width:120px;">
 <h2>Вечер</h2>
 <div class="info-row" style="font-size:13px;">
-Преимущественно ясно
+Пасмурно
 </div>
 <div class="info-row" style="font-size:18px; font-weight:bold;">
-9…13 °C
+5…9 °C
 </div>
 
 <div class="info-row" style="font-size:12px; color:#888;">
-С 2 м/с
- · ☁ 57 %
+С 3 м/с
+ · ☁ 100 %
 </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1139,12 +595,12 @@ button:hover {
 Пасмурно
 </div>
 <div class="info-row" style="font-size:18px; font-weight:bold;">
-5…11 °C
+3…11 °C
 </div>
 
 <div class="info-row" style="font-size:12px; color:#888;">
 С 4 м/с
- · ☁ 67 %
+ · ☁ 95 %
 </div>
 
 <div class="info-row" style="font-size:12px;">
@@ -1163,18 +619,6 @@ button:hover {
 
 
 
-<h2>Метеопредупреждения</h2>
-
-<div class="info">
-
-<div class="info-row">
-<span class="info-label">⚠️ Туман</span>
-ближайшие 24 часа
-<span style="color:#888; margin-left:10px;">обновлено 28.09.2026 22:17</span>
-</div>
-
-</div>
-
 
 
 <h2>Экстренные предупреждения</h2>
@@ -1183,18 +627,18 @@ button:hover {
 
 <div class="info-row">
 <span class="info-label">🚨 МЧС России:</span>
-Экстренное предупреждение на 28-29 сентября 2026 года
-<span style="color:#888; margin-left:10px;">опубликовано 28.09.2026 12:07:00</span>
+Экстренное предупреждение на 30 сентября по 01 октября 2026 года
+<span style="color:#888; margin-left:10px;">опубликовано 30.09.2026 20:47:00</span>
 </div>
 
 
 <div style="margin:8px 0 12px 0; color:#555;">
-С 18:00 28 сентября до 18.00 29 сентября 2026 года по Ивановской области ожидается: ночью и утром в отельных районах туман. Основные правила для безопасной езды в тумане: Главное и самое надёжное правило — воздержаться от поездки в тумане. Если же возможности отложить поездку нет, стоит помнить, что основным залогом безопасной езды в условиях тумана является значительное снижение скоростного режима. Если вы попали в туман внезапно, уже совершая свой маршрут, помните, что к месту назначения вы в любом случае прибудете с опозданием. Поэтому, попав в туман, выбирайте ту скорость движения, при которой вы наверняка сможете адекватно среагировать на возникшее препятствие, успев затормозить или совершить иной манёвр. В условиях плохой видимости скорость может составлять, как 20, так и 5 км/ч. Вообще, существует «золотое» неписаное правило установления скоростного режима езды в тумане: показатель скорости автомобиля должен быть меньше половины показателя расстояния видимости. Так, к примеру, если видимость не превышает двадцати метров, то скорость движения автомобиля в таких условиях не должна быть более 10 километров в час. А, если туман слишком густой и видимость на дороге не превышает двух метров, настоятельно рекомендуется прекратить движение и остановиться. Лучше подождать, пока столь плотный туман рассеется, потеряв при этом немного времени.Останавливаясь на шоссе, нужно постепенно прижиматься к правой обочине дороги. Ориентируйтесь по расположенным вдоль обочины предметам – деревьям, домам, заборам. Самым лучшим вариантом будет съезд с полотна дороги подальше на обочину. При этом обязательным условием будет включение габаритных огней или аварийной сигнализацию, вне зависимости от времени суток. Нельзя расслабляться и пешеходам: в тумане, также как и в темное время суток, при движении по краю проезжей части пешеход обязательно должен обозначить себя светоотражающими элементами. Имейте в виду, иначе водители вас просто НЕ УВИДЯТ! Главное управление МЧС России по Ивановской области напоминает: если вы стали участником или свидетелем трагедии, несчастного случая или оказались в непростой ситуации, звоните на Единый номер вызова экстренных служб - «01 или 101» (звонки принимаются круглосуточно и бесплатно с городских и мобильных телефонов). При необходимости обращайтесь в Службу спасения по телефонам: «01» (со стационарных аппаратов), «112» (с мобильных аппаратов), «001» (абонентам сотовой связи «Билайн»), «010» (абонентам сотовой связи «Мегафон») и «112» (абонентам сотовой связи «МТС»).
+С 23.00 30 сентября до 09.00 01 октября 2026 года по Ивановской области ожидается: местами туман. Основные правила для безопасной езды в тумане Главное и самое надёжное правило — воздержаться от поездки в тумане. Если же возможности отложить поездку нет, стоит помнить, что основным залогом безопасной езды в условиях тумана является значительное снижение скоростного режима. Если вы попали в туман внезапно, уже совершая свой маршрут, помните, что к месту назначения вы в любом случае прибудете с опозданием. Поэтому, попав в туман, выбирайте ту скорость движения, при которой вы наверняка сможете адекватно среагировать на возникшее препятствие, успев затормозить или совершить иной манёвр. В условиях плохой видимости скорость может составлять, как 20, так и 5 км/ч. Вообще, существует «золотое» неписаное правило установления скоростного режима езды в тумане: показатель скорости автомобиля должен быть меньше половины показателя расстояния видимости. Так, к примеру, если видимость не превышает двадцати метров, то скорость движения автомобиля в таких условиях не должна быть более 10 километров в час. А, если туман слишком густой и видимость на дороге не превышает двух метров, настоятельно рекомендуется прекратить движение и остановиться. Лучше подождать, пока столь плотный туман рассеется, потеряв при этом немного времени.Останавливаясь на шоссе, нужно постепенно прижиматься к правой обочине дороги. Ориентируйтесь по расположенным вдоль обочины предметам – деревьям, домам, заборам. Самым лучшим вариантом будет съезд с полотна дороги подальше на обочину. При этом обязательным условием будет включение габаритных огней или аварийной сигнализацию, вне зависимости от времени суток. Нельзя расслабляться и пешеходам: в тумане, также как и в темное время суток, при движении по краю проезжей части пешеход обязательно должен обозначить себя светоотражающими элементами. Имейте в виду, иначе водители вас просто НЕ УВИДЯТ! Главное управление МЧС России по Ивановской области напоминает: если вы стали участником или свидетелем трагедии, несчастного случая или оказались в непростой ситуации, звоните на Единый номер вызова экстренных служб - «01 или 101» (звонки принимаются круглосуточно и бесплатно с городских и мобильных телефонов). При необходимости обращайтесь в Службу спасения по телефонам: «01» (со стационарных аппаратов), «112» (с мобильных аппаратов), «001» (абонентам сотовой связи «Билайн»), «010» (абонентам сотовой связи «Мегафон») и «112» (абонентам сотовой связи «МТС»).
 </div>
 
 
 <div style="font-size:0.9em; margin-bottom:8px;">
-<a href="stub.html?to=https%3A%2F%2F37.mchs.gov.ru%2Fdeyatelnost%2Fpress-centr%2Foperativnaya-informaciya%2Fshtormovye-i-ekstrennye-preduprezhdeniya%2F5833446" target="_blank">Источник: МЧС России</a>
+<a href="stub.html?to=https%3A%2F%2F37.mchs.gov.ru%2Fdeyatelnost%2Fpress-centr%2Foperativnaya-informaciya%2Fshtormovye-i-ekstrennye-preduprezhdeniya%2F5834842" target="_blank">Источник: МЧС России</a>
 </div>
 
 </div>
@@ -1211,12 +655,12 @@ button:hover {
 
 <div class="info-row">
 <span class="info-label">Погода:</span>
-Туман
+Пасмурно
 </div>
 
 <div class="info-row">
 <span class="info-label">Температура:</span>
-7.1 °C … 7.8 °C
+4.7 °C … 11.2 °C
 </div>
 
 <div class="info-row">
@@ -1226,14 +670,14 @@ button:hover {
 
 <div class="info-row">
 <span class="info-label">Ветер:</span>
-2.2 м/с,
-ССЗ
+4.1 м/с,
+С
 </div>
 
 <div class="info-row">
 <span class="info-label">Солнце:</span>
-восход 06:12,
-закат 18:01
+восход 06:19,
+закат 17:50
 </div>
 
 </div>
@@ -1245,24 +689,24 @@ button:hover {
 
 <div class="info-row">
 <span class="info-label">УФ индекс:</span>
-2.2
-(Умеренный)
+1.8
+(Низкий)
 </div>
 
 <div class="info-row">
 <span class="info-label">Качество воздуха:</span>
-43 EU AQI
-(Умеренно)
+19 EU AQI
+(Отлично)
 </div>
 
 <div class="info-row">
 <span class="info-label">PM2.5:</span>
-19.5 мкг/м³
+3.0 мкг/м³
 </div>
 
 <div class="info-row">
 <span class="info-label">PM10:</span>
-22.1 мкг/м³
+4.7 мкг/м³
 </div>
 
 <div class="info-row">
@@ -1296,146 +740,38 @@ button:hover {
 <tbody>
 
 
-<tr style="background:rgba(255,200,50,0.05);">
-
-<td>07:00</td>
-<td>6.3 °C</td>
-<td>Преимущественно ясно</td>
-<td>0.0 мм</td>
-<td></td>
-<td>1.5 м/с ЗСЗ</td>
-<td>27 %</td>
-</tr>
-
-
-<tr style="background:rgba(255,200,50,0.05);">
-
-<td>08:00</td>
-<td>7.8 °C</td>
-<td>Переменная облачность</td>
-<td>0.0 мм</td>
-<td></td>
-<td>1.6 м/с ЗСЗ</td>
-<td>50 %</td>
-</tr>
-
-
-<tr style="background:rgba(255,200,50,0.05);">
-
-<td>09:00</td>
-<td>9.8 °C</td>
-<td>Переменная облачность</td>
-<td>0.0 мм</td>
-<td></td>
-<td>1.9 м/с ЗСЗ</td>
-<td>73 %</td>
-</tr>
-
-
-<tr style="background:rgba(255,200,50,0.05);">
-
-<td>10:00</td>
-<td>11.9 °C</td>
-<td>Ясно</td>
-<td>0.0 мм</td>
-<td></td>
-<td>1.8 м/с ЗСЗ</td>
-<td>7 %</td>
-</tr>
-
-
-<tr style="background:rgba(255,200,50,0.05);">
-
-<td>11:00</td>
-<td>14.0 °C</td>
-<td>Преимущественно ясно</td>
-<td>0.0 мм</td>
-<td></td>
-<td>2.0 м/с ЗСЗ</td>
-<td>28 %</td>
-</tr>
-
-
-<tr style="background:rgba(255,100,50,0.05);">
-
-<td>12:00</td>
-<td>15.0 °C</td>
-<td>Переменная облачность</td>
-<td>0.0 мм</td>
-<td></td>
-<td>2.6 м/с ЗСЗ</td>
-<td>53 %</td>
-</tr>
-
-
-<tr style="background:rgba(255,100,50,0.05);">
-
-<td>13:00</td>
-<td>15.4 °C</td>
-<td>Пасмурно</td>
-<td>0.0 мм</td>
-<td></td>
-<td>2.6 м/с ЗСЗ</td>
-<td>81 %</td>
-</tr>
-
-
-<tr style="background:rgba(255,100,50,0.05);">
-
-<td>14:00</td>
-<td>15.6 °C</td>
-<td>Преимущественно ясно</td>
-<td>0.0 мм</td>
-<td></td>
-<td>2.6 м/с ЗСЗ</td>
-<td>45 %</td>
-</tr>
-
-
-<tr style="background:rgba(255,100,50,0.05);">
-
-<td>15:00</td>
-<td>15.7 °C</td>
-<td>Переменная облачность</td>
-<td>0.0 мм</td>
-<td></td>
-<td>2.9 м/с СЗ</td>
-<td>75 %</td>
-</tr>
-
-
 <tr style="background:rgba(255,100,50,0.05);">
 
 <td>16:00</td>
-<td>15.7 °C</td>
+<td>10.7 °C</td>
 <td>Пасмурно</td>
 <td>0.0 мм</td>
 <td></td>
-<td>2.6 м/с СЗ</td>
-<td>92 %</td>
+<td>3.6 м/с С</td>
+<td>86 %</td>
 </tr>
 
 
 <tr style="background:rgba(255,100,50,0.05);">
 
 <td>17:00</td>
-<td>14.9 °C</td>
+<td>9.9 °C</td>
 <td>Пасмурно</td>
 <td>0.0 мм</td>
 <td></td>
-<td>2.1 м/с СЗ</td>
-<td>83 %</td>
+<td>3.2 м/с С</td>
+<td>100 %</td>
 </tr>
 
 
 <tr style="background:rgba(100,100,255,0.05);">
 
 <td>18:00</td>
-<td>13.4 °C</td>
+<td>8.6 °C</td>
 <td>Пасмурно</td>
 <td>0.0 мм</td>
 <td></td>
-<td>2.1 м/с СЗ</td>
+<td>2.6 м/с С</td>
 <td>100 %</td>
 </tr>
 
@@ -1443,60 +779,60 @@ button:hover {
 <tr style="background:rgba(100,100,255,0.05);">
 
 <td>19:00</td>
-<td>12.0 °C</td>
-<td>Переменная облачность</td>
+<td>7.5 °C</td>
+<td>Пасмурно</td>
 <td>0.0 мм</td>
 <td></td>
-<td>2.4 м/с ССЗ</td>
-<td>58 %</td>
+<td>2.2 м/с ССЗ</td>
+<td>97 %</td>
 </tr>
 
 
 <tr style="background:rgba(100,100,255,0.05);">
 
 <td>20:00</td>
-<td>11.4 °C</td>
-<td>Переменная облачность</td>
+<td>6.7 °C</td>
+<td>Пасмурно</td>
 <td>0.0 мм</td>
 <td></td>
-<td>2.3 м/с СЗ</td>
-<td>68 %</td>
+<td>2.3 м/с С</td>
+<td>100 %</td>
 </tr>
 
 
 <tr style="background:rgba(100,100,255,0.05);">
 
 <td>21:00</td>
-<td>10.8 °C</td>
-<td>Переменная облачность</td>
+<td>5.9 °C</td>
+<td>Пасмурно</td>
 <td>0.0 мм</td>
 <td></td>
-<td>2.5 м/с ССЗ</td>
-<td>74 %</td>
+<td>2.1 м/с С</td>
+<td>100 %</td>
 </tr>
 
 
 <tr style="background:rgba(100,100,255,0.05);">
 
 <td>22:00</td>
-<td>10.0 °C</td>
-<td>Ясно</td>
+<td>5.2 °C</td>
+<td>Пасмурно</td>
 <td>0.0 мм</td>
 <td></td>
-<td>2.4 м/с ССЗ</td>
-<td>6 %</td>
+<td>2.0 м/с С</td>
+<td>100 %</td>
 </tr>
 
 
 <tr style="background:rgba(100,100,255,0.05);">
 
 <td>23:00</td>
-<td>8.8 °C</td>
-<td>Преимущественно ясно</td>
+<td>4.7 °C</td>
+<td>Пасмурно</td>
 <td>0.0 мм</td>
 <td></td>
-<td>2.1 м/с С</td>
-<td>38 %</td>
+<td>1.9 м/с С</td>
+<td>100 %</td>
 </tr>
 
 </tbody>
@@ -1525,46 +861,10 @@ button:hover {
 <tbody>
 
 <tr>
-<td>Пн, 28 сент.</td>
-<td>Туман</td>
-<td>7.1 °C</td>
-<td>7.8 °C</td>
-<td>0.0 мм</td>
-<td></td>
-<td>2.2 м/с ССЗ</td>
-<td>06:12</td>
-<td>18:01</td>
-</tr>
-
-<tr>
-<td>Вт, 29 сент.</td>
-<td>Переменная облачность</td>
-<td>5.7 °C</td>
-<td>15.3 °C</td>
-<td>0.0 мм</td>
-<td></td>
-<td>2.6 м/с С</td>
-<td>06:14</td>
-<td>17:58</td>
-</tr>
-
-<tr>
-<td>Ср, 30 сент.</td>
-<td>Пасмурно</td>
-<td>6.1 °C</td>
-<td>15.7 °C</td>
-<td>0.0 мм</td>
-<td></td>
-<td>2.9 м/с ЗСЗ</td>
-<td>06:17</td>
-<td>17:53</td>
-</tr>
-
-<tr>
 <td>Чт, 1 окт.</td>
 <td>Пасмурно</td>
-<td>4.8 °C</td>
-<td>10.8 °C</td>
+<td>4.7 °C</td>
+<td>11.2 °C</td>
 <td>0.0 мм</td>
 <td></td>
 <td>4.1 м/с С</td>
@@ -1574,12 +874,12 @@ button:hover {
 
 <tr>
 <td>Пт, 2 окт.</td>
-<td>Слабая морось</td>
-<td>4.0 °C</td>
-<td>9.3 °C</td>
-<td>0.3 мм</td>
+<td>Пасмурно</td>
+<td>2.9 °C</td>
+<td>10.6 °C</td>
+<td>0.0 мм</td>
 <td></td>
-<td>3.4 м/с С</td>
+<td>3.5 м/с ЗСЗ</td>
 <td>06:21</td>
 <td>17:48</td>
 </tr>
@@ -1587,11 +887,11 @@ button:hover {
 <tr class="weekend">
 <td>Сб, 3 окт.</td>
 <td>Пасмурно</td>
-<td>1.4 °C</td>
-<td>9.0 °C</td>
+<td>-0.3 °C</td>
+<td>7.3 °C</td>
 <td>0.0 мм</td>
 <td></td>
-<td>3.4 м/с С</td>
+<td>3.8 м/с ССЗ</td>
 <td>06:23</td>
 <td>17:45</td>
 </tr>
@@ -1599,13 +899,49 @@ button:hover {
 <tr class="weekend">
 <td>Вс, 4 окт.</td>
 <td>Пасмурно</td>
-<td>0.0 °C</td>
-<td>8.7 °C</td>
+<td>-2.2 °C</td>
+<td>8.3 °C</td>
 <td>0.0 мм</td>
 <td></td>
-<td>1.8 м/с ССЗ</td>
+<td>2.1 м/с СЗ</td>
 <td>06:25</td>
 <td>17:42</td>
+</tr>
+
+<tr>
+<td>Пн, 5 окт.</td>
+<td>Переменная облачность</td>
+<td>0.5 °C</td>
+<td>11.9 °C</td>
+<td>0.0 мм</td>
+<td></td>
+<td>1.2 м/с ЮЮЗ</td>
+<td>06:27</td>
+<td>17:40</td>
+</tr>
+
+<tr>
+<td>Вт, 6 окт.</td>
+<td>Слабая морось</td>
+<td>6.9 °C</td>
+<td>11.7 °C</td>
+<td>2.2 мм</td>
+<td></td>
+<td>4.0 м/с ЮЗ</td>
+<td>06:29</td>
+<td>17:37</td>
+</tr>
+
+<tr>
+<td>Ср, 7 окт.</td>
+<td>Переменная облачность</td>
+<td>6.5 °C</td>
+<td>13.7 °C</td>
+<td>0.0 мм</td>
+<td></td>
+<td>3.8 м/с З</td>
+<td>06:31</td>
+<td>17:34</td>
 </tr>
 
 </tbody>
@@ -1639,15 +975,29 @@ button:hover {
 
 
 <tr>
+<td>2026-10-01</td>
+<td>5.8 °C</td>
+<td>8.4 °C</td>
+<td>11.2 °C</td>
+<td>79 %</td>
+<td>765.5 мм рт. ст.</td>
+<td>2.9 м/с</td>
+<td>0.0 мм</td>
+<td>17</td>
+</tr>
+
+
+
+<tr>
 <td>2026-09-30</td>
 <td>5.3 °C</td>
-<td>7.0 °C</td>
-<td>8.0 °C</td>
-<td>92 %</td>
-<td>763.8 мм рт. ст.</td>
-<td>1.5 м/с</td>
+<td>10.8 °C</td>
+<td>16.1 °C</td>
+<td>80 %</td>
+<td>763.6 мм рт. ст.</td>
+<td>2.1 м/с</td>
 <td>0.0 мм</td>
-<td>8</td>
+<td>24</td>
 </tr>
 
 
@@ -2049,6 +1399,7 @@ button:hover {
 </table>
 </div>
 
+</main>
 
 <script>
 var USER_ROLE = "admin";
@@ -2395,15 +1746,15 @@ function checkNetHost(num) {
     .then(d => {
         if (d.online) {
             result.textContent = "✅ " + host + " — доступен";
-            result.style.color = "#65d46e";
+            result.style.color = "var(--ok)";
         } else {
             result.textContent = "❌ " + host + " — недоступен";
-            result.style.color = "#ff6666";
+            result.style.color = "var(--critical)";
         }
     })
     .catch(err => {
         result.textContent = "❌ Ошибка: " + err;
-        result.style.color = "#ff6666";
+        result.style.color = "var(--critical)";
     });
 }
 
@@ -2846,7 +2197,7 @@ async function controlService(service, action) {
             );
         }
 
-        await updateOrangePiStatus();
+        await updateDashboard();
 
     } catch (error) {
 
@@ -2857,20 +2208,122 @@ async function controlService(service, action) {
     }
 }
 
-async function updateSystemStatus() {
+var sambaGuestEnabled = false;
+
+function renderSambaGuest(enabled) {
+
+    sambaGuestEnabled = !!enabled;
+
+    var stateElement =
+        document.getElementById("samba-guest-state");
+
+    if (!stateElement) {
+        return;
+    }
+
+    stateElement.textContent =
+        enabled ? "● включён" : "● выключен";
+
+    stateElement.classList.remove(
+        "status-ok",
+        "status-error"
+    );
+
+    if (enabled) {
+        stateElement.classList.add("status-ok");
+    }
+
+    var button =
+        document.getElementById("samba-guest-toggle");
+
+    if (button) {
+        button.style.display = "";
+        button.textContent =
+            enabled ? "Выключить" : "Включить";
+    }
+}
+
+async function loadSambaGuestState() {
+
+    if (!document.getElementById("samba-guest-state")) {
+        return;
+    }
 
     try {
 
         const response = await fetch(
-            "api/status",
+            "api/samba/guest",
             { cache: "no-store" }
         );
 
-        if (!response.ok) {
-            throw new Error("HTTP " + response.status);
+        const data = await response.json();
+
+        if (!response.ok || !data.ok) {
+            throw new Error(
+                data.error || "HTTP " + response.status
+            );
         }
 
+        renderSambaGuest(data.enabled);
+
+    } catch (error) {
+
+        console.error(
+            "samba guest state:",
+            error
+        );
+    }
+}
+
+async function toggleSambaGuest() {
+
+    const next = !sambaGuestEnabled;
+
+    const message = next
+        ? "Включить гостевой доступ Samba? " +
+          "Шары будут доступны без пароля в этой LAN."
+        : "Выключить гостевой доступ Samba?";
+
+    if (!confirm(message)) {
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            "api/samba/guest",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ enabled: next }),
+                cache: "no-store"
+            }
+        );
+
         const data = await response.json();
+
+        if (!response.ok || !data.ok) {
+            throw new Error(
+                data.error || "Ошибка операции"
+            );
+        }
+
+        renderSambaGuest(data.enabled);
+
+    } catch (error) {
+
+        alert(
+            "Не удалось изменить гостевой доступ: " +
+            error.message
+        );
+    }
+}
+
+function renderSystemStatus(data) {
+
+    try {
 
         const now = Date.now();
 
@@ -3053,16 +2506,14 @@ async function updateSystemStatus() {
         }
 
         const emmc =
-            formatStorage(
-                data.root_free,
-                data.root_total
-            );
+            data.root_free != null && data.root_total != null
+                ? formatStorage(data.root_free, data.root_total)
+                : null;
 
         const hdd =
-            formatStorage(
-                data.srv_free,
-                data.srv_total
-            );
+            data.srv_free != null && data.srv_total != null
+                ? formatStorage(data.srv_free, data.srv_total)
+                : null;
 
         const sd = (function () {
             if (data.sd_free != null && data.sd_total != null) {
@@ -3078,14 +2529,18 @@ async function updateSystemStatus() {
         })();
 
         const emmcLoad =
-            emmcActive !== null
-                ? Math.round(emmcActive) + "%"
-                : "--";
+            data.emmc_io_ticks == null
+                ? null
+                : emmcActive !== null
+                  ? Math.round(emmcActive) + "%"
+                  : "--";
 
         const hddLoad =
-            hddActive !== null
-                ? Math.round(hddActive) + "%"
-                : "--";
+            hdd === null || data.hdd_io_ticks == null
+                ? null
+                : hddActive !== null
+                  ? Math.round(hddActive) + "%"
+                  : "--";
 
         const rx =
             rxSpeed !== null
@@ -3115,21 +2570,34 @@ async function updateSystemStatus() {
                 '<span class="' + vcls + '">' + val + '</span></span>';
         }
 
-        element.innerHTML =
-            si('CPU', temperature, false, 'sl-temp') + ' · ' +
-            si('CPU', cpu, false, 'sl-cpu') + ' · ' +
-            si('RAM', ram, false, 'sl-ram') + ' · ' +
-            si('eMMC', emmc, true, 'sl-emmc') + ' · ' +
-            si('eMMC', emmcLoad, false, 'sl-emmc') + ' · ' +
-            si('HDD', hdd, true, 'sl-hdd') + ' · ' +
-            si('HDD', hddLoad, false, 'sl-hdd') + ' · ' +
-            si('SD', sd, true, 'sl-sd') + ' · ' +
-            '<span class="status-item"><span class="status-label sl-lan">LAN</span> ↓ ' +
+        var parts = [
+            si('CPU', temperature, false, 'sl-temp'),
+            si('CPU', cpu, false, 'sl-cpu'),
+            si('RAM', ram, false, 'sl-ram')
+        ];
+        if (emmc !== null) {
+            parts.push(si('eMMC', emmc, true, 'sl-emmc'));
+        }
+        if (emmcLoad !== null) {
+            parts.push(si('eMMC', emmcLoad, false, 'sl-emmc'));
+        }
+        if (hdd !== null) {
+            parts.push(si('HDD', hdd, true, 'sl-hdd'));
+        }
+        if (hddLoad !== null) {
+            parts.push(si('HDD', hddLoad, false, 'sl-hdd'));
+        }
+        if (sd !== null) {
+            parts.push(si('SD', sd, true, 'sl-sd'));
+        }
+        parts.push('<span class="status-item"><span class="status-label sl-lan">LAN</span> ↓ ' +
             '<span class="status-value">' + rx + '</span>' +
-            ' ↑ <span class="status-value">' + tx + '</span></span> · ' +
-            '<span class="status-item"><span class="status-label sl-wifi">Wi-Fi</span> ↓ ' +
+            ' ↑ <span class="status-value">' + tx + '</span></span>');
+        parts.push('<span class="status-item"><span class="status-label sl-wifi">Wi-Fi</span> ↓ ' +
             '<span class="status-value">' + wifiRx + '</span>' +
-            ' ↑ <span class="status-value">' + wifiTx + '</span></span>';
+            ' ↑ <span class="status-value">' + wifiTx + '</span></span>');
+
+        element.innerHTML = parts.join(' · ');
 
         element.classList.remove(
             "status-warn",
@@ -3166,8 +2634,6 @@ async function updateSystemStatus() {
     }
 }
 
-updateSystemStatus();
-setInterval(updateSystemStatus, 3000);
 
 function initCloneStatus() {
     var prog = document.getElementById("clone-progress");
@@ -3301,23 +2767,9 @@ function setServiceStatus(id, state) {
     }
 }
 
-async function updateOrangePiStatus() {
+function renderBoardStatus(data) {
 
     try {
-
-        const response = await fetch(
-            "api/status",
-            { cache: "no-store" }
-        );
-
-        if (!response.ok) {
-            throw new Error(
-                "HTTP " + response.status
-            );
-        }
-
-        const data =
-            await response.json();
 
         const uptime =
             document.getElementById(
@@ -3445,18 +2897,15 @@ function toggleHealthDetail() {
     healthOpen = !healthOpen;
     el.style.display = healthOpen ? 'block' : 'none';
 }
-function checkHealth() {
-    fetch('api/system/health', {cache:'no-store'})
-    .then(function(r){return r.json()})
-    .then(function(d){
+function renderHealth(d) {
         var w = document.getElementById('health-widget');
         var det = document.getElementById('health-detail');
         if (d.ok) {
-            w.style.color = '#65d46e';
+            w.style.color = 'var(--ok)';
             w.innerHTML = '● Система OK';
             det.innerHTML = '<div style="padding:4px 0;font-size:13px;color:#bbb;">Все проверки пройдены</div><div style="font-size:11px;color:#484f58;margin-top:6px;">Проверено: ' + d.checked_at + '</div>';
         } else {
-            w.style.color = '#f85149';
+            w.style.color = 'var(--critical)';
             w.innerHTML = '● Проблемы (' + d.warnings.length + ')';
             var detHtml = '';
             d.warnings.forEach(function(x){
@@ -3465,8 +2914,6 @@ function checkHealth() {
             detHtml += '<div style="font-size:11px;color:#484f58;margin-top:6px;">Проверено: ' + d.checked_at + '</div>';
             det.innerHTML = detHtml;
         }
-    })
-    .catch(function(){});
 }
 document.addEventListener('click', function(e) {
     var w = document.getElementById('health-widget');
@@ -3476,14 +2923,37 @@ document.addEventListener('click', function(e) {
         healthOpen = false;
     }
 });
-checkHealth();
-setInterval(checkHealth, 60000);
+async function updateDashboard() {
+    try {
+        const response = await fetch(
+            "api/dashboard",
+            { cache: "no-store" }
+        );
+        if (!response.ok) {
+            throw new Error("HTTP " + response.status);
+        }
+        const d = await response.json();
+        const sys = d.system || {};
+        renderSystemStatus(sys);
+        renderBoardStatus(sys);
+        renderHealth(d.health || { ok: true, warnings: [], checked_at: "" });
+        renderInternet(d.internet);
+    } catch (error) {
+        console.error("dashboard:", error);
+    }
+}
 
-updateOrangePiStatus();
-setInterval(
-    updateOrangePiStatus,
-    3000
-);
+function renderInternet(online) {
+    var el = document.getElementById("internet-status");
+    if (!el || online === null || online === undefined) return;
+    el.className = "internet " + (online ? "online" : "offline");
+    el.textContent = "● Интернет: " + (online ? "доступен" : "нет доступа");
+}
+
+updateDashboard();
+setInterval(updateDashboard, 3000);
+
+loadSambaGuestState();
 
 </script>
 
@@ -3498,5 +2968,5 @@ CPU --°C · RAM --% · eMMC --% · HDD --% · ↓ -- · ↑ --
 </div>
 </div>
 
-<div style="position:fixed;left:0;right:0;bottom:0;background:#12203a;color:#9fb6e8;font:11px/1.8 system-ui,sans-serif;padding:2px 8px;z-index:99998;text-align:center">Демо-режим · слепок от 30.09.2026 07:52 · данные не обновляются · <a href="index.html" style="color:#ffd54f">главная</a></div></body>
+<div style="position:fixed;left:0;right:0;bottom:0;background:#12203a;color:#9fb6e8;font:11px/1.8 system-ui,sans-serif;padding:2px 8px;z-index:99998;text-align:center">Демо-режим · слепок от 01.10.2026 20:19 · данные не обновляются · <a href="index.html" style="color:#ffd54f">главная</a></div></body>
 </html>

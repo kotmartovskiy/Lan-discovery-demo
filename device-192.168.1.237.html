@@ -4,7 +4,8 @@
 <head>
 <script src="demo.js"></script>
 <meta charset="utf-8">
-<meta name="csrf-token" content="IjUzNTMwM2VjNDJhOGIwYTIwYTEwYTc3YzA0YzU1ZjkwZTdjYTU2MTYi.aryVig.gTzi2fXhYQlVurrrrhUtdevVuuE">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="csrf-token" content="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WSQ.cIMomzjRhiqQzn8GpfR7CwAZfmM">
 <script>
 (function () {
     var meta = document.querySelector('meta[name="csrf-token"]');
@@ -29,487 +30,21 @@
 })();
 </script>
 
-<title>LAN Discovery</title>
+<title>LAN Discovery (x96max)</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 5 C55 5, 60 8, 62 12 L58 18 C56 14, 53 12, 50 12 C47 12, 44 14, 42 18 L38 12 C40 8, 45 5, 50 5Z' fill='%237cb342'/%3E%3Cpath d='M58 8 C62 5, 68 4, 72 6 L66 14 C63 12, 60 11, 58 12Z' fill='%239ccc65'/%3E%3Cpath d='M50 15 C68 15, 85 32, 85 50 C85 68, 68 85, 50 85 C32 85, 15 68, 15 50 C15 32, 32 15, 50 15Z' fill='%23ffa726'/%3E%3Cpath d='M50 15 C68 15, 85 32, 85 50 C85 68, 68 85, 50 85 C32 85, 15 68, 15 50 C15 32, 32 15, 50 15Z' fill='none' stroke='%23f57c00' stroke-width='2'/%3E%3Cpath d='M50 22 C64 22, 78 36, 78 50 C78 64, 64 78, 50 78 C36 78, 22 64, 22 50 C22 36, 36 22, 50 22Z' fill='%23fff9c4'/%3E%3Cpath d='M50 30 L50 70' stroke='%23ffcc02' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M50 30 L30 55' stroke='%23ffcc02' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M50 30 L70 55' stroke='%23ffcc02' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M50 30 L35 42' stroke='%23ffcc02' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M50 30 L65 42' stroke='%23ffcc02' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M50 30 L40 65' stroke='%23ffcc02' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M50 30 L60 65' stroke='%23ffcc02' stroke-width='2.5' stroke-linecap='round'/%3E%3Ccircle cx='50' cy='30' r='3' fill='%23ffcc02'/%3E%3C/svg%3E">
 
-<style>
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0 25px 25px 25px;
-    background: #111;
-    color: #eee;
-    scrollbar-width: none;
-}
-::-webkit-scrollbar { width: 0; height: 0; }
+<link rel="stylesheet" href="stub.html?to=static%2Fstyle.css%3Fv%3D20261001d">
 
-h1 {
-    margin-bottom: 5px;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-
-    position: sticky;
-    top: 0;
-    z-index: 100;
-
-    background: #111;
-    margin: 0 -25px;
-    padding: 25px 25px 15px 25px;
-}
-
-.clock {
-    flex: 0 0 520px;
-    width: 520px;
-    box-sizing: border-box;
-    text-align: right;
-    color: #9fb7d0;
-    font-size: 16px;
-    font-weight: 600;
-    position: relative;
-}
-
-#clock-date {
-    color: #6ba3d6;
-}
-
-#clock-time {
-    color: #e0e0e0;
-}
-
-@media (max-width: 750px) {
-    .header {
-        flex-wrap: wrap;
-    }
-
-    .clock {
-        flex: 1 1 100%;
-        width: 100%;
-        margin-top: 15px;
-    }
-}
-
-.system-status-bar {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1000;
-
-    background: #111;
-    border-top: 1px solid #333;
-
-    padding: 7px 15px;
-    box-sizing: border-box;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-body {
-    padding-bottom: 38px;
-}
-
-.system-status {
-    margin-top: 0;
-    margin-left: 0;
-    text-align: left;
-    flex: 1;
-}
-    color: #b8c4d1;
-    font-size: 14px;
-    font-weight: 400;
-    white-space: nowrap;
-    width: 100%;
-    max-width: 100%;
-    text-align: left;
-}
-
-.system-status .status-label {
-    font-weight: 600;
-}
-.system-status .sl-temp { color: #ff6b6b; }
-.system-status .sl-cpu { color: #ffd93d; }
-.system-status .sl-ram { color: #6bcb77; }
-.system-status .sl-emmc { color: #4d96ff; }
-.system-status .sl-hdd { color: #9b59b6; }
-.system-status .sl-sd { color: #e67e22; }
-.system-status .sl-lan { color: #1abc9c; }
-.system-status .sl-wifi { color: #3498db; }
-.system-status .sl-arrow { color: #95a5a6; }
-
-.system-status .status-value {
-    font-weight: 400;
-    font-variant-numeric: tabular-nums;
-    display: inline-block;
-    min-width: 4.5ch;
-    text-align: left;
-}
-
-.system-status .status-item {
-    white-space: nowrap;
-}
-
-.system-status .status-wide {
-    min-width: 8ch;
-}
-
-.system-status .status-warn {
-    color: #ffb84d;
-}
-
-.system-status .status-critical {
-    color: #ff6666;
-}
-
-.internet {
-    margin-top: 4px;
-}
-
-.internet.online {
-    color: #65d46e;
-}
-
-.internet.offline {
-    color: #d46565;
-}
-
-#health-detail {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 8px;
-    padding: 10px 14px;
-    min-width: 240px;
-    z-index: 200;
-    text-align: left;
-    box-shadow: 0 4px 16px rgba(0,0,0,.5);
-}
-
-.info {
-    color: #aaa;
-    margin-bottom: 20px;
-}
-
-.info-sticky {
-    position: sticky;
-    top: var(--header-height, 0px);
-    z-index: 90;
-    background: #111;
-    padding: 10px 0;
-    margin-bottom: 0;
-}
-
-.tabs {
-    margin-bottom: 20px;
-}
-
-.tabs a {
-    color: #aaa;
-    text-decoration: none;
-    margin-right: 20px;
-}
-
-.tabs a.active {
-    color: #fff;
-    font-weight: bold;
-}
-
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-th, td {
-    padding: 8px 10px;
-    border-bottom: 1px solid #333;
-    text-align: left;
-}
-
-th {
-    color: #999;
-    position: sticky;
-    top: var(--header-height, 0px);
-    background: #111;
-    z-index: 10;
-}
-
-.device-link {
-    color: inherit;
-    text-decoration: none;
-}
-
-.device-link:hover {
-    text-decoration: underline;
-}
-
-.online {
-    color: #65d46e;
-    font-weight: bold;
-}
-
-.offline {
-    color: #666;
-}
-
-.new {
-    color: #ffb84d;
-    font-weight: bold;
-}
-
-.small {
-    color: #888;
-    font-size: 12px;
-}
-
-.weather-grid {
-    display: flex;
-    gap: 12px;
-    overflow-x: auto;
-    padding-bottom: 8px;
-}
-
-.weather-grid .card {
-    flex-shrink: 0;
-}
-
-.system-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-top: 20px;
-    grid-auto-rows: minmax(180px, auto);
-}
-
-.system-grid .card {
-    display: flex;
-    flex-direction: column;
-    transition: box-shadow 0.2s;
-}
-
-.system-grid .card:hover {
-    box-shadow: 0 2px 12px rgba(77, 150, 255, 0.08);
-}
-
-@media (max-width: 1100px) {
-    .system-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 700px) {
-    .system-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-.card {
-    background: #181818;
-    border: 1px solid #2a2a2a;
-    border-radius: 10px;
-    padding: 20px;
-}
-
-.card h2 {
-    margin-top: 0;
-    margin-bottom: 14px;
-    font-size: 16px;
-    color: #e0e0e0;
-    border-bottom: 1px solid #2a2a2a;
-    padding-bottom: 10px;
-}
-
-.card h3 {
-    margin-top: 14px;
-    margin-bottom: 8px;
-    font-size: 14px;
-    color: #aaa;
-}
-
-.status-ok {
-    color: #65d46e;
-    font-weight: bold;
-}
-
-.status-error {
-    color: #ff6666;
-    font-weight: bold;
-}
-
-.status-running {
-    color: #ffb84d;
-    font-weight: bold;
-}
-
-.info-row {
-    margin: 6px 0;
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-.service-row {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-    padding: 8px 0;
-    border-bottom: 1px solid #222;
-}
-
-.service-row:last-child {
-    border-bottom: none;
-}
-
-.service-buttons {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-}
-
-.button-row {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    margin-top: 8px;
-}
-
-.info-label {
-    color: #888;
-}
-
-button {
-    background: #252525;
-    color: #ddd;
-    border: 1px solid #3a3a3a;
-    border-radius: 6px;
-    padding: 7px 14px;
-    cursor: pointer;
-    margin: 4px 4px 4px 0;
-    font-size: 13px;
-    transition: background 0.15s, border-color 0.15s;
-}
-
-button:hover {
-    background: #333;
-    border-color: #555;
-}
-
-button:active {
-    background: #3a3a3a;
-}
-
-button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-code {
-    color: #ccc;
-    word-break: break-all;
-    white-space: normal;
-}
-
-a {
-    color: #8ab4f8;
-}
-
-.device {
-    max-width: 900px;
-}
-
-.device table {
-    margin-top: 20px;
-}
-
-.device td:first-child {
-    width: 220px;
-    color: #999;
-}
-
-input[type="text"] {
-    background: #222;
-    color: #eee;
-    border: 1px solid #555;
-    padding: 8px;
-    width: 350px;
-    font-size: 14px;
-}
-
-button {
-    background: #333;
-    color: #eee;
-    border: 1px solid #666;
-    padding: 8px 16px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #444;
-}
-
-.back {
-    display: inline-block;
-    margin-bottom: 20px;
-}
-
-.system-pre {
-    margin: 0;
-    padding: 14px;
-    overflow-x: auto;
-    white-space: pre;
-    font-family: monospace;
-    font-size: 13px;
-    line-height: 1.45;
-}
-
-.mono {
-    font-family: monospace;
-}
-
-.device-block {
-    padding: 12px 0;
-    border-top: 1px solid rgba(128,128,128,.18);
-}
-
-.device-block:first-of-type {
-    border-top: 0;
-}
-
-.device-block h3 {
-    margin: 0 0 10px 0;
-}
-
-.subsection-title {
-    margin-top: 14px;
-    margin-bottom: 4px;
-    font-weight: 600;
-}
-
-.badge {
-    font-size: 11px;
-    padding: 2px 6px;
-    border-radius: 4px;
-    opacity: .7;
-}
-
-</style>
 </head>
 
 <body>
 
-<body>
+<a class="skip-link" href="#main">Перейти к содержимому</a>
 
-<div class="header">
+<header class="header">
 
 <div>
-<h1><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="35" height="35" style="vertical-align:middle; margin-right:6px;">
+<h1><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="35" height="35" style="vertical-align:middle; margin-right:6px;" aria-hidden="true">
 <path d="M50 5 C55 5, 60 8, 62 12 L58 18 C56 14, 53 12, 50 12 C47 12, 44 14, 42 18 L38 12 C40 8, 45 5, 50 5Z" fill="#7cb342"/>
 <path d="M58 8 C62 5, 68 4, 72 6 L66 14 C63 12, 60 11, 58 12Z" fill="#9ccc65"/>
 <path d="M50 15 C68 15, 85 32, 85 50 C85 68, 68 85, 50 85 C32 85, 15 68, 15 50 C15 32, 32 15, 50 15Z" fill="#ffa726"/>
@@ -523,9 +58,13 @@ button:hover {
 <path d="M50 30 L40 65" stroke="#ffcc02" stroke-width="2.5" stroke-linecap="round"/>
 <path d="M50 30 L60 65" stroke="#ffcc02" stroke-width="2.5" stroke-linecap="round"/>
 <circle cx="50" cy="30" r="3" fill="#ffcc02"/>
-</svg>LAN Discovery</h1>
+</svg>LAN Discovery <span style="font-size:0.5em;font-weight:normal;opacity:0.7;">(x96max)</span></h1>
 
-<div class="tabs">
+<nav class="tabs" aria-label="Разделы панели">
+
+<span class="nav-group">
+<span class="nav-group-label">Устройства</span>
+<span class="nav-group-items">
 
 <a href="index.html" class="">
 Устройства
@@ -535,12 +74,19 @@ button:hover {
 Инвентаризация
 </a>
 
+</span>
+</span>
+
+<span class="nav-group">
+<span class="nav-group-label">Мониторинг</span>
+<span class="nav-group-items">
+
 <a href="monitoring.html" class="">
 Мониторинг
 </a>
 
-<a href="torrent.html" class="">
-Торрент
+<a href="history.html" class="">
+История
 </a>
 
 <a href="currencies.html" class="">
@@ -551,28 +97,63 @@ button:hover {
 Погода
 </a>
 
+</span>
+</span>
+
+<span class="nav-group">
+<span class="nav-group-label">Приложения</span>
+<span class="nav-group-items">
+
+<a href="torrent.html" class="">
+Торрент
+</a>
+
 <a href="apps.html" class="">
 Приложения
 </a>
 
+</span>
+</span>
+
+<span class="nav-group">
+<span class="nav-group-label">Система</span>
+<span class="nav-group-items">
+
 <a href="system.html" class="">
 Система
+</a>
+
+<a href="stub.html?to=capabilities" class="">
+Возможности
+</a>
+
+<a href="stub.html?to=roles" class="">
+Роли
+</a>
+
+<a href="modules.html" class="">
+Модули
 </a>
 
 <a href="about.html" class="">
 О системе
 </a>
 
+</span>
+</span>
+
+<span class="nav-group">
+<span class="nav-group-label">Помощь</span>
+<span class="nav-group-items">
+
 <a href="help.html" class="">
 Справка
 </a>
 
+</span>
+</span>
 
-<a href="modules.html" class="">
-Модули
-</a>
-
-</div>
+</nav>
 </div>
 
 <div class="clock">
@@ -581,7 +162,7 @@ button:hover {
 
 <div id="weather-status" style="font-size:13px; color:#8ab4f8; margin:2px 0;"></div>
 
-<div class="internet online">
+<div id="internet-status" class="internet online">
 ● Интернет: доступен
 </div>
 
@@ -590,8 +171,9 @@ button:hover {
 
 </div>
 
-</div>
+</header>
 
+<main id="main" tabindex="-1">
 
 <div class="device">
 
@@ -599,10 +181,11 @@ button:hover {
 
 <h2>
 192.168.1.237
+<span class="small">192.168.1.237</span>
 </h2>
 
 <form method="post" action="stub.html?to=device%2F192.168.1.237%2Fname">
-<input type="hidden" name="csrf_token" value="IjUzNTMwM2VjNDJhOGIwYTIwYTEwYTc3YzA0YzU1ZjkwZTdjYTU2MTYi.aryVig.gTzi2fXhYQlVurrrrhUtdevVuuE">
+<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WSQ.cIMomzjRhiqQzn8GpfR7CwAZfmM">
 <input
 type="text"
 name="name"
@@ -618,75 +201,86 @@ placeholder="Название устройства"
 <option value="other">❓ Прочее</option>
 </select>
 
-<button type="submit">
+<button type="submit" class="btn btn-primary btn-sm">
 Сохранить
 </button>
 
 </form>
 
-<table>
+<div class="device-block">
 
-<tr>
-<td>Статус</td>
+<h3>Устройство</h3>
 
-<td>
-
+<div class="info-row">
+<span class="info-label">Статус:</span>
 
 <span class="offline">● OFFLINE</span>
 
+</div>
 
-</td>
-</tr>
+<div class="info-row">
+<span class="info-label">Hostname:</span>
+<span class="na">—</span>
+</div>
 
-<tr>
-<td>IP</td>
-<td>192.168.1.237</td>
-</tr>
+<div class="info-row">
+<span class="info-label">MAC:</span>
+<code>7E:30:22:BE:86:D7</code>
+</div>
 
-<tr>
-<td>Hostname</td>
-<td>-</td>
-</tr>
+<div class="info-row">
+<span class="info-label">Производитель:</span>
+Unknown
+</div>
 
-<tr>
-<td>MAC</td>
-<td>7E:30:22:BE:86:D7</td>
-</tr>
+<div class="info-row">
+<span class="info-label">Тип:</span>
+<span class="na">—</span>
+</div>
 
-<tr>
-<td>Производитель</td>
-<td>Unknown</td>
-</tr>
+<div class="info-row">
+<span class="info-label">Первое обнаружение:</span>
+02.09.2026 20:02:16
+</div>
 
-<tr>
-<td>Первое обнаружение</td>
-<td>02.09.2026 20:02:16</td>
-</tr>
+<div class="info-row">
+<span class="info-label">Последнее обнаружение:</span>
+11.09.2026 18:41:07
+</div>
 
-<tr>
-<td>Последнее обнаружение</td>
-<td>11.09.2026 18:41:07</td>
-</tr>
+<div class="info-row">
+<span class="info-label">Статистика:</span>
+пропусков: 6 · появлений: 118
+</div>
 
-<tr>
-<td>Пропуски</td>
-<td>6</td>
-</tr>
+</div>
 
-<tr>
-<td>Появлений</td>
-<td>118</td>
-</tr>
+<div class="device-block">
 
-</table>
+<h3>Оборудование и сервисы</h3>
+
+
+
+<div class="empty-state">
+Нет данных инвентаризации — запустите скан на <a href="inventory.html">странице инвентаризации</a>
+</div>
+
+
+
+</div>
+
+<div class="device-block">
 
 <h3>История устройства</h3>
 
+
+
+<div class="table-wrap">
 <table>
 
 <tr>
-<th>Время</th>
-<th>Событие</th>
+<th scope="col">Время</th>
+<th scope="col">Событие</th>
 </tr>
 
 
@@ -764,9 +358,15 @@ placeholder="Название устройства"
 
 
 </table>
+</div>
+
+
 
 </div>
 
+</div>
+
+</main>
 
 <script>
 var USER_ROLE = "admin";
@@ -1113,15 +713,15 @@ function checkNetHost(num) {
     .then(d => {
         if (d.online) {
             result.textContent = "✅ " + host + " — доступен";
-            result.style.color = "#65d46e";
+            result.style.color = "var(--ok)";
         } else {
             result.textContent = "❌ " + host + " — недоступен";
-            result.style.color = "#ff6666";
+            result.style.color = "var(--critical)";
         }
     })
     .catch(err => {
         result.textContent = "❌ Ошибка: " + err;
-        result.style.color = "#ff6666";
+        result.style.color = "var(--critical)";
     });
 }
 
@@ -1564,7 +1164,7 @@ async function controlService(service, action) {
             );
         }
 
-        await updateOrangePiStatus();
+        await updateDashboard();
 
     } catch (error) {
 
@@ -1575,20 +1175,122 @@ async function controlService(service, action) {
     }
 }
 
-async function updateSystemStatus() {
+var sambaGuestEnabled = false;
+
+function renderSambaGuest(enabled) {
+
+    sambaGuestEnabled = !!enabled;
+
+    var stateElement =
+        document.getElementById("samba-guest-state");
+
+    if (!stateElement) {
+        return;
+    }
+
+    stateElement.textContent =
+        enabled ? "● включён" : "● выключен";
+
+    stateElement.classList.remove(
+        "status-ok",
+        "status-error"
+    );
+
+    if (enabled) {
+        stateElement.classList.add("status-ok");
+    }
+
+    var button =
+        document.getElementById("samba-guest-toggle");
+
+    if (button) {
+        button.style.display = "";
+        button.textContent =
+            enabled ? "Выключить" : "Включить";
+    }
+}
+
+async function loadSambaGuestState() {
+
+    if (!document.getElementById("samba-guest-state")) {
+        return;
+    }
 
     try {
 
         const response = await fetch(
-            "api/status",
+            "api/samba/guest",
             { cache: "no-store" }
         );
 
-        if (!response.ok) {
-            throw new Error("HTTP " + response.status);
+        const data = await response.json();
+
+        if (!response.ok || !data.ok) {
+            throw new Error(
+                data.error || "HTTP " + response.status
+            );
         }
 
+        renderSambaGuest(data.enabled);
+
+    } catch (error) {
+
+        console.error(
+            "samba guest state:",
+            error
+        );
+    }
+}
+
+async function toggleSambaGuest() {
+
+    const next = !sambaGuestEnabled;
+
+    const message = next
+        ? "Включить гостевой доступ Samba? " +
+          "Шары будут доступны без пароля в этой LAN."
+        : "Выключить гостевой доступ Samba?";
+
+    if (!confirm(message)) {
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            "api/samba/guest",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ enabled: next }),
+                cache: "no-store"
+            }
+        );
+
         const data = await response.json();
+
+        if (!response.ok || !data.ok) {
+            throw new Error(
+                data.error || "Ошибка операции"
+            );
+        }
+
+        renderSambaGuest(data.enabled);
+
+    } catch (error) {
+
+        alert(
+            "Не удалось изменить гостевой доступ: " +
+            error.message
+        );
+    }
+}
+
+function renderSystemStatus(data) {
+
+    try {
 
         const now = Date.now();
 
@@ -1771,16 +1473,14 @@ async function updateSystemStatus() {
         }
 
         const emmc =
-            formatStorage(
-                data.root_free,
-                data.root_total
-            );
+            data.root_free != null && data.root_total != null
+                ? formatStorage(data.root_free, data.root_total)
+                : null;
 
         const hdd =
-            formatStorage(
-                data.srv_free,
-                data.srv_total
-            );
+            data.srv_free != null && data.srv_total != null
+                ? formatStorage(data.srv_free, data.srv_total)
+                : null;
 
         const sd = (function () {
             if (data.sd_free != null && data.sd_total != null) {
@@ -1796,14 +1496,18 @@ async function updateSystemStatus() {
         })();
 
         const emmcLoad =
-            emmcActive !== null
-                ? Math.round(emmcActive) + "%"
-                : "--";
+            data.emmc_io_ticks == null
+                ? null
+                : emmcActive !== null
+                  ? Math.round(emmcActive) + "%"
+                  : "--";
 
         const hddLoad =
-            hddActive !== null
-                ? Math.round(hddActive) + "%"
-                : "--";
+            hdd === null || data.hdd_io_ticks == null
+                ? null
+                : hddActive !== null
+                  ? Math.round(hddActive) + "%"
+                  : "--";
 
         const rx =
             rxSpeed !== null
@@ -1833,21 +1537,34 @@ async function updateSystemStatus() {
                 '<span class="' + vcls + '">' + val + '</span></span>';
         }
 
-        element.innerHTML =
-            si('CPU', temperature, false, 'sl-temp') + ' · ' +
-            si('CPU', cpu, false, 'sl-cpu') + ' · ' +
-            si('RAM', ram, false, 'sl-ram') + ' · ' +
-            si('eMMC', emmc, true, 'sl-emmc') + ' · ' +
-            si('eMMC', emmcLoad, false, 'sl-emmc') + ' · ' +
-            si('HDD', hdd, true, 'sl-hdd') + ' · ' +
-            si('HDD', hddLoad, false, 'sl-hdd') + ' · ' +
-            si('SD', sd, true, 'sl-sd') + ' · ' +
-            '<span class="status-item"><span class="status-label sl-lan">LAN</span> ↓ ' +
+        var parts = [
+            si('CPU', temperature, false, 'sl-temp'),
+            si('CPU', cpu, false, 'sl-cpu'),
+            si('RAM', ram, false, 'sl-ram')
+        ];
+        if (emmc !== null) {
+            parts.push(si('eMMC', emmc, true, 'sl-emmc'));
+        }
+        if (emmcLoad !== null) {
+            parts.push(si('eMMC', emmcLoad, false, 'sl-emmc'));
+        }
+        if (hdd !== null) {
+            parts.push(si('HDD', hdd, true, 'sl-hdd'));
+        }
+        if (hddLoad !== null) {
+            parts.push(si('HDD', hddLoad, false, 'sl-hdd'));
+        }
+        if (sd !== null) {
+            parts.push(si('SD', sd, true, 'sl-sd'));
+        }
+        parts.push('<span class="status-item"><span class="status-label sl-lan">LAN</span> ↓ ' +
             '<span class="status-value">' + rx + '</span>' +
-            ' ↑ <span class="status-value">' + tx + '</span></span> · ' +
-            '<span class="status-item"><span class="status-label sl-wifi">Wi-Fi</span> ↓ ' +
+            ' ↑ <span class="status-value">' + tx + '</span></span>');
+        parts.push('<span class="status-item"><span class="status-label sl-wifi">Wi-Fi</span> ↓ ' +
             '<span class="status-value">' + wifiRx + '</span>' +
-            ' ↑ <span class="status-value">' + wifiTx + '</span></span>';
+            ' ↑ <span class="status-value">' + wifiTx + '</span></span>');
+
+        element.innerHTML = parts.join(' · ');
 
         element.classList.remove(
             "status-warn",
@@ -1884,8 +1601,6 @@ async function updateSystemStatus() {
     }
 }
 
-updateSystemStatus();
-setInterval(updateSystemStatus, 3000);
 
 function initCloneStatus() {
     var prog = document.getElementById("clone-progress");
@@ -2019,23 +1734,9 @@ function setServiceStatus(id, state) {
     }
 }
 
-async function updateOrangePiStatus() {
+function renderBoardStatus(data) {
 
     try {
-
-        const response = await fetch(
-            "api/status",
-            { cache: "no-store" }
-        );
-
-        if (!response.ok) {
-            throw new Error(
-                "HTTP " + response.status
-            );
-        }
-
-        const data =
-            await response.json();
 
         const uptime =
             document.getElementById(
@@ -2163,18 +1864,15 @@ function toggleHealthDetail() {
     healthOpen = !healthOpen;
     el.style.display = healthOpen ? 'block' : 'none';
 }
-function checkHealth() {
-    fetch('api/system/health', {cache:'no-store'})
-    .then(function(r){return r.json()})
-    .then(function(d){
+function renderHealth(d) {
         var w = document.getElementById('health-widget');
         var det = document.getElementById('health-detail');
         if (d.ok) {
-            w.style.color = '#65d46e';
+            w.style.color = 'var(--ok)';
             w.innerHTML = '● Система OK';
             det.innerHTML = '<div style="padding:4px 0;font-size:13px;color:#bbb;">Все проверки пройдены</div><div style="font-size:11px;color:#484f58;margin-top:6px;">Проверено: ' + d.checked_at + '</div>';
         } else {
-            w.style.color = '#f85149';
+            w.style.color = 'var(--critical)';
             w.innerHTML = '● Проблемы (' + d.warnings.length + ')';
             var detHtml = '';
             d.warnings.forEach(function(x){
@@ -2183,8 +1881,6 @@ function checkHealth() {
             detHtml += '<div style="font-size:11px;color:#484f58;margin-top:6px;">Проверено: ' + d.checked_at + '</div>';
             det.innerHTML = detHtml;
         }
-    })
-    .catch(function(){});
 }
 document.addEventListener('click', function(e) {
     var w = document.getElementById('health-widget');
@@ -2194,14 +1890,37 @@ document.addEventListener('click', function(e) {
         healthOpen = false;
     }
 });
-checkHealth();
-setInterval(checkHealth, 60000);
+async function updateDashboard() {
+    try {
+        const response = await fetch(
+            "api/dashboard",
+            { cache: "no-store" }
+        );
+        if (!response.ok) {
+            throw new Error("HTTP " + response.status);
+        }
+        const d = await response.json();
+        const sys = d.system || {};
+        renderSystemStatus(sys);
+        renderBoardStatus(sys);
+        renderHealth(d.health || { ok: true, warnings: [], checked_at: "" });
+        renderInternet(d.internet);
+    } catch (error) {
+        console.error("dashboard:", error);
+    }
+}
 
-updateOrangePiStatus();
-setInterval(
-    updateOrangePiStatus,
-    3000
-);
+function renderInternet(online) {
+    var el = document.getElementById("internet-status");
+    if (!el || online === null || online === undefined) return;
+    el.className = "internet " + (online ? "online" : "offline");
+    el.textContent = "● Интернет: " + (online ? "доступен" : "нет доступа");
+}
+
+updateDashboard();
+setInterval(updateDashboard, 3000);
+
+loadSambaGuestState();
 
 </script>
 
@@ -2216,5 +1935,5 @@ CPU --°C · RAM --% · eMMC --% · HDD --% · ↓ -- · ↑ --
 </div>
 </div>
 
-<div style="position:fixed;left:0;right:0;bottom:0;background:#12203a;color:#9fb6e8;font:11px/1.8 system-ui,sans-serif;padding:2px 8px;z-index:99998;text-align:center">Демо-режим · слепок от 30.09.2026 07:52 · данные не обновляются · <a href="index.html" style="color:#ffd54f">главная</a></div></body>
+<div style="position:fixed;left:0;right:0;bottom:0;background:#12203a;color:#9fb6e8;font:11px/1.8 system-ui,sans-serif;padding:2px 8px;z-index:99998;text-align:center">Демо-режим · слепок от 01.10.2026 20:19 · данные не обновляются · <a href="index.html" style="color:#ffd54f">главная</a></div></body>
 </html>
