@@ -5,7 +5,7 @@
 <script src="demo.js"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="csrf-token" content="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WOg.UPhVqUGMrez1qeAUbPhj59uJmmo">
+<meta name="csrf-token" content="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENiQ.hAmNUPCjFZbZ9_dn5HCGcsdKeLM">
 <script>
 (function () {
     var meta = document.querySelector('meta[name="csrf-token"]');
@@ -39,6 +39,7 @@
 
 <body>
 
+
 <a class="skip-link" href="#main">Перейти к содержимому</a>
 
 <header class="header">
@@ -60,94 +61,50 @@
 <circle cx="50" cy="30" r="3" fill="#ffcc02"/>
 </svg>LAN Discovery <span style="font-size:0.5em;font-weight:normal;opacity:0.7;">(x96max)</span></h1>
 
+<nav class="sections" aria-label="Разделы приложения">
+
+<a href="index.html" class="section active" aria-current="page">
+<span class="section-ico" aria-hidden="true">🏠</span>HOME
+</a>
+
+<a href="stub.html?to=devices" class="section">
+<span class="section-ico" aria-hidden="true">🌐</span>NETWORK
+</a>
+
+<a href="history.html" class="section">
+<span class="section-ico" aria-hidden="true">📊</span>MONITORING
+</a>
+
+<a href="stub.html?to=storage" class="section">
+<span class="section-ico" aria-hidden="true">💾</span>STORAGE
+</a>
+
+<a href="apps.html" class="section">
+<span class="section-ico" aria-hidden="true">🧩</span>APPLICATIONS
+</a>
+
+<a href="stub.html?to=capabilities" class="section">
+<span class="section-ico" aria-hidden="true">🔧</span>HARDWARE
+</a>
+
+<a href="system.html" class="section">
+<span class="section-ico" aria-hidden="true">⚙️</span>SYSTEM
+</a>
+
+<a href="modules.html" class="section">
+<span class="section-ico" aria-hidden="true">🛡</span>ADMIN
+</a>
+
+</nav>
+
 <nav class="tabs" aria-label="Разделы панели">
 
 <span class="nav-group">
-<span class="nav-group-label">Устройства</span>
+<span class="nav-group-label">HOME</span>
 <span class="nav-group-items">
 
 <a href="index.html" class="active">
-Устройства
-</a>
-
-<a href="inventory.html" class="">
-Инвентаризация
-</a>
-
-</span>
-</span>
-
-<span class="nav-group">
-<span class="nav-group-label">Мониторинг</span>
-<span class="nav-group-items">
-
-<a href="monitoring.html" class="">
-Мониторинг
-</a>
-
-<a href="history.html" class="">
-История
-</a>
-
-<a href="currencies.html" class="">
-Валюты
-</a>
-
-<a href="weather.html" class="">
-Погода
-</a>
-
-</span>
-</span>
-
-<span class="nav-group">
-<span class="nav-group-label">Приложения</span>
-<span class="nav-group-items">
-
-<a href="torrent.html" class="">
-Торрент
-</a>
-
-<a href="apps.html" class="">
-Приложения
-</a>
-
-</span>
-</span>
-
-<span class="nav-group">
-<span class="nav-group-label">Система</span>
-<span class="nav-group-items">
-
-<a href="system.html" class="">
-Система
-</a>
-
-<a href="stub.html?to=capabilities" class="">
-Возможности
-</a>
-
-<a href="stub.html?to=roles" class="">
-Роли
-</a>
-
-<a href="modules.html" class="">
-Модули
-</a>
-
-<a href="about.html" class="">
-О системе
-</a>
-
-</span>
-</span>
-
-<span class="nav-group">
-<span class="nav-group-label">Помощь</span>
-<span class="nav-group-items">
-
-<a href="help.html" class="">
-Справка
+Главная
 </a>
 
 </span>
@@ -175,2427 +132,136 @@
 
 <main id="main" tabindex="-1">
 
-<div class="info info-sticky">
-Всего: 40 ·
-Онлайн: 27 ·
-Сканирование каждые 30 сек. ·
-OFFLINE после 6 пропусков
+<h1 class="page-title">Главная</h1>
+<p class="info">Dashboard раздела HOME — быстрый ответ на вопросы §22.</p>
 
-· <button id="scanNowBtn" class="btn btn-primary btn-sm" onclick="scanNow()">🔍 Сканировать</button>
+<div class="dash-grid" id="dash" data-state="loading" aria-live="polite">
+
+  <section class="dash-card" id="dash-status" aria-labelledby="dash-status-h">
+    <h2 id="dash-status-h" class="dash-card-h">Всё ли нормально?</h2>
+    <p class="dash-state">Загрузка…</p>
+  </section>
+
+  <section class="dash-card" id="dash-now" aria-labelledby="dash-now-h">
+    <h2 id="dash-now-h" class="dash-card-h">Что сейчас происходит?</h2>
+    <p class="dash-state">Загрузка…</p>
+  </section>
+
+  <section class="dash-card" id="dash-devices" aria-labelledby="dash-devices-h">
+    <h2 id="dash-devices-h" class="dash-card-h">Какие устройства подключены?</h2>
+    <p class="dash-state">Загрузка…</p>
+  </section>
+
+  <section class="dash-card" id="dash-jobs" aria-labelledby="dash-jobs-h">
+    <h2 id="dash-jobs-h" class="dash-card-h">Какие jobs выполняются?</h2>
+    <p class="dash-state">Загрузка…</p>
+  </section>
+
+  <section class="dash-card" id="dash-problems" aria-labelledby="dash-problems-h">
+    <h2 id="dash-problems-h" class="dash-card-h">Есть ли проблемы?</h2>
+    <p class="dash-state">Загрузка…</p>
+  </section>
+
+  <section class="dash-card" id="dash-warnings" aria-labelledby="dash-warnings-h">
+    <h2 id="dash-warnings-h" class="dash-card-h">Есть ли предупреждения?</h2>
+    <p class="dash-state">Загрузка…</p>
+  </section>
 
 </div>
-
-<div class="table-wrap">
-<table>
-
-<tr>
-<th scope="col">Статус</th>
-<th scope="col">Тип</th>
-<th scope="col">Устройство</th>
-
-<th scope="col">IP / Hostname</th>
-
-<th scope="col">Сеть</th>
-<th scope="col">Активность</th>
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="online">
-● ONLINE
-</span>
-
-
-
-</td>
-
-<td>
-<span class="na">—</span>
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.1.html" class="device-link">
-
-
-<strong>Router HUAWEI WS5200</strong>
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.1.html" class="device-link">
-192.168.1.1
-</a>
-
-<div class="small">_gateway</div>
-
-</td>
-
-<td>
-
-<code>8E:40:AB:94:1B:67</code>
-
-<div class="small">Huawei Device</div>
-</td>
-
-
-<td>
-01.10.2026 20:19:46
-<div class="small">пропусков: 0 · появлений: 46079</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="online">
-● ONLINE
-</span>
-
-
-
-</td>
-
-<td>
-🏠
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.102.html" class="device-link">
-
-
-<strong>Колонки гостиная</strong>
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.102.html" class="device-link">
-192.168.1.102
-</a>
-
-</td>
-
-<td>
-
-<code>D2:34:73:CE:47:59</code>
-
-<div class="small">Tuya Smart</div>
-</td>
-
-
-<td>
-01.10.2026 20:17:46
-<div class="small">пропусков: 2 · появлений: 18124</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="online">
-● ONLINE
-</span>
-
-
-
-</td>
-
-<td>
-🏠
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.104.html" class="device-link">
-
-
-<strong>Розетка сервер</strong>
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.104.html" class="device-link">
-192.168.1.104
-</a>
-
-</td>
-
-<td>
-
-<code>12:36:04:6A:E1:18</code>
-
-<div class="small">Tuya Smart</div>
-</td>
-
-
-<td>
-01.10.2026 20:18:46
-<div class="small">пропусков: 1 · появлений: 17549</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="online">
-● ONLINE
-</span>
-
-
-
-</td>
-
-<td>
-<span class="na">—</span>
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.109.html" class="device-link">
-
-
--
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.109.html" class="device-link">
-192.168.1.109
-</a>
-
-</td>
-
-<td>
-
-<code>12:AC:76:E7:96:EA</code>
-
-<div class="small">Beijing Xiaomi Mobile Software</div>
-</td>
-
-
-<td>
-01.10.2026 20:18:46
-<div class="small">пропусков: 1 · появлений: 19797</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="online">
-● ONLINE
-</span>
-
-
-
-</td>
-
-<td>
-<span class="na">—</span>
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.161.html" class="device-link">
-
-
--
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.161.html" class="device-link">
-192.168.1.161
-</a>
-
-</td>
-
-<td>
-
-<code>A6:59:67:28:B6:96</code>
-
-<div class="small">Espressif</div>
-</td>
-
-
-<td>
-01.10.2026 20:18:46
-<div class="small">пропусков: 1 · появлений: 20555</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="online">
-● ONLINE
-</span>
-
-
-
-</td>
-
-<td>
-<span class="na">—</span>
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.164.html" class="device-link">
-
-
-<strong>1</strong>
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.164.html" class="device-link">
-192.168.1.164
-</a>
-
-</td>
-
-<td>
-
-<code>D6:35:BF:AC:7D:B7</code>
-
-<div class="small">Tuya Smart</div>
-</td>
-
-
-<td>
-01.10.2026 20:18:46
-<div class="small">пропусков: 1 · появлений: 12676</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="online">
-● ONLINE
-</span>
-
-
-
-</td>
-
-<td>
-<span class="na">—</span>
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.165.html" class="device-link">
-
-
-<strong>Кормушка аквариум</strong>
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.165.html" class="device-link">
-192.168.1.165
-</a>
-
-</td>
-
-<td>
-
-<code>D6:70:DC:B2:D4:6B</code>
-
-<div class="small">Unknown</div>
-</td>
-
-
-<td>
-01.10.2026 20:17:46
-<div class="small">пропусков: 2 · появлений: 18439</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="online">
-● ONLINE
-</span>
-
-
-
-</td>
-
-<td>
-📱
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.167.html" class="device-link">
-
-
-<strong>Телефон 1</strong>
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.167.html" class="device-link">
-192.168.1.167
-</a>
-
-</td>
-
-<td>
-
-<code>62:7F:9F:8C:63:90</code>
-
-<div class="small">Unknown</div>
-</td>
-
-
-<td>
-01.10.2026 20:15:45
-<div class="small">пропусков: 4 · появлений: 15708</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="online">
-● ONLINE
-</span>
-
-
-
-</td>
-
-<td>
-<span class="na">—</span>
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.184.html" class="device-link">
-
-
-<strong>Полив спальня</strong>
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.184.html" class="device-link">
-192.168.1.184
-</a>
-
-</td>
-
-<td>
-
-<code>6A:2F:F5:08:E4:2B</code>
-
-<div class="small">Unknown</div>
-</td>
-
-
-<td>
-01.10.2026 20:18:46
-<div class="small">пропусков: 1 · появлений: 19654</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="online">
-● ONLINE
-</span>
-
-
-
-</td>
-
-<td>
-<span class="na">—</span>
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.220.html" class="device-link">
-
-
-<strong>Мой телефон</strong>
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.220.html" class="device-link">
-192.168.1.220
-</a>
-
-</td>
-
-<td>
-
-<code>0E:B5:C0:C8:A0:90</code>
-
-<div class="small">Unknown</div>
-</td>
-
-
-<td>
-01.10.2026 20:19:46
-<div class="small">пропусков: 0 · появлений: 16404</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="online">
-● ONLINE
-</span>
-
-
-
-</td>
-
-<td>
-❓
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.222.html" class="device-link">
-
-
-<strong>Chromecast</strong>
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.222.html" class="device-link">
-192.168.1.222
-</a>
-
-</td>
-
-<td>
-
-<code>C6:BD:D3:7F:C4:D4</code>
-
-<div class="small">AzureWave Technology</div>
-</td>
-
-
-<td>
-01.10.2026 20:19:46
-<div class="small">пропусков: 0 · появлений: 12031</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="online">
-● ONLINE
-</span>
-
-
-
-</td>
-
-<td>
-<span class="na">—</span>
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.228.html" class="device-link">
-
-
--
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.228.html" class="device-link">
-192.168.1.228
-</a>
-
-</td>
-
-<td>
-
-<code>42:7A:03:CA:A9:10</code>
-
-<div class="small">Unknown</div>
-</td>
-
-
-<td>
-01.10.2026 20:19:46
-<div class="small">пропусков: 0 · появлений: 21845</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="online">
-● ONLINE
-</span>
-
-
-
-</td>
-
-<td>
-<span class="na">—</span>
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.232.html" class="device-link">
-
-
-<strong>Телефон 4</strong>
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.232.html" class="device-link">
-192.168.1.232
-</a>
-
-</td>
-
-<td>
-
-<code>72:1C:3D:A3:30:63</code>
-
-<div class="small">Unknown</div>
-</td>
-
-
-<td>
-01.10.2026 20:18:46
-<div class="small">пропусков: 1 · появлений: 15755</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="online">
-● ONLINE
-</span>
-
-
-
-</td>
-
-<td>
-<span class="na">—</span>
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.233.html" class="device-link">
-
-
--
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.233.html" class="device-link">
-192.168.1.233
-</a>
-
-</td>
-
-<td>
-
-<code>66:06:45:61:15:E7</code>
-
-<div class="small">Sunitec Enterprise</div>
-</td>
-
-
-<td>
-01.10.2026 20:14:58
-<div class="small">пропусков: 5 · появлений: 22413</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="online">
-● ONLINE
-</span>
-
-
-
-</td>
-
-<td>
-💻
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.234.html" class="device-link">
-
-
-<strong>Orange Pi Plus (LAN)</strong>
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.234.html" class="device-link">
-192.168.1.234
-</a>
-
-</td>
-
-<td>
-
-<span class="na">—</span>
-
-<div class="small">—</div>
-</td>
-
-
-<td>
-01.10.2026 20:19:46
-<div class="small">пропусков: 0 · появлений: 49801</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="online">
-● ONLINE
-</span>
-
-
-
-</td>
-
-<td>
-💻
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.235.html" class="device-link">
-
-
-<strong>Orange Pi Plus (WiFi)</strong>
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.235.html" class="device-link">
-192.168.1.235
-</a>
-
-</td>
-
-<td>
-
-<code>02:DF:76:60:F7:21</code>
-
-<div class="small">Unknown</div>
-</td>
-
-
-<td>
-01.10.2026 20:19:46
-<div class="small">пропусков: 0 · появлений: 49806</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="online">
-● ONLINE
-</span>
-
-
-
-</td>
-
-<td>
-<span class="na">—</span>
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.236.html" class="device-link">
-
-
-<strong>Thinkpad T480 WiFi</strong>
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.236.html" class="device-link">
-192.168.1.236
-</a>
-
-</td>
-
-<td>
-
-<code>06:3E:FB:6C:2E:D0</code>
-
-<div class="small">Intel Corporate</div>
-</td>
-
-
-<td>
-01.10.2026 20:19:46
-<div class="small">пропусков: 0 · появлений: 22818</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="online">
-● ONLINE
-</span>
-
-
-
-</td>
-
-<td>
-<span class="na">—</span>
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.238.html" class="device-link">
-
-
--
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.238.html" class="device-link">
-192.168.1.238
-</a>
-
-</td>
-
-<td>
-
-<code>2E:C5:B5:5F:47:D8</code>
-
-<div class="small">Tuya Smart</div>
-</td>
-
-
-<td>
-01.10.2026 20:19:46
-<div class="small">пропусков: 0 · появлений: 18800</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="online">
-● ONLINE
-</span>
-
-
-
-</td>
-
-<td>
-<span class="na">—</span>
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.24.html" class="device-link">
-
-
-<strong>Телевизор Accesstyle</strong>
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.24.html" class="device-link">
-192.168.1.24
-</a>
-
-</td>
-
-<td>
-
-<code>AA:A8:96:D2:49:87</code>
-
-<div class="small">China Dragon Technology Limited</div>
-</td>
-
-
-<td>
-01.10.2026 20:19:46
-<div class="small">пропусков: 0 · появлений: 18922</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="online">
-● ONLINE
-</span>
-
-
-
-</td>
-
-<td>
-<span class="na">—</span>
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.241.html" class="device-link">
-
-
--
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.241.html" class="device-link">
-192.168.1.241
-</a>
-
-</td>
-
-<td>
-
-<code>36:50:D7:87:BC:35</code>
-
-<div class="small">Espressif</div>
-</td>
-
-
-<td>
-01.10.2026 20:19:46
-<div class="small">пропусков: 0 · появлений: 14347</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="online">
-● ONLINE
-</span>
-
-
-
-</td>
-
-<td>
-❓
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.243.html" class="device-link">
-
-
-<strong>X96 Max</strong>
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.243.html" class="device-link">
-192.168.1.243
-</a>
-
-<div class="small">armbian</div>
-
-</td>
-
-<td>
-
-<code>4E:E2:B9:8D:6A:1B</code>
-
-<div class="small">Unknown</div>
-</td>
-
-
-<td>
-01.10.2026 20:19:46
-<div class="small">пропусков: 0 · появлений: 8733</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="online">
-● ONLINE
-</span>
-
-
-
-</td>
-
-<td>
-<span class="na">—</span>
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.244.html" class="device-link">
-
-
-armbian
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.244.html" class="device-link">
-192.168.1.244
-</a>
-
-<div class="small">armbian</div>
-
-</td>
-
-<td>
-
-<code>96:A8:DA:F9:14:9F</code>
-
-<div class="small">Ampak Technology</div>
-</td>
-
-
-<td>
-01.10.2026 20:19:46
-<div class="small">пропусков: 0 · появлений: 9984</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="online">
-● ONLINE
-</span>
-
-
-
-</td>
-
-<td>
-<span class="na">—</span>
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.247.html" class="device-link">
-
-
--
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.247.html" class="device-link">
-192.168.1.247
-</a>
-
-</td>
-
-<td>
-
-<code>8E:9F:C3:3D:01:F2</code>
-
-<div class="small">Espressif</div>
-</td>
-
-
-<td>
-01.10.2026 20:15:45
-<div class="small">пропусков: 4 · появлений: 18953</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="online">
-● ONLINE
-</span>
-
-
-
-</td>
-
-<td>
-<span class="na">—</span>
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.83.html" class="device-link">
-
-
-<strong>Колонка Сбер</strong>
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.83.html" class="device-link">
-192.168.1.83
-</a>
-
-</td>
-
-<td>
-
-<code>EA:00:C5:25:48:16</code>
-
-<div class="small">Shenzhen Xiongxin Technology</div>
-</td>
-
-
-<td>
-01.10.2026 20:19:46
-<div class="small">пропусков: 0 · появлений: 39226</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="online">
-● ONLINE
-</span>
-
-
-
-</td>
-
-<td>
-<span class="na">—</span>
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.86.html" class="device-link">
-
-
--
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.86.html" class="device-link">
-192.168.1.86
-</a>
-
-</td>
-
-<td>
-
-<code>1E:34:89:EC:1F:63</code>
-
-<div class="small">Tuya Smart</div>
-</td>
-
-
-<td>
-01.10.2026 20:19:46
-<div class="small">пропусков: 0 · появлений: 19839</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="online">
-● ONLINE
-</span>
-
-
-
-</td>
-
-<td>
-<span class="na">—</span>
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.92.html" class="device-link">
-
-
--
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.92.html" class="device-link">
-192.168.1.92
-</a>
-
-</td>
-
-<td>
-
-<code>E2:26:75:1E:7D:E4</code>
-
-<div class="small">Espressif</div>
-</td>
-
-
-<td>
-01.10.2026 20:19:46
-<div class="small">пропусков: 0 · появлений: 1477</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="online">
-● ONLINE
-</span>
-
-
-
-</td>
-
-<td>
-<span class="na">—</span>
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.93.html" class="device-link">
-
-
-<strong>Телефон 3</strong>
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.93.html" class="device-link">
-192.168.1.93
-</a>
-
-</td>
-
-<td>
-
-<code>06:BF:94:91:3A:12</code>
-
-<div class="small">Unknown</div>
-</td>
-
-
-<td>
-01.10.2026 20:14:58
-<div class="small">пропусков: 5 · появлений: 8913</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="offline">
-● OFFLINE
-</span>
-
-
-
-</td>
-
-<td>
-<span class="na">—</span>
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.105.html" class="device-link">
-
-
-<strong>Xiaomi HUB</strong>
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.105.html" class="device-link">
-192.168.1.105
-</a>
-
-</td>
-
-<td>
-
-<code>8E:A9:9F:1B:D1:C5</code>
-
-<div class="small">Beijing Xiaomi Mobile Software</div>
-</td>
-
-
-<td>
-01.10.2026 20:12:53
-<div class="small">пропусков: 6 · появлений: 14239</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="offline">
-● OFFLINE
-</span>
-
-
-
-</td>
-
-<td>
-<span class="na">—</span>
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.173.html" class="device-link">
-
-
-<strong>Телефон 2</strong>
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.173.html" class="device-link">
-192.168.1.173
-</a>
-
-</td>
-
-<td>
-
-<code>EE:24:FA:CF:08:86</code>
-
-<div class="small">Unknown</div>
-</td>
-
-
-<td>
-30.09.2026 19:46:00
-<div class="small">пропусков: 6 · появлений: 2219</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="offline">
-● OFFLINE
-</span>
-
-
-
-</td>
-
-<td>
-<span class="na">—</span>
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.183.html" class="device-link">
-
-
--
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.183.html" class="device-link">
-192.168.1.183
-</a>
-
-</td>
-
-<td>
-
-<code>32:E5:F3:5A:F6:90</code>
-
-<div class="small">WiZ Connected Lighting Company Limited</div>
-</td>
-
-
-<td>
-01.10.2026 13:16:33
-<div class="small">пропусков: 6 · появлений: 18919</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="offline">
-● OFFLINE
-</span>
-
-
-
-</td>
-
-<td>
-<span class="na">—</span>
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.188.html" class="device-link">
-
-
--
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.188.html" class="device-link">
-192.168.1.188
-</a>
-
-</td>
-
-<td>
-
-<code>EA:AE:99:6C:25:94</code>
-
-<div class="small">Unknown</div>
-</td>
-
-
-<td>
-18.09.2026 03:37:28
-<div class="small">пропусков: 6 · появлений: 1743</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="offline">
-● OFFLINE
-</span>
-
-
-
-</td>
-
-<td>
-<span class="na">—</span>
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.197.html" class="device-link">
-
-
--
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.197.html" class="device-link">
-192.168.1.197
-</a>
-
-</td>
-
-<td>
-
-<code>36:27:CB:AA:85:D4</code>
-
-<div class="small">Xseed Technologies &amp; Computing</div>
-</td>
-
-
-<td>
-30.08.2026 18:28:57
-<div class="small">пропусков: 6 · появлений: 2</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="offline">
-● OFFLINE
-</span>
-
-
-
-</td>
-
-<td>
-<span class="na">—</span>
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.203.html" class="device-link">
-
-
-<strong>Лампа рабочий стол</strong>
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.203.html" class="device-link">
-192.168.1.203
-</a>
-
-</td>
-
-<td>
-
-<code>96:5A:6D:06:F5:46</code>
-
-<div class="small">Unknown</div>
-</td>
-
-
-<td>
-28.09.2026 07:34:54
-<div class="small">пропусков: 6 · появлений: 37</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="offline">
-● OFFLINE
-</span>
-
-
-
-</td>
-
-<td>
-<span class="na">—</span>
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.237.html" class="device-link">
-
-
--
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.237.html" class="device-link">
-192.168.1.237
-</a>
-
-</td>
-
-<td>
-
-<code>7E:30:22:BE:86:D7</code>
-
-<div class="small">Unknown</div>
-</td>
-
-
-<td>
-11.09.2026 18:41:07
-<div class="small">пропусков: 6 · появлений: 118</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="offline">
-● OFFLINE
-</span>
-
-
-
-</td>
-
-<td>
-<span class="na">—</span>
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.239.html" class="device-link">
-
-
-<strong>Thinkpad T480 Lan</strong>
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.239.html" class="device-link">
-192.168.1.239
-</a>
-
-</td>
-
-<td>
-
-<code>66:1E:37:AB:44:1B</code>
-
-<div class="small">LCFC(HeFei</div>
-</td>
-
-
-<td>
-03.09.2026 12:40:56
-<div class="small">пропусков: 6 · появлений: 5</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="offline">
-● OFFLINE
-</span>
-
-
-
-</td>
-
-<td>
-<span class="na">—</span>
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.240.html" class="device-link">
-
-
-<strong>Камера Xiaomi</strong>
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.240.html" class="device-link">
-192.168.1.240
-</a>
-
-</td>
-
-<td>
-
-<code>EA:1A:70:27:14:E9</code>
-
-<div class="small">Unknown</div>
-</td>
-
-
-<td>
-08.09.2026 22:56:57
-<div class="small">пропусков: 6 · появлений: 60</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="offline">
-● OFFLINE
-</span>
-
-
-
-</td>
-
-<td>
-🏠
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.51.html" class="device-link">
-
-
-<strong>YI Camera</strong>
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.51.html" class="device-link">
-192.168.1.51
-</a>
-
-</td>
-
-<td>
-
-<code>0A:D5:80:80:8D:BB</code>
-
-<div class="small">Unknown</div>
-</td>
-
-
-<td>
-07.09.2026 07:48:55
-<div class="small">пропусков: 6 · появлений: 671</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="offline">
-● OFFLINE
-</span>
-
-
-
-</td>
-
-<td>
-<span class="na">—</span>
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.55.html" class="device-link">
-
-
-<strong>Мой Dexp Ursus 8EV</strong>
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.55.html" class="device-link">
-192.168.1.55
-</a>
-
-</td>
-
-<td>
-
-<code>BE:5A:19:DA:0C:B9</code>
-
-<div class="small">Unknown</div>
-</td>
-
-
-<td>
-07.09.2026 07:48:55
-<div class="small">пропусков: 6 · появлений: 25</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="offline">
-● OFFLINE
-</span>
-
-
-
-</td>
-
-<td>
-<span class="na">—</span>
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.7.html" class="device-link">
-
-
-<strong>Комп рабочий LAN</strong>
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.7.html" class="device-link">
-192.168.1.7
-</a>
-
-</td>
-
-<td>
-
-<code>82:D8:3C:EF:CE:E1</code>
-
-<div class="small">Unknown</div>
-</td>
-
-
-<td>
-27.09.2026 10:35:54
-<div class="small">пропусков: 6 · появлений: 41480</div>
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-
-
-
-<span class="offline">
-● OFFLINE
-</span>
-
-
-
-</td>
-
-<td>
-<span class="na">—</span>
-</td>
-
-<td>
-
-
-<a href="device-192.168.1.82.html" class="device-link">
-
-
--
-
-
-</a>
-
-
-
-
-</td>
-
-
-<td>
-<a href="device-192.168.1.82.html" class="device-link">
-192.168.1.82
-</a>
-
-</td>
-
-<td>
-
-<code>BE:E8:07:86:C8:24</code>
-
-<div class="small">Unknown</div>
-</td>
-
-
-<td>
-21.09.2026 14:04:53
-<div class="small">пропусков: 6 · появлений: 130</div>
-</td>
-
-</tr>
-
-
-
-</table>
-</div>
-
 
 <script>
-async function scanNow() {
-    var btn = document.getElementById('scanNowBtn');
-    btn.disabled = true;
-    btn.textContent = '⏳ Сканирование...';
-    try {
-        var r = await fetch('api/scan', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: '{}'
-        });
-        var d = await r.json();
-        if (d.ok) {
-            location.reload();
-            return;
-        }
-        alert('Скан не выполнен: ' + (d.error || ('HTTP ' + r.status)));
-    } catch (e) {
-        alert('Скан не выполнен: ' + e);
-    }
-    btn.disabled = false;
-    btn.textContent = '🔍 Сканировать';
-}
-</script>
+(function () {
+  var dash = document.getElementById("dash");
+  if (!dash) return;
+  var LIM = 5;
 
+  function esc(s) {
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+  function ok(id, html) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.querySelector(".dash-state").remove();
+    el.insertAdjacentHTML("beforeend", html);
+  }
+  function fail(msg) {
+    dash.setAttribute("data-state", "error");
+    dash.querySelectorAll(".dash-state").forEach(function (el) {
+      el.textContent = msg;
+      el.classList.add("dash-error");
+    });
+  }
+  function levelClass(level) {
+    if (level === "critical") return "lv-critical";
+    if (level === "warning") return "lv-warning";
+    return "lv-info";
+  }
+
+  function render(data, jobs) {
+    var h = data.health || {};
+    var warns = h.warnings || [];
+    var overall = warns.some(function (w) { return w.level === "critical"; })
+      ? "Есть критические проблемы" : (warns.length ? "Есть предупреждения" : "Всё в порядке");
+    ok("dash-status",
+      '<p class="dash-big ' + (warns.length ? "bad" : "good") + '">' + esc(overall) + '</p>' +
+      '<p class="dash-sub">Интернет: ' +
+      (data.internet == null ? "?" : (data.internet ? "есть" : "нет")) +
+      ' · проверено в ' + esc(data.checked_at || "?") + '</p>' +
+      '<p><a href="system.html">Система →</a></p>');
+
+    var active = (jobs.active || 0);
+    var lastEv = (data.events || [])[0];
+    ok("dash-now",
+      '<p class="dash-big">' + active + ' активных ' + (active === 1 ? "задача" : "задачи") + '</p>' +
+      '<p class="dash-sub">' + (lastEv
+        ? esc(lastEv.event + " " + (lastEv.ip || "")) + " · " + esc(lastEv.timestamp || "")
+        : "событий нет") + '</p>');
+
+    var dv = data.devices || {};
+    ok("dash-devices",
+      '<p class="dash-big"><span class="online">' + (dv.online || 0) + '</span> / ' +
+      (dv.total || 0) + ' онлайн</p>' +
+      '<p><a href="stub.html?to=devices">Устройства →</a></p>');
+
+    var items = (jobs.jobs || []).filter(function (j) {
+      return j.status === "running" || j.status === "queued";
+    }).slice(0, LIM);
+    ok("dash-jobs", items.length
+      ? '<ul class="dash-list">' + items.map(function (j) {
+          return '<li><code>' + esc(j.type) + '</code> — ' + esc(j.status) + '</li>';
+        }).join("") + '</ul>'
+      : '<p class="dash-sub">Активных задач нет</p>');
+
+    var alerts = (data.alerts || []).slice(0, LIM);
+    ok("dash-problems", alerts.length
+      ? '<ul class="dash-list">' + alerts.map(function (a) {
+          return '<li class="' + levelClass(a.level) + '">' + esc(a.text) + '</li>';
+        }).join("") + '</ul>'
+      : '<p class="dash-sub good">Проблем не найдено</p>');
+
+    ok("dash-warnings", warns.length
+      ? '<ul class="dash-list">' + warns.slice(0, LIM).map(function (w) {
+          return '<li class="' + levelClass(w.level) + '">' + esc(w.text || w) + '</li>';
+        }).join("") + '</ul>'
+      : '<p class="dash-sub good">Предупреждений нет</p>');
+
+    dash.setAttribute("data-state", "ready");
+  }
+
+  Promise.all([
+    fetch("api/dashboard", {credentials: "same-origin"}),
+    fetch("api/jobs?limit=10", {credentials: "same-origin"})
+  ]).then(function (rs) {
+    if (!rs[0].ok || !rs[1].ok) throw new Error("http");
+    return Promise.all([rs[0].json(), rs[1].json()]);
+  }).then(function (j) {
+    render(j[0], j[1]);
+  }).catch(function () {
+    fail("Не удалось загрузить dashboard — обновите страницу");
+  });
+})();
+</script>
 
 </main>
 
@@ -3206,7 +872,7 @@ function diskPowerOff() {
                 "</div></div>";
         })
         .catch(() => {
-            alert("Команда на выключение отправлена. Отключите кабель питания вручную.");
+            toast("Команда на выключение отправлена. Отключите кабель питания вручную.", "info", 8000);
         });
 }
 
@@ -3399,9 +1065,10 @@ async function controlService(service, action) {
 
     } catch (error) {
 
-        alert(
+        toast(
             "Не удалось выполнить операцию: " +
-            error.message
+            error.message,
+            "error"
         );
     }
 }
@@ -3512,9 +1179,10 @@ async function toggleSambaGuest() {
 
     } catch (error) {
 
-        alert(
+        toast(
             "Не удалось изменить гостевой доступ: " +
-            error.message
+            error.message,
+            "error"
         );
     }
 }
@@ -4161,10 +1829,160 @@ CPU --°C · RAM --% · eMMC --% · HDD --% · ↓ -- · ↑ --
 </div>
 <div style="font-size:12px; color:#888; white-space:nowrap; display:flex; align-items:center; gap:10px;">
 <a href="restore.html" target="_blank" style="color:#ff9800; text-decoration:none; font-size:11px; opacity:0.7;" title="Emergency Restore Server — работает даже если app упал">⚠ Restore</a>
-<span>Admin (admin)</span>
+<span>admin (admin)</span>
 <a href="stub.html?to=logout" style="color:#e74c3c; text-decoration:none;">выйти</a>
 </div>
 </div>
 
-<div style="position:fixed;left:0;right:0;bottom:0;background:#12203a;color:#9fb6e8;font:11px/1.8 system-ui,sans-serif;padding:2px 8px;z-index:99998;text-align:center">Демо-режим · слепок от 01.10.2026 20:19 · данные не обновляются · <a href="index.html" style="color:#ffd54f">главная</a></div></body>
+<!-- Jobs widget (PHASE 2.0-3): активные фоновые задачи -->
+<div id="jobs-widget" style="display:none; position:fixed; right:14px; bottom:52px; z-index:1000; max-width:320px; background:rgba(24,26,32,.96); border:1px solid #3a3f4b; border-radius:8px; padding:8px 10px; font-size:12px; color:#ddd; box-shadow:0 4px 16px rgba(0,0,0,.45);"></div>
+<script>
+(function () {
+    var widget = document.getElementById("jobs-widget");
+    if (!widget) return;
+    var TITLES = {
+        "network-scan": "Сканирование сети",
+        "module-install": "Установка модуля",
+        "module-catalog-install": "Установка из каталога",
+        "module-catalog-update": "Обновление из каталога",
+        "db-backup": "Backup БД"
+    };
+    var shownActive = {};
+    var noteIds = {};
+    var noteTimer = null;
+    var lastJobs = [];
+
+    function esc(s) {
+        return String(s).replace(/[&<>"]/g, function (c) {
+            return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+        });
+    }
+    function label(j) {
+        var t = TITLES[j.type] || j.type;
+        var m = j.meta || {};
+        var extra = m.module || m.unit || m.subnet;
+        return extra && extra !== "авто" ? t + " · " + extra : t;
+    }
+    function isActive(j) {
+        return j.status === "queued" || j.status === "running";
+    }
+
+    function render() {
+        var active = lastJobs.filter(isActive);
+        Object.keys(shownActive).forEach(function (id) {
+            var still = active.some(function (j) { return j.id === id; });
+            if (!still) noteIds[id] = true;
+        });
+        shownActive = {};
+        active.forEach(function (j) { shownActive[j.id] = true; });
+        if (Object.keys(noteIds).length && !noteTimer) {
+            noteTimer = setTimeout(function () {
+                noteIds = {};
+                noteTimer = null;
+                render();
+            }, 6000);
+        }
+        if (!active.length && !Object.keys(noteIds).length) {
+            widget.style.display = "none";
+            widget.innerHTML = "";
+            return;
+        }
+        var html = "";
+        lastJobs.forEach(function (j) {
+            if (!noteIds[j.id]) return;
+            var color = j.status === "completed" ? "#7ec97e" :
+                        j.status === "cancelled" ? "#e0a060" : "#e07060";
+            var tail = j.status === "failed" ? (j.error || "ошибка") :
+                       j.status === "cancelled" ? "отменена" : "завершена";
+            html += '<div style="color:' + color + '; margin-bottom:4px;">' +
+                esc(label(j)) + ": " + esc(tail) + "</div>";
+        });
+        active.forEach(function (j) {
+            var pct = (j.progress === null || j.progress === undefined) ? 8 : j.progress;
+            html += '<div style="margin-bottom:6px;">' +
+                '<div style="display:flex; justify-content:space-between; gap:8px;">' +
+                "<span>" + esc(label(j)) + "</span>" +
+                '<span style="color:#999;">' + pct + "%</span></div>" +
+                '<div style="background:#2c2f36; height:5px; border-radius:3px; margin-top:3px; overflow:hidden;">' +
+                '<div style="width:' + pct + '%; height:100%; background:#ff9800; transition:width .5s;"></div></div>';
+
+            if (j.cancelable) {
+                html += '<div style="text-align:right; margin-top:2px;">' +
+                    '<a href="#" data-job-cancel="' + esc(j.id) +
+                    '" style="color:#e07060; font-size:11px;">отменить</a></div>';
+            }
+
+            html += "</div>";
+        });
+        widget.innerHTML = html;
+        widget.style.display = "block";
+    }
+
+    widget.addEventListener("click", function (e) {
+        var a = e.target && e.target.closest ? e.target.closest("[data-job-cancel]") : null;
+        if (!a) return;
+        e.preventDefault();
+        var token = (document.querySelector('meta[name="csrf-token"]') || {}).content || "";
+        fetch("api/jobs/" + a.getAttribute("data-job-cancel") + "cancel", {
+            method: "POST",
+            headers: { "X-CSRFToken": token }
+        }).then(function () { poll(); }).catch(function () {});
+    });
+
+    function poll() {
+        fetch("api/jobs?limit=15")
+            .then(function (r) { return r.json(); })
+            .then(function (d) {
+                if (!d.ok) return;
+                lastJobs = d.jobs || [];
+                render();
+            })
+            .catch(function () {});
+    }
+    poll();
+    setInterval(poll, 4000);
+})();
+</script>
+
+<!-- Единые уведомления и диалоги (Спецификация §23) -->
+<div id="toast-root" class="toast-root" role="status" aria-live="polite"></div>
+<dialog id="confirm-dialog" class="confirm-dialog">
+<form method="dialog">
+<h3 id="confirm-dialog-title">Подтверждение</h3>
+<p id="confirm-dialog-text"></p>
+<div class="confirm-actions">
+<button value="cancel" class="btn">Отмена</button>
+<button value="ok" class="btn btn-primary">OK</button>
+</div>
+</form>
+</dialog>
+<script>
+window.toast = function (msg, type, ttl) {
+    var root = document.getElementById("toast-root");
+    if (!root) return;
+    var el = document.createElement("div");
+    el.className = "toast toast-" + (type || "info");
+    el.textContent = msg;
+    root.appendChild(el);
+    setTimeout(function () { el.classList.add("toast-out"); }, ttl || 5000);
+    setTimeout(function () { el.remove(); }, (ttl || 5000) + 500);
+};
+window.confirmDialog = function (text, title) {
+    var dlg = document.getElementById("confirm-dialog");
+    if (!dlg || typeof dlg.showModal !== "function") {
+        return Promise.resolve(window.confirm(text));
+    }
+    document.getElementById("confirm-dialog-title").textContent = title || "Подтверждение";
+    document.getElementById("confirm-dialog-text").textContent = text;
+    return new Promise(function (resolve) {
+        dlg.addEventListener("close", function handler() {
+            dlg.removeEventListener("close", handler);
+            resolve(dlg.returnValue === "ok");
+        });
+        dlg.showModal();
+    });
+};
+</script>
+
+<div style="position:fixed;left:0;right:0;bottom:0;background:#12203a;color:#9fb6e8;font:11px/1.8 system-ui,sans-serif;padding:2px 8px;z-index:99998;text-align:center">Демо-режим · слепок от 03.10.2026 17:13 · данные не обновляются · <a href="index.html" style="color:#ffd54f">главная</a></div></body>
 </html>

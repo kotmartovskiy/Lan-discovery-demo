@@ -5,7 +5,7 @@
 <script src="demo.js"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="csrf-token" content="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<meta name="csrf-token" content="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <script>
 (function () {
     var meta = document.querySelector('meta[name="csrf-token"]');
@@ -39,6 +39,7 @@
 
 <body>
 
+
 <a class="skip-link" href="#main">Перейти к содержимому</a>
 
 <header class="header">
@@ -60,60 +61,43 @@
 <circle cx="50" cy="30" r="3" fill="#ffcc02"/>
 </svg>LAN Discovery</h1>
 
+<nav class="sections" aria-label="Разделы приложения">
+
+<a href="index.html" class="section">
+<span class="section-ico" aria-hidden="true">🏠</span>HOME
+</a>
+
+<a href="stub.html?to=devices" class="section">
+<span class="section-ico" aria-hidden="true">🌐</span>NETWORK
+</a>
+
+<a href="history.html" class="section">
+<span class="section-ico" aria-hidden="true">📊</span>MONITORING
+</a>
+
+<a href="stub.html?to=storage" class="section">
+<span class="section-ico" aria-hidden="true">💾</span>STORAGE
+</a>
+
+<a href="apps.html" class="section">
+<span class="section-ico" aria-hidden="true">🧩</span>APPLICATIONS
+</a>
+
+<a href="stub.html?to=capabilities" class="section">
+<span class="section-ico" aria-hidden="true">🔧</span>HARDWARE
+</a>
+
+<a href="system.html" class="section active" aria-current="page">
+<span class="section-ico" aria-hidden="true">⚙️</span>SYSTEM
+</a>
+
+<a href="modules.html" class="section">
+<span class="section-ico" aria-hidden="true">🛡</span>ADMIN
+</a>
+
+</nav>
+
 <nav class="tabs" aria-label="Разделы панели">
-
-<span class="nav-group">
-<span class="nav-group-label">Устройства</span>
-<span class="nav-group-items">
-
-<a href="index.html" class="">
-Устройства
-</a>
-
-<a href="inventory.html" class="">
-Инвентаризация
-</a>
-
-</span>
-</span>
-
-<span class="nav-group">
-<span class="nav-group-label">Мониторинг</span>
-<span class="nav-group-items">
-
-<a href="monitoring.html" class="">
-Мониторинг
-</a>
-
-<a href="history.html" class="">
-История
-</a>
-
-<a href="currencies.html" class="">
-Валюты
-</a>
-
-<a href="weather.html" class="">
-Погода
-</a>
-
-</span>
-</span>
-
-<span class="nav-group">
-<span class="nav-group-label">Приложения</span>
-<span class="nav-group-items">
-
-<a href="torrent.html" class="">
-Торрент
-</a>
-
-<a href="apps.html" class="">
-Приложения
-</a>
-
-</span>
-</span>
 
 <span class="nav-group">
 <span class="nav-group-label">Система</span>
@@ -121,18 +105,6 @@
 
 <a href="system.html" class="active">
 Система
-</a>
-
-<a href="stub.html?to=capabilities" class="">
-Возможности
-</a>
-
-<a href="stub.html?to=roles" class="">
-Роли
-</a>
-
-<a href="modules.html" class="">
-Модули
 </a>
 
 <a href="about.html" class="">
@@ -406,17 +378,17 @@
 
 <div class="info-row">
 <span class="info-label">Последний backup:</span>
-devices_20261001-033000.db (01.10.2026 03:30:00)
+devices_20261003-033001.db (03.10.2026 03:30:01)
 </div>
 
 <div class="info-row">
 <span class="info-label">Размер:</span>
-7.8 MiB
+8.4 MiB
 </div>
 
 <div class="info-row">
 <span class="info-label">Следующий запуск:</span>
-02.10.2026 03:30:00
+04.10.2026 03:30:00
 </div>
 
 <div class="info-row">
@@ -439,6 +411,10 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 <div id="db-restore-section" style="display:none; margin-top:14px;">
 <div class="info-label" style="margin-bottom:6px;">Выберите копию:</div>
 <select id="db-restore-select" style="width:100%; padding:6px; background:#111; color:#eee; border:1px solid #333; border-radius:6px;">
+
+<option value="devices_20261003-033001.db">devices_20261003-033001.db (8.4 MiB, 03.10.2026 03:30:01)</option>
+
+<option value="devices_20261002-033002.db">devices_20261002-033002.db (8.1 MiB, 02.10.2026 03:30:03)</option>
 
 <option value="devices_20261001-033000.db">devices_20261001-033000.db (7.8 MiB, 01.10.2026 03:30:00)</option>
 
@@ -495,19 +471,19 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 <div class="info-label" style="margin-bottom:8px;">Тестовые адреса:</div>
 
 <div class="info-row" style="display:flex; align-items:center; gap:8px;">
-<span style="flex:1; color:#ccc;">1. <span id="net-host1-display">Google.com</span></span>
+<span style="flex:1; color:#ccc;">1. <span id="net-host1-display">google.com</span></span>
 <button type="button" onclick="editNetHost(1)" style="padding:3px 8px; font-size:12px;">Изменить</button>
 <button type="button" onclick="checkNetHost(1)" style="padding:3px 8px; font-size:12px;">Проверить</button>
 </div>
 
 <div class="info-row" style="display:flex; align-items:center; gap:8px;">
-<span style="flex:1; color:#ccc;">2. <span id="net-host2-display">yandex.ru</span></span>
+<span style="flex:1; color:#ccc;">2. <span id="net-host2-display">ya.ru</span></span>
 <button type="button" onclick="editNetHost(2)" style="padding:3px 8px; font-size:12px;">Изменить</button>
 <button type="button" onclick="checkNetHost(2)" style="padding:3px 8px; font-size:12px;">Проверить</button>
 </div>
 
 <div class="info-row" style="display:flex; align-items:center; gap:8px;">
-<span style="flex:1; color:#ccc;">3. <span id="net-host3-display">ttk.ru</span></span>
+<span style="flex:1; color:#ccc;">3. <span id="net-host3-display">192.168.1.1</span></span>
 <button type="button" onclick="editNetHost(3)" style="padding:3px 8px; font-size:12px;">Изменить</button>
 <button type="button" onclick="checkNetHost(3)" style="padding:3px 8px; font-size:12px;">Проверить</button>
 </div>
@@ -517,6 +493,82 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <div id="net-host-result" style="margin-top:8px; font-size:13px; color:#888;"></div>
 </div>
+
+
+<div style="margin-top:16px; border-top:1px solid #333; padding-top:12px;">
+<div class="info-label" style="margin-bottom:6px;">Настройка интерфейса (Core Network)</div>
+<div style="color:#f59e0b; font-size:12px; margin-bottom:8px;">
+&#9888; Эта операция может разорвать текущее подключение (This operation may disconnect the current session).
+</div>
+<div class="info-row" style="display:flex; gap:6px; flex-wrap:wrap;">
+<select id="net-iface" style="padding:4px 6px; font-size:13px; max-width:160px;"></select>
+<input id="net-cidr" placeholder="192.168.1.10/24" style="padding:4px 6px; font-size:13px; width:150px;">
+<button type="button" onclick="netSetAddr()" style="padding:4px 10px; font-size:13px; background:#2563eb;">Применить</button>
+<button type="button" onclick="netDelAddr()" style="padding:4px 10px; font-size:13px;">Удалить</button>
+</div>
+<div id="net-addr-info" style="margin-top:8px; font-size:12px; color:#888;"></div>
+<div id="net-addr-result" style="margin-top:6px; font-size:13px;"></div>
+</div>
+<script>
+async function netLoadIfaces() {
+  try {
+    const r = await fetch("api/network/info");
+    const d = await r.json();
+    const sel = document.getElementById("net-iface");
+    const info = document.getElementById("net-addr-info");
+    if (!d.ok || !d.interfaces) { info.textContent = d.error || "нет данных о сети"; return; }
+    sel.innerHTML = "";
+    for (const it of d.interfaces) {
+      if (it.type === "loopback") continue;
+      const o = document.createElement("option");
+      o.value = it.name;
+      o.textContent = it.name + " (" + it.state + ")";
+      sel.appendChild(o);
+    }
+    const addrs = (d.addresses || [])
+      .filter(a => a.family === "inet")
+      .map(a => a.iface + ": " + a.addr + "/" + a.prefixlen);
+    info.textContent = addrs.length ? "IPv4: " + addrs.join(", ") : "IPv4-адресов нет";
+  } catch (e) {
+    document.getElementById("net-addr-info").textContent = "нет данных о сети";
+  }
+}
+async function netAddr(action) {
+  const iface = document.getElementById("net-iface").value;
+  const cidr = document.getElementById("net-cidr").value.trim();
+  const out = document.getElementById("net-addr-result");
+  if (!iface || !cidr) { out.style.color = "#f87171"; out.textContent = "Укажите интерфейс и CIDR"; return; }
+  const warn = "Эта операция может разорвать текущее подключение (This operation may disconnect the current session).\n" +
+    (action === "set" ? "Применить" : "Удалить") + " " + cidr + " на " + iface + "?";
+  if (!confirm(warn)) return;
+  out.style.color = "#ccc"; out.textContent = "Выполняется транзакция (Prepare → Apply → Verify)…";
+  try {
+    const r = await fetch("api/network/address", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({action: action, iface: iface, cidr: cidr, insurance_grace: 20})
+    });
+    const d = await r.json();
+    if (d.ok) {
+      out.style.color = "#4ade80";
+      out.textContent = "✓ Готово (" + d.phase + ")" +
+        (d.rolled_back ? "" : ", через 20 с — авто-проверка с откатом при обрыве");
+      netLoadIfaces();
+    } else {
+      out.style.color = "#f87171";
+      out.textContent = "✗ " + (d.error || "ошибка") +
+        (d.rolled_back ? " (изменения откачены)" : "");
+    }
+  } catch (e) {
+    out.style.color = "#f87171";
+    out.textContent = "✗ " + e;
+  }
+}
+function netSetAddr() { netAddr("set"); }
+function netDelAddr() { netAddr("del"); }
+netLoadIfaces();
+</script>
+
 
 </div>
 
@@ -602,12 +654,12 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <div class="info-row">
 <span class="info-label">Последнее обновление:</span>
-01.10.2026 04:15:00
+03.10.2026 04:15:00
 </div>
 
 <div class="info-row">
 <span class="info-label">Следующий запуск:</span>
-02.10.2026 04:15:00
+04.10.2026 04:15:00
 </div>
 
 <h3>Плейлисты</h3>
@@ -639,7 +691,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <div class="info-row">
 <span class="info-label">Обновлён:</span>
-01.10.2026 04:15:01
+03.10.2026 04:15:02
 </div>
 
 <div class="info-row">
@@ -654,7 +706,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <div class="info-row">
 <span class="info-label">Последнее ручное обновление:</span>
-01.10.2026 04:15:06
+03.10.2026 04:15:09
 </div>
 
 
@@ -667,7 +719,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Ftoggle%2F0">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">
 
 Выключить
@@ -678,7 +730,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Fupdate%2F0">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">Обновить</button>
 </form>
 
@@ -686,7 +738,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Fdelete%2F0"
       onsubmit="return confirm('Удалить этот плейлист?');">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">Удалить</button>
 </form>
 
@@ -718,7 +770,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <div class="info-row">
 <span class="info-label">Обновлён:</span>
-01.10.2026 04:15:06
+03.10.2026 04:15:09
 </div>
 
 <div class="info-row">
@@ -733,7 +785,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <div class="info-row">
 <span class="info-label">Последнее ручное обновление:</span>
-01.10.2026 04:15:07
+03.10.2026 04:15:11
 </div>
 
 
@@ -746,7 +798,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Ftoggle%2F1">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">
 
 Выключить
@@ -757,7 +809,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Fupdate%2F1">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">Обновить</button>
 </form>
 
@@ -765,7 +817,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Fdelete%2F1"
       onsubmit="return confirm('Удалить этот плейлист?');">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">Удалить</button>
 </form>
 
@@ -797,7 +849,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <div class="info-row">
 <span class="info-label">Обновлён:</span>
-01.10.2026 04:15:08
+03.10.2026 04:15:12
 </div>
 
 <div class="info-row">
@@ -812,7 +864,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <div class="info-row">
 <span class="info-label">Последнее ручное обновление:</span>
-01.10.2026 04:15:09
+03.10.2026 04:15:17
 </div>
 
 
@@ -825,7 +877,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Ftoggle%2F2">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">
 
 Выключить
@@ -836,7 +888,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Fupdate%2F2">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">Обновить</button>
 </form>
 
@@ -844,7 +896,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Fdelete%2F2"
       onsubmit="return confirm('Удалить этот плейлист?');">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">Удалить</button>
 </form>
 
@@ -876,7 +928,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <div class="info-row">
 <span class="info-label">Обновлён:</span>
-01.10.2026 04:15:12
+03.10.2026 04:15:20
 </div>
 
 <div class="info-row">
@@ -891,7 +943,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <div class="info-row">
 <span class="info-label">Последнее ручное обновление:</span>
-01.10.2026 04:15:13
+03.10.2026 04:15:22
 </div>
 
 
@@ -904,7 +956,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Ftoggle%2F3">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">
 
 Выключить
@@ -915,7 +967,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Fupdate%2F3">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">Обновить</button>
 </form>
 
@@ -923,7 +975,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Fdelete%2F3"
       onsubmit="return confirm('Удалить этот плейлист?');">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">Удалить</button>
 </form>
 
@@ -955,7 +1007,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <div class="info-row">
 <span class="info-label">Обновлён:</span>
-01.10.2026 04:15:15
+03.10.2026 04:15:24
 </div>
 
 <div class="info-row">
@@ -970,7 +1022,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <div class="info-row">
 <span class="info-label">Последнее ручное обновление:</span>
-01.10.2026 04:15:18
+03.10.2026 04:15:28
 </div>
 
 
@@ -983,7 +1035,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Ftoggle%2F4">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">
 
 Выключить
@@ -994,7 +1046,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Fupdate%2F4">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">Обновить</button>
 </form>
 
@@ -1002,7 +1054,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Fdelete%2F4"
       onsubmit="return confirm('Удалить этот плейлист?');">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">Удалить</button>
 </form>
 
@@ -1034,7 +1086,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <div class="info-row">
 <span class="info-label">Обновлён:</span>
-01.10.2026 04:15:20
+03.10.2026 04:15:29
 </div>
 
 <div class="info-row">
@@ -1049,7 +1101,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <div class="info-row">
 <span class="info-label">Последнее ручное обновление:</span>
-01.10.2026 04:15:23
+03.10.2026 04:15:34
 </div>
 
 
@@ -1062,7 +1114,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Ftoggle%2F5">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">
 
 Выключить
@@ -1073,7 +1125,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Fupdate%2F5">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">Обновить</button>
 </form>
 
@@ -1081,7 +1133,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Fdelete%2F5"
       onsubmit="return confirm('Удалить этот плейлист?');">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">Удалить</button>
 </form>
 
@@ -1113,7 +1165,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <div class="info-row">
 <span class="info-label">Обновлён:</span>
-01.10.2026 04:15:24
+03.10.2026 04:15:34
 </div>
 
 <div class="info-row">
@@ -1128,7 +1180,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <div class="info-row">
 <span class="info-label">Последнее ручное обновление:</span>
-01.10.2026 04:15:25
+03.10.2026 04:15:35
 </div>
 
 
@@ -1141,7 +1193,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Ftoggle%2F6">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">
 
 Выключить
@@ -1152,7 +1204,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Fupdate%2F6">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">Обновить</button>
 </form>
 
@@ -1160,7 +1212,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Fdelete%2F6"
       onsubmit="return confirm('Удалить этот плейлист?');">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">Удалить</button>
 </form>
 
@@ -1192,7 +1244,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <div class="info-row">
 <span class="info-label">Обновлён:</span>
-01.10.2026 04:15:26
+03.10.2026 04:15:36
 </div>
 
 <div class="info-row">
@@ -1207,7 +1259,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <div class="info-row">
 <span class="info-label">Последнее ручное обновление:</span>
-01.10.2026 04:15:27
+03.10.2026 04:15:37
 </div>
 
 
@@ -1220,7 +1272,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Ftoggle%2F7">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">
 
 Выключить
@@ -1231,7 +1283,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Fupdate%2F7">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">Обновить</button>
 </form>
 
@@ -1239,7 +1291,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Fdelete%2F7"
       onsubmit="return confirm('Удалить этот плейлист?');">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">Удалить</button>
 </form>
 
@@ -1271,7 +1323,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <div class="info-row">
 <span class="info-label">Обновлён:</span>
-01.10.2026 04:15:28
+03.10.2026 04:15:38
 </div>
 
 <div class="info-row">
@@ -1286,7 +1338,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <div class="info-row">
 <span class="info-label">Последнее ручное обновление:</span>
-01.10.2026 04:15:32
+03.10.2026 04:15:38
 </div>
 
 
@@ -1299,7 +1351,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Ftoggle%2F8">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">
 
 Выключить
@@ -1310,7 +1362,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Fupdate%2F8">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">Обновить</button>
 </form>
 
@@ -1318,7 +1370,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Fdelete%2F8"
       onsubmit="return confirm('Удалить этот плейлист?');">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">Удалить</button>
 </form>
 
@@ -1350,7 +1402,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <div class="info-row">
 <span class="info-label">Обновлён:</span>
-01.10.2026 04:15:33
+03.10.2026 04:15:40
 </div>
 
 <div class="info-row">
@@ -1365,7 +1417,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <div class="info-row">
 <span class="info-label">Последнее ручное обновление:</span>
-01.10.2026 04:15:40
+03.10.2026 04:15:41
 </div>
 
 
@@ -1378,7 +1430,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Ftoggle%2F9">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">
 
 Выключить
@@ -1389,7 +1441,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Fupdate%2F9">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">Обновить</button>
 </form>
 
@@ -1397,7 +1449,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Fdelete%2F9"
       onsubmit="return confirm('Удалить этот плейлист?');">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">Удалить</button>
 </form>
 
@@ -1429,7 +1481,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <div class="info-row">
 <span class="info-label">Обновлён:</span>
-01.10.2026 04:15:41
+03.10.2026 04:15:42
 </div>
 
 <div class="info-row">
@@ -1444,7 +1496,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <div class="info-row">
 <span class="info-label">Последнее ручное обновление:</span>
-01.10.2026 04:15:44
+03.10.2026 04:15:45
 </div>
 
 
@@ -1457,7 +1509,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Ftoggle%2F10">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">
 
 Выключить
@@ -1468,7 +1520,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Fupdate%2F10">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">Обновить</button>
 </form>
 
@@ -1476,7 +1528,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Fdelete%2F10"
       onsubmit="return confirm('Удалить этот плейлист?');">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">Удалить</button>
 </form>
 
@@ -1508,7 +1560,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <div class="info-row">
 <span class="info-label">Обновлён:</span>
-01.10.2026 04:15:46
+03.10.2026 04:15:47
 </div>
 
 <div class="info-row">
@@ -1523,7 +1575,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <div class="info-row">
 <span class="info-label">Последнее ручное обновление:</span>
-01.10.2026 04:15:48
+03.10.2026 04:15:49
 </div>
 
 
@@ -1536,7 +1588,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Ftoggle%2F11">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">
 
 Выключить
@@ -1547,7 +1599,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Fupdate%2F11">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">Обновить</button>
 </form>
 
@@ -1555,7 +1607,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Fdelete%2F11"
       onsubmit="return confirm('Удалить этот плейлист?');">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">Удалить</button>
 </form>
 
@@ -1587,7 +1639,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <div class="info-row">
 <span class="info-label">Обновлён:</span>
-01.10.2026 04:15:49
+03.10.2026 04:15:50
 </div>
 
 <div class="info-row">
@@ -1602,7 +1654,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <div class="info-row">
 <span class="info-label">Последнее ручное обновление:</span>
-01.10.2026 04:15:52
+03.10.2026 04:15:51
 </div>
 
 
@@ -1615,7 +1667,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Ftoggle%2F12">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">
 
 Выключить
@@ -1626,7 +1678,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Fupdate%2F12">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">Обновить</button>
 </form>
 
@@ -1634,7 +1686,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Fdelete%2F12"
       onsubmit="return confirm('Удалить этот плейлист?');">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">Удалить</button>
 </form>
 
@@ -1666,7 +1718,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <div class="info-row">
 <span class="info-label">Обновлён:</span>
-01.10.2026 04:15:53
+03.10.2026 04:15:51
 </div>
 
 <div class="info-row">
@@ -1681,7 +1733,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <div class="info-row">
 <span class="info-label">Последнее ручное обновление:</span>
-01.10.2026 04:15:54
+03.10.2026 04:15:54
 </div>
 
 
@@ -1694,7 +1746,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Ftoggle%2F13">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">
 
 Выключить
@@ -1705,7 +1757,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Fupdate%2F13">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">Обновить</button>
 </form>
 
@@ -1713,7 +1765,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 <form method="post"
       action="stub.html?to=system%2Fiptv%2Fdelete%2F13"
       onsubmit="return confirm('Удалить этот плейлист?');">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <button type="submit">Удалить</button>
 </form>
 
@@ -1728,7 +1780,7 @@ devices_20261001-033000.db (01.10.2026 03:30:00)
 
 <h3>Добавить плейлист</h3>
 <form method="post" action="stub.html?to=system%2Fiptv%2Fadd" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WQg.XSir1C4hXHV7-KHLsa997JxuoSc">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENkA.KGY7DclWNPhwJlqvYyk0hKInseE">
 <input type="text" name="name" placeholder="Название" required style="width:140px;">
 <input type="url" name="url" placeholder="URL .m3u" required style="flex:1; min-width:200px;">
 <button type="submit">Добавить</button>
@@ -2642,7 +2694,7 @@ function diskPowerOff() {
                 "</div></div>";
         })
         .catch(() => {
-            alert("Команда на выключение отправлена. Отключите кабель питания вручную.");
+            toast("Команда на выключение отправлена. Отключите кабель питания вручную.", "info", 8000);
         });
 }
 
@@ -2835,9 +2887,10 @@ async function controlService(service, action) {
 
     } catch (error) {
 
-        alert(
+        toast(
             "Не удалось выполнить операцию: " +
-            error.message
+            error.message,
+            "error"
         );
     }
 }
@@ -2948,9 +3001,10 @@ async function toggleSambaGuest() {
 
     } catch (error) {
 
-        alert(
+        toast(
             "Не удалось изменить гостевой доступ: " +
-            error.message
+            error.message,
+            "error"
         );
     }
 }
@@ -3597,10 +3651,160 @@ CPU --°C · RAM --% · eMMC --% · HDD --% · ↓ -- · ↑ --
 </div>
 <div style="font-size:12px; color:#888; white-space:nowrap; display:flex; align-items:center; gap:10px;">
 <a href="restore.html" target="_blank" style="color:#ff9800; text-decoration:none; font-size:11px; opacity:0.7;" title="Emergency Restore Server — работает даже если app упал">⚠ Restore</a>
-<span>Admin (admin)</span>
+<span>admin (admin)</span>
 <a href="stub.html?to=logout" style="color:#e74c3c; text-decoration:none;">выйти</a>
 </div>
 </div>
 
-<div style="position:fixed;left:0;right:0;bottom:0;background:#12203a;color:#9fb6e8;font:11px/1.8 system-ui,sans-serif;padding:2px 8px;z-index:99998;text-align:center">Демо-режим · слепок от 01.10.2026 20:19 · данные не обновляются · <a href="index.html" style="color:#ffd54f">главная</a></div></body>
+<!-- Jobs widget (PHASE 2.0-3): активные фоновые задачи -->
+<div id="jobs-widget" style="display:none; position:fixed; right:14px; bottom:52px; z-index:1000; max-width:320px; background:rgba(24,26,32,.96); border:1px solid #3a3f4b; border-radius:8px; padding:8px 10px; font-size:12px; color:#ddd; box-shadow:0 4px 16px rgba(0,0,0,.45);"></div>
+<script>
+(function () {
+    var widget = document.getElementById("jobs-widget");
+    if (!widget) return;
+    var TITLES = {
+        "network-scan": "Сканирование сети",
+        "module-install": "Установка модуля",
+        "module-catalog-install": "Установка из каталога",
+        "module-catalog-update": "Обновление из каталога",
+        "db-backup": "Backup БД"
+    };
+    var shownActive = {};
+    var noteIds = {};
+    var noteTimer = null;
+    var lastJobs = [];
+
+    function esc(s) {
+        return String(s).replace(/[&<>"]/g, function (c) {
+            return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+        });
+    }
+    function label(j) {
+        var t = TITLES[j.type] || j.type;
+        var m = j.meta || {};
+        var extra = m.module || m.unit || m.subnet;
+        return extra && extra !== "авто" ? t + " · " + extra : t;
+    }
+    function isActive(j) {
+        return j.status === "queued" || j.status === "running";
+    }
+
+    function render() {
+        var active = lastJobs.filter(isActive);
+        Object.keys(shownActive).forEach(function (id) {
+            var still = active.some(function (j) { return j.id === id; });
+            if (!still) noteIds[id] = true;
+        });
+        shownActive = {};
+        active.forEach(function (j) { shownActive[j.id] = true; });
+        if (Object.keys(noteIds).length && !noteTimer) {
+            noteTimer = setTimeout(function () {
+                noteIds = {};
+                noteTimer = null;
+                render();
+            }, 6000);
+        }
+        if (!active.length && !Object.keys(noteIds).length) {
+            widget.style.display = "none";
+            widget.innerHTML = "";
+            return;
+        }
+        var html = "";
+        lastJobs.forEach(function (j) {
+            if (!noteIds[j.id]) return;
+            var color = j.status === "completed" ? "#7ec97e" :
+                        j.status === "cancelled" ? "#e0a060" : "#e07060";
+            var tail = j.status === "failed" ? (j.error || "ошибка") :
+                       j.status === "cancelled" ? "отменена" : "завершена";
+            html += '<div style="color:' + color + '; margin-bottom:4px;">' +
+                esc(label(j)) + ": " + esc(tail) + "</div>";
+        });
+        active.forEach(function (j) {
+            var pct = (j.progress === null || j.progress === undefined) ? 8 : j.progress;
+            html += '<div style="margin-bottom:6px;">' +
+                '<div style="display:flex; justify-content:space-between; gap:8px;">' +
+                "<span>" + esc(label(j)) + "</span>" +
+                '<span style="color:#999;">' + pct + "%</span></div>" +
+                '<div style="background:#2c2f36; height:5px; border-radius:3px; margin-top:3px; overflow:hidden;">' +
+                '<div style="width:' + pct + '%; height:100%; background:#ff9800; transition:width .5s;"></div></div>';
+
+            if (j.cancelable) {
+                html += '<div style="text-align:right; margin-top:2px;">' +
+                    '<a href="#" data-job-cancel="' + esc(j.id) +
+                    '" style="color:#e07060; font-size:11px;">отменить</a></div>';
+            }
+
+            html += "</div>";
+        });
+        widget.innerHTML = html;
+        widget.style.display = "block";
+    }
+
+    widget.addEventListener("click", function (e) {
+        var a = e.target && e.target.closest ? e.target.closest("[data-job-cancel]") : null;
+        if (!a) return;
+        e.preventDefault();
+        var token = (document.querySelector('meta[name="csrf-token"]') || {}).content || "";
+        fetch("api/jobs/" + a.getAttribute("data-job-cancel") + "cancel", {
+            method: "POST",
+            headers: { "X-CSRFToken": token }
+        }).then(function () { poll(); }).catch(function () {});
+    });
+
+    function poll() {
+        fetch("api/jobs?limit=15")
+            .then(function (r) { return r.json(); })
+            .then(function (d) {
+                if (!d.ok) return;
+                lastJobs = d.jobs || [];
+                render();
+            })
+            .catch(function () {});
+    }
+    poll();
+    setInterval(poll, 4000);
+})();
+</script>
+
+<!-- Единые уведомления и диалоги (Спецификация §23) -->
+<div id="toast-root" class="toast-root" role="status" aria-live="polite"></div>
+<dialog id="confirm-dialog" class="confirm-dialog">
+<form method="dialog">
+<h3 id="confirm-dialog-title">Подтверждение</h3>
+<p id="confirm-dialog-text"></p>
+<div class="confirm-actions">
+<button value="cancel" class="btn">Отмена</button>
+<button value="ok" class="btn btn-primary">OK</button>
+</div>
+</form>
+</dialog>
+<script>
+window.toast = function (msg, type, ttl) {
+    var root = document.getElementById("toast-root");
+    if (!root) return;
+    var el = document.createElement("div");
+    el.className = "toast toast-" + (type || "info");
+    el.textContent = msg;
+    root.appendChild(el);
+    setTimeout(function () { el.classList.add("toast-out"); }, ttl || 5000);
+    setTimeout(function () { el.remove(); }, (ttl || 5000) + 500);
+};
+window.confirmDialog = function (text, title) {
+    var dlg = document.getElementById("confirm-dialog");
+    if (!dlg || typeof dlg.showModal !== "function") {
+        return Promise.resolve(window.confirm(text));
+    }
+    document.getElementById("confirm-dialog-title").textContent = title || "Подтверждение";
+    document.getElementById("confirm-dialog-text").textContent = text;
+    return new Promise(function (resolve) {
+        dlg.addEventListener("close", function handler() {
+            dlg.removeEventListener("close", handler);
+            resolve(dlg.returnValue === "ok");
+        });
+        dlg.showModal();
+    });
+};
+</script>
+
+<div style="position:fixed;left:0;right:0;bottom:0;background:#12203a;color:#9fb6e8;font:11px/1.8 system-ui,sans-serif;padding:2px 8px;z-index:99998;text-align:center">Демо-режим · слепок от 03.10.2026 17:13 · данные не обновляются · <a href="index.html" style="color:#ffd54f">главная</a></div></body>
 </html>

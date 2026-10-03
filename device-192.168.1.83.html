@@ -5,7 +5,7 @@
 <script src="demo.js"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="csrf-token" content="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WTA.n2iMts1sSpXBBBejH8qulR6S0Zg">
+<meta name="csrf-token" content="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENlw.enj3jZQKFQ8ObhOj2SGOHW7XQDs">
 <script>
 (function () {
     var meta = document.querySelector('meta[name="csrf-token"]');
@@ -39,6 +39,7 @@
 
 <body>
 
+
 <a class="skip-link" href="#main">Перейти к содержимому</a>
 
 <header class="header">
@@ -60,94 +61,54 @@
 <circle cx="50" cy="30" r="3" fill="#ffcc02"/>
 </svg>LAN Discovery <span style="font-size:0.5em;font-weight:normal;opacity:0.7;">(x96max)</span></h1>
 
+<nav class="sections" aria-label="Разделы приложения">
+
+<a href="index.html" class="section">
+<span class="section-ico" aria-hidden="true">🏠</span>HOME
+</a>
+
+<a href="stub.html?to=devices" class="section active" aria-current="page">
+<span class="section-ico" aria-hidden="true">🌐</span>NETWORK
+</a>
+
+<a href="history.html" class="section">
+<span class="section-ico" aria-hidden="true">📊</span>MONITORING
+</a>
+
+<a href="stub.html?to=storage" class="section">
+<span class="section-ico" aria-hidden="true">💾</span>STORAGE
+</a>
+
+<a href="apps.html" class="section">
+<span class="section-ico" aria-hidden="true">🧩</span>APPLICATIONS
+</a>
+
+<a href="stub.html?to=capabilities" class="section">
+<span class="section-ico" aria-hidden="true">🔧</span>HARDWARE
+</a>
+
+<a href="system.html" class="section">
+<span class="section-ico" aria-hidden="true">⚙️</span>SYSTEM
+</a>
+
+<a href="modules.html" class="section">
+<span class="section-ico" aria-hidden="true">🛡</span>ADMIN
+</a>
+
+</nav>
+
 <nav class="tabs" aria-label="Разделы панели">
 
 <span class="nav-group">
 <span class="nav-group-label">Устройства</span>
 <span class="nav-group-items">
 
-<a href="index.html" class="">
+<a href="stub.html?to=devices" class="active">
 Устройства
 </a>
 
 <a href="inventory.html" class="">
 Инвентаризация
-</a>
-
-</span>
-</span>
-
-<span class="nav-group">
-<span class="nav-group-label">Мониторинг</span>
-<span class="nav-group-items">
-
-<a href="monitoring.html" class="">
-Мониторинг
-</a>
-
-<a href="history.html" class="">
-История
-</a>
-
-<a href="currencies.html" class="">
-Валюты
-</a>
-
-<a href="weather.html" class="">
-Погода
-</a>
-
-</span>
-</span>
-
-<span class="nav-group">
-<span class="nav-group-label">Приложения</span>
-<span class="nav-group-items">
-
-<a href="torrent.html" class="">
-Торрент
-</a>
-
-<a href="apps.html" class="">
-Приложения
-</a>
-
-</span>
-</span>
-
-<span class="nav-group">
-<span class="nav-group-label">Система</span>
-<span class="nav-group-items">
-
-<a href="system.html" class="">
-Система
-</a>
-
-<a href="stub.html?to=capabilities" class="">
-Возможности
-</a>
-
-<a href="stub.html?to=roles" class="">
-Роли
-</a>
-
-<a href="modules.html" class="">
-Модули
-</a>
-
-<a href="about.html" class="">
-О системе
-</a>
-
-</span>
-</span>
-
-<span class="nav-group">
-<span class="nav-group-label">Помощь</span>
-<span class="nav-group-items">
-
-<a href="help.html" class="">
-Справка
 </a>
 
 </span>
@@ -180,16 +141,16 @@
 <a class="back" href="index.html">← Все устройства</a>
 
 <h2>
-Колонка Сбер
+192.168.1.83
 <span class="small">192.168.1.83</span>
 </h2>
 
 <form method="post" action="stub.html?to=device%2F192.168.1.83%2Fname">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WTA.n2iMts1sSpXBBBejH8qulR6S0Zg">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENlw.enj3jZQKFQ8ObhOj2SGOHW7XQDs">
 <input
 type="text"
 name="name"
-value="Колонка Сбер"
+value=""
 placeholder="Название устройства"
 >
 
@@ -240,17 +201,17 @@ Shenzhen Xiongxin Technology
 
 <div class="info-row">
 <span class="info-label">Первое обнаружение:</span>
-30.08.2026 00:18:10
+03.10.2026 08:44:03
 </div>
 
 <div class="info-row">
 <span class="info-label">Последнее обнаружение:</span>
-01.10.2026 20:19:46
+03.10.2026 17:12:46
 </div>
 
 <div class="info-row">
 <span class="info-label">Статистика:</span>
-пропусков: 0 · появлений: 39226
+пропусков: 0 · появлений: 348
 </div>
 
 </div>
@@ -261,21 +222,9 @@ Shenzhen Xiongxin Technology
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-<div class="empty-state">Открытых портов не обнаружено</div>
-
-
-<div class="small">Инвентаризация от: 2026-09-22 21:41:42 · <a href="inventory.html">вся инвентаризация</a></div>
+<div class="empty-state">
+Нет данных инвентаризации — запустите скан на <a href="inventory.html">странице инвентаризации</a>
+</div>
 
 
 
@@ -299,7 +248,7 @@ Shenzhen Xiongxin Technology
 
 <tr>
 
-<td>01.10.2026 06:43:05</td>
+<td>03.10.2026 10:05:14</td>
 
 <td>
 
@@ -317,7 +266,7 @@ Shenzhen Xiongxin Technology
 
 <tr>
 
-<td>01.10.2026 06:42:19</td>
+<td>03.10.2026 10:04:02</td>
 
 <td>
 
@@ -335,715 +284,13 @@ Shenzhen Xiongxin Technology
 
 <tr>
 
-<td>01.10.2026 06:03:23</td>
+<td>03.10.2026 08:44:03</td>
 
 <td>
 
 
 
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>01.10.2026 06:01:50</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>30.09.2026 14:28:24</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>30.09.2026 14:25:07</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>30.09.2026 11:56:09</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>30.09.2026 11:55:23</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>30.09.2026 10:00:12</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>30.09.2026 09:59:27</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>30.09.2026 08:40:52</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>28.09.2026 22:36:32</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>23.09.2026 05:48:04</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>23.09.2026 05:44:44</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>22.09.2026 07:38:49</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>22.09.2026 07:37:03</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>19.09.2026 10:58:34</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>19.09.2026 10:57:47</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>18.09.2026 15:14:00</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>18.09.2026 15:13:14</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>17.09.2026 07:07:31</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>17.09.2026 07:05:45</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>16.09.2026 13:56:17</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>16.09.2026 13:55:31</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>16.09.2026 01:22:12</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>16.09.2026 01:21:12</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>15.09.2026 05:03:05</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>15.09.2026 05:02:19</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>15.09.2026 04:17:27</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>15.09.2026 04:13:32</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>15.09.2026 01:13:36</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>15.09.2026 01:07:43</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>07.09.2026 00:22:24</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>07.09.2026 00:15:36</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>03.09.2026 03:33:05</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>03.09.2026 03:32:25</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>31.08.2026 07:34:21</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>31.08.2026 07:33:41</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>31.08.2026 04:37:15</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>31.08.2026 04:36:35</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>31.08.2026 04:31:45</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>31.08.2026 04:31:05</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
+<span class="new">● NEW</span>
 
 
 
@@ -1671,7 +918,7 @@ function diskPowerOff() {
                 "</div></div>";
         })
         .catch(() => {
-            alert("Команда на выключение отправлена. Отключите кабель питания вручную.");
+            toast("Команда на выключение отправлена. Отключите кабель питания вручную.", "info", 8000);
         });
 }
 
@@ -1864,9 +1111,10 @@ async function controlService(service, action) {
 
     } catch (error) {
 
-        alert(
+        toast(
             "Не удалось выполнить операцию: " +
-            error.message
+            error.message,
+            "error"
         );
     }
 }
@@ -1977,9 +1225,10 @@ async function toggleSambaGuest() {
 
     } catch (error) {
 
-        alert(
+        toast(
             "Не удалось изменить гостевой доступ: " +
-            error.message
+            error.message,
+            "error"
         );
     }
 }
@@ -2626,10 +1875,160 @@ CPU --°C · RAM --% · eMMC --% · HDD --% · ↓ -- · ↑ --
 </div>
 <div style="font-size:12px; color:#888; white-space:nowrap; display:flex; align-items:center; gap:10px;">
 <a href="restore.html" target="_blank" style="color:#ff9800; text-decoration:none; font-size:11px; opacity:0.7;" title="Emergency Restore Server — работает даже если app упал">⚠ Restore</a>
-<span>Admin (admin)</span>
+<span>admin (admin)</span>
 <a href="stub.html?to=logout" style="color:#e74c3c; text-decoration:none;">выйти</a>
 </div>
 </div>
 
-<div style="position:fixed;left:0;right:0;bottom:0;background:#12203a;color:#9fb6e8;font:11px/1.8 system-ui,sans-serif;padding:2px 8px;z-index:99998;text-align:center">Демо-режим · слепок от 01.10.2026 20:19 · данные не обновляются · <a href="index.html" style="color:#ffd54f">главная</a></div></body>
+<!-- Jobs widget (PHASE 2.0-3): активные фоновые задачи -->
+<div id="jobs-widget" style="display:none; position:fixed; right:14px; bottom:52px; z-index:1000; max-width:320px; background:rgba(24,26,32,.96); border:1px solid #3a3f4b; border-radius:8px; padding:8px 10px; font-size:12px; color:#ddd; box-shadow:0 4px 16px rgba(0,0,0,.45);"></div>
+<script>
+(function () {
+    var widget = document.getElementById("jobs-widget");
+    if (!widget) return;
+    var TITLES = {
+        "network-scan": "Сканирование сети",
+        "module-install": "Установка модуля",
+        "module-catalog-install": "Установка из каталога",
+        "module-catalog-update": "Обновление из каталога",
+        "db-backup": "Backup БД"
+    };
+    var shownActive = {};
+    var noteIds = {};
+    var noteTimer = null;
+    var lastJobs = [];
+
+    function esc(s) {
+        return String(s).replace(/[&<>"]/g, function (c) {
+            return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+        });
+    }
+    function label(j) {
+        var t = TITLES[j.type] || j.type;
+        var m = j.meta || {};
+        var extra = m.module || m.unit || m.subnet;
+        return extra && extra !== "авто" ? t + " · " + extra : t;
+    }
+    function isActive(j) {
+        return j.status === "queued" || j.status === "running";
+    }
+
+    function render() {
+        var active = lastJobs.filter(isActive);
+        Object.keys(shownActive).forEach(function (id) {
+            var still = active.some(function (j) { return j.id === id; });
+            if (!still) noteIds[id] = true;
+        });
+        shownActive = {};
+        active.forEach(function (j) { shownActive[j.id] = true; });
+        if (Object.keys(noteIds).length && !noteTimer) {
+            noteTimer = setTimeout(function () {
+                noteIds = {};
+                noteTimer = null;
+                render();
+            }, 6000);
+        }
+        if (!active.length && !Object.keys(noteIds).length) {
+            widget.style.display = "none";
+            widget.innerHTML = "";
+            return;
+        }
+        var html = "";
+        lastJobs.forEach(function (j) {
+            if (!noteIds[j.id]) return;
+            var color = j.status === "completed" ? "#7ec97e" :
+                        j.status === "cancelled" ? "#e0a060" : "#e07060";
+            var tail = j.status === "failed" ? (j.error || "ошибка") :
+                       j.status === "cancelled" ? "отменена" : "завершена";
+            html += '<div style="color:' + color + '; margin-bottom:4px;">' +
+                esc(label(j)) + ": " + esc(tail) + "</div>";
+        });
+        active.forEach(function (j) {
+            var pct = (j.progress === null || j.progress === undefined) ? 8 : j.progress;
+            html += '<div style="margin-bottom:6px;">' +
+                '<div style="display:flex; justify-content:space-between; gap:8px;">' +
+                "<span>" + esc(label(j)) + "</span>" +
+                '<span style="color:#999;">' + pct + "%</span></div>" +
+                '<div style="background:#2c2f36; height:5px; border-radius:3px; margin-top:3px; overflow:hidden;">' +
+                '<div style="width:' + pct + '%; height:100%; background:#ff9800; transition:width .5s;"></div></div>';
+
+            if (j.cancelable) {
+                html += '<div style="text-align:right; margin-top:2px;">' +
+                    '<a href="#" data-job-cancel="' + esc(j.id) +
+                    '" style="color:#e07060; font-size:11px;">отменить</a></div>';
+            }
+
+            html += "</div>";
+        });
+        widget.innerHTML = html;
+        widget.style.display = "block";
+    }
+
+    widget.addEventListener("click", function (e) {
+        var a = e.target && e.target.closest ? e.target.closest("[data-job-cancel]") : null;
+        if (!a) return;
+        e.preventDefault();
+        var token = (document.querySelector('meta[name="csrf-token"]') || {}).content || "";
+        fetch("api/jobs/" + a.getAttribute("data-job-cancel") + "cancel", {
+            method: "POST",
+            headers: { "X-CSRFToken": token }
+        }).then(function () { poll(); }).catch(function () {});
+    });
+
+    function poll() {
+        fetch("api/jobs?limit=15")
+            .then(function (r) { return r.json(); })
+            .then(function (d) {
+                if (!d.ok) return;
+                lastJobs = d.jobs || [];
+                render();
+            })
+            .catch(function () {});
+    }
+    poll();
+    setInterval(poll, 4000);
+})();
+</script>
+
+<!-- Единые уведомления и диалоги (Спецификация §23) -->
+<div id="toast-root" class="toast-root" role="status" aria-live="polite"></div>
+<dialog id="confirm-dialog" class="confirm-dialog">
+<form method="dialog">
+<h3 id="confirm-dialog-title">Подтверждение</h3>
+<p id="confirm-dialog-text"></p>
+<div class="confirm-actions">
+<button value="cancel" class="btn">Отмена</button>
+<button value="ok" class="btn btn-primary">OK</button>
+</div>
+</form>
+</dialog>
+<script>
+window.toast = function (msg, type, ttl) {
+    var root = document.getElementById("toast-root");
+    if (!root) return;
+    var el = document.createElement("div");
+    el.className = "toast toast-" + (type || "info");
+    el.textContent = msg;
+    root.appendChild(el);
+    setTimeout(function () { el.classList.add("toast-out"); }, ttl || 5000);
+    setTimeout(function () { el.remove(); }, (ttl || 5000) + 500);
+};
+window.confirmDialog = function (text, title) {
+    var dlg = document.getElementById("confirm-dialog");
+    if (!dlg || typeof dlg.showModal !== "function") {
+        return Promise.resolve(window.confirm(text));
+    }
+    document.getElementById("confirm-dialog-title").textContent = title || "Подтверждение";
+    document.getElementById("confirm-dialog-text").textContent = text;
+    return new Promise(function (resolve) {
+        dlg.addEventListener("close", function handler() {
+            dlg.removeEventListener("close", handler);
+            resolve(dlg.returnValue === "ok");
+        });
+        dlg.showModal();
+    });
+};
+</script>
+
+<div style="position:fixed;left:0;right:0;bottom:0;background:#12203a;color:#9fb6e8;font:11px/1.8 system-ui,sans-serif;padding:2px 8px;z-index:99998;text-align:center">Демо-режим · слепок от 03.10.2026 17:13 · данные не обновляются · <a href="index.html" style="color:#ffd54f">главная</a></div></body>
 </html>

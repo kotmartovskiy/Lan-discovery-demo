@@ -5,7 +5,7 @@
 <script src="demo.js"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="csrf-token" content="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WPw.dtVG7f5Rsq9YDlU-AXZeLfIu8YA">
+<meta name="csrf-token" content="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENjQ.-gawdj5Y4vWiB8zk08q81qYtNKQ">
 <script>
 (function () {
     var meta = document.querySelector('meta[name="csrf-token"]');
@@ -39,6 +39,7 @@
 
 <body>
 
+
 <a class="skip-link" href="#main">Перейти к содержимому</a>
 
 <header class="header">
@@ -60,60 +61,43 @@
 <circle cx="50" cy="30" r="3" fill="#ffcc02"/>
 </svg>LAN Discovery <span style="font-size:0.5em;font-weight:normal;opacity:0.7;">(x96max)</span></h1>
 
+<nav class="sections" aria-label="Разделы приложения">
+
+<a href="index.html" class="section">
+<span class="section-ico" aria-hidden="true">🏠</span>HOME
+</a>
+
+<a href="stub.html?to=devices" class="section">
+<span class="section-ico" aria-hidden="true">🌐</span>NETWORK
+</a>
+
+<a href="history.html" class="section">
+<span class="section-ico" aria-hidden="true">📊</span>MONITORING
+</a>
+
+<a href="stub.html?to=storage" class="section">
+<span class="section-ico" aria-hidden="true">💾</span>STORAGE
+</a>
+
+<a href="apps.html" class="section">
+<span class="section-ico" aria-hidden="true">🧩</span>APPLICATIONS
+</a>
+
+<a href="stub.html?to=capabilities" class="section">
+<span class="section-ico" aria-hidden="true">🔧</span>HARDWARE
+</a>
+
+<a href="system.html" class="section active" aria-current="page">
+<span class="section-ico" aria-hidden="true">⚙️</span>SYSTEM
+</a>
+
+<a href="modules.html" class="section">
+<span class="section-ico" aria-hidden="true">🛡</span>ADMIN
+</a>
+
+</nav>
+
 <nav class="tabs" aria-label="Разделы панели">
-
-<span class="nav-group">
-<span class="nav-group-label">Устройства</span>
-<span class="nav-group-items">
-
-<a href="index.html" class="">
-Устройства
-</a>
-
-<a href="inventory.html" class="">
-Инвентаризация
-</a>
-
-</span>
-</span>
-
-<span class="nav-group">
-<span class="nav-group-label">Мониторинг</span>
-<span class="nav-group-items">
-
-<a href="monitoring.html" class="">
-Мониторинг
-</a>
-
-<a href="history.html" class="">
-История
-</a>
-
-<a href="currencies.html" class="">
-Валюты
-</a>
-
-<a href="weather.html" class="">
-Погода
-</a>
-
-</span>
-</span>
-
-<span class="nav-group">
-<span class="nav-group-label">Приложения</span>
-<span class="nav-group-items">
-
-<a href="torrent.html" class="">
-Торрент
-</a>
-
-<a href="apps.html" class="">
-Приложения
-</a>
-
-</span>
-</span>
 
 <span class="nav-group">
 <span class="nav-group-label">Система</span>
@@ -121,18 +105,6 @@
 
 <a href="system.html" class="">
 Система
-</a>
-
-<a href="stub.html?to=capabilities" class="">
-Возможности
-</a>
-
-<a href="stub.html?to=roles" class="">
-Роли
-</a>
-
-<a href="modules.html" class="">
-Модули
 </a>
 
 <a href="about.html" class="">
@@ -227,7 +199,7 @@
     <a href="#faq">11. FAQ</a>
     
     <div class="toc-group">Модули</div>
-    <a href="#mod-bluetooth">Bluetooth</a><a href="#mod-camera">Камеры</a><a href="#mod-curr-crypto">Криптовалюта</a><a href="#mod-curr-fiat">Fiat валюты</a><a href="#mod-curr-industrial">Промышленные металлы</a><a href="#mod-curr-precious">Драгоценные металлы</a><a href="#mod-curr-recycling">Приемные пункты (ЦФО)</a><a href="#mod-currencies">Валюты</a><a href="#mod-disks">Диски</a><a href="#mod-dlna">DLNA</a><a href="#mod-downloads">Загрузки</a><a href="#mod-filemanager">Файловый менеджер</a><a href="#mod-inventory">Инвентаризация</a><a href="#mod-monitoring">Мониторинг</a><a href="#mod-nettools">Сетевые инструменты</a><a href="#mod-notes">Заметки</a><a href="#mod-passwords">Пароли</a><a href="#mod-player">Плеер</a><a href="#mod-radio">Радио</a><a href="#mod-sys-board">X96 Max</a><a href="#mod-sys-clone">Замена HDD / Клонирование</a><a href="#mod-sys-db">Backup БД</a><a href="#mod-sys-emmc">eMMC Backup</a><a href="#mod-sys-iptv">IPTV</a><a href="#mod-sys-network">Сеть</a><a href="#mod-sys-power">Управление питанием</a><a href="#mod-sys-settings">Настройки</a><a href="#mod-sys-users">Пользователи</a><a href="#mod-terminal">Терминал</a><a href="#mod-torrent">Торренты</a><a href="#mod-upnp">UPnP</a><a href="#mod-weather">Погода</a><a href="#mod-wifianalyzer">Wi-Fi анализатор</a>
+    <a href="#mod-bluetooth">Bluetooth</a><a href="#mod-camera">Камеры</a><a href="#mod-curr-crypto">Криптовалюта</a><a href="#mod-curr-fiat">Fiat валюты</a><a href="#mod-curr-industrial">Промышленные металлы</a><a href="#mod-curr-precious">Драгоценные металлы</a><a href="#mod-curr-recycling">Приемные пункты (ЦФО)</a><a href="#mod-currencies">Валюты</a><a href="#mod-disks">Диски</a><a href="#mod-dlna">DLNA</a><a href="#mod-downloads">Загрузки</a><a href="#mod-filemanager">Файловый менеджер</a><a href="#mod-inventory">Инвентаризация</a><a href="#mod-monitoring">Мониторинг</a><a href="#mod-nettools">Сетевые инструменты</a><a href="#mod-notes">Заметки</a><a href="#mod-passwords">Пароли</a><a href="#mod-player">Плеер</a><a href="#mod-radio">Радио</a><a href="#mod-sys-board">Плата</a><a href="#mod-sys-clone">Замена HDD / Клонирование</a><a href="#mod-sys-db">Backup БД</a><a href="#mod-sys-emmc">eMMC Backup</a><a href="#mod-sys-iptv">IPTV</a><a href="#mod-sys-network">Сеть</a><a href="#mod-sys-power">Управление питанием</a><a href="#mod-sys-settings">Настройки</a><a href="#mod-sys-users">Пользователи</a><a href="#mod-terminal">Терминал</a><a href="#mod-torrent">Торренты</a><a href="#mod-upnp">UPnP</a><a href="#mod-weather">Погода</a><a href="#mod-wifianalyzer">Wi-Fi анализатор</a>
     
 </nav>
 
@@ -244,7 +216,7 @@
 
 <h4>Технологии</h4>
 <ul>
-<li><strong>Сервер:</strong> Python 3 + Flask (порт 8080)</li>
+<li><strong>Сервер:</strong> Python 3 + Flask (порт 8090)</li>
 <li><strong>База данных:</strong> SQLite (<code>/opt/lan-discovery/devices.db</code>)</li>
 <li><strong>Сканирование сети:</strong> nmap (ARP-сканирование)</li>
 <li><strong>Погода:</strong> Open-Meteo API (57.0°N, 41.0°E)</li>
@@ -267,7 +239,7 @@
 <tr><td>Другой IP</td><td><code>192.168.1.244</code></td></tr>
 
 <tr><td>SSH</td><td>root / пароль задан при установке</td></tr>
-<tr><td>Веб-панель</td><td><code>http://192.168.1.243:8080</code></td></tr>
+<tr><td>Веб-панель</td><td><code>http://192.168.1.243:8090</code></td></tr>
 <tr><td>Аварийный restore-сервер</td><td><code>http://192.168.1.243:8081</code></td></tr>
 </table>
 
@@ -275,45 +247,53 @@
 <table class="help-table">
 <tr><th>Устройство</th><th>Размер</th><th>Точка монтирования</th><th>Назначение</th></tr>
 
-<tr><td><code>/dev/mmcblk1</code> (SD)</td><td>29.0 GiB</td><td><code>/boot, /</code></td><td>системный диск (панель, данные)</td></tr>
+<tr><td><code>/dev/mmcblk1</code> (SD)</td><td>29.0 GiB</td><td><code>/boot, /opt/lan-discovery, /etc/lan-discovery, /</code></td><td>системный диск (панель, данные)</td></tr>
 
 <tr><td><code>/dev/mmcblk2</code> (eMMC)</td><td>29.1 GiB</td><td>—</td><td>пустой (не используется)</td></tr>
 
 </table>
 
+
 <h4>Сетевые устройства</h4>
 <table class="help-table">
 <tr><th>Устройство</th><th>IP</th><th>Описание</th></tr>
 
-<tr><td>X96 Max (панель)</td><td><code>192.168.1.243</code></td><td>Панель X96 Max (основной сервер) — <b>эта панель</b></td></tr>
+<tr><td>Основная панель</td><td><code>192.168.1.243</code></td><td>Эта панель (основной сервер) — <b>эта панель</b></td></tr>
 
-<tr><td>X96 Max (WiFi)</td><td><code>192.168.1.244</code></td><td>WiFi-интерфейс X96 Max</td></tr>
+<tr><td>Панель (WiFi)</td><td><code>192.168.1.244</code></td><td>WiFi-интерфейс этой панели</td></tr>
 
-<tr><td>Orange Pi (LAN)</td><td><code>192.168.1.234</code></td><td>Удалённый сервер (кабель отвален — не отвечает)</td></tr>
+<tr><td>Удалённый сервер</td><td><code>192.168.1.234</code></td><td>Вторая панель (LAN)</td></tr>
 
-<tr><td>Orange Pi (WiFi AP)</td><td><code>192.168.1.235</code></td><td>Доступ к Orange Pi через его WiFi AP</td></tr>
+<tr><td>Удалённый сервер (WiFi AP)</td><td><code>192.168.1.235</code></td><td>Доступ к нему через его WiFi AP</td></tr>
 
-<tr><td>ThinkPad T480</td><td><code>192.168.1.236 / .239</code></td><td>Рабочая станция</td></tr>
+<tr><td>Рабочая станция</td><td><code>192.168.1.236 / .239</code></td><td>Рабочая станция</td></tr>
 
-<tr><td>Роутер</td><td><code>192.168.1.1</code></td><td>Шлюз, веб-интерфейс</td></tr>
+<tr><td>Шлюз</td><td><code>192.168.1.1</code></td><td>Веб-интерфейс роутера</td></tr>
 
 <tr><td>DNS-сервер</td><td><code>192.168.1.51</code></td><td>Локальный DNS</td></tr>
 
 </table>
+
 </div>
 
 <!-- 3. Страницы панели -->
 <div class="help-section" id="pages">
 <h3>3. Страницы панели</h3>
 
-<h4>🏠 Устройства (<code>/</code>)</h4>
-<p>Главная страница. Автоматическое сканирование сети (ARP via nmap).</p>
+<h4>🏠 Главная (<code>/</code>)</h4>
+<p>Обзор: состояние системы, активные задачи и ключевые метрики.</p>
+
+<h4>🌐 Устройства (<code>/devices</code>)</h4>
+<p>Автоматическое сканирование сети (ARP via nmap).</p>
 <ul>
 <li>Список всех найденных устройств с IP, MAC, именем, статусом онлайн/офлайн</li>
 <li>Цветовая индикация: зелёный — онлайн, серый — оффлайн, жёлтый — новое устройство</li>
 <li>Клик по устройству → детальная страница с историей</li>
 <li>Возможность задать имя устройству</li>
 </ul>
+
+<h4>💾 Хранилище (<code>/storage</code>)</h4>
+<p>Диски и точки монтирования: корень, SD, eMMC, HDD, свободное место.</p>
 
 <h4>🖥 Система (<code>/system</code>)</h4>
 <p>Управление сервером X96 Max.</p>
@@ -719,14 +699,14 @@ mutation-запросы требуют CSRF-токен (заголовок <code
 <h3>📦 Мониторинг</h3>
 <p><strong>Где это:</strong> вкладка «Мониторинг».</p>
 <ul>
-<li>Список хостов панели: X96 Max (<code>192.168.1.243</code>) и остальные из <code>monitoring.hosts</code> (<code>/etc/lan-discovery/settings.json</code>).</li>
+<li>Список хостов панели — из <code>monitoring.hosts</code> (<code>/etc/lan-discovery/settings.json</code>).</li>
 <li>Метрики (CPU, RAM, диск, сеть) читаются из Netdata каждого хоста — порт <code>19999</code>.</li>
 <li>Хост помечен ONLINE/OFFLINE; клик по строке — детальные графики Netdata.</li>
 <li>Страница: агрегация данных по хостам в реальном времени, аккордеон по хостам,
   прогресс-бары с цветовой индикацией (норма / предупреждение / критично).</li>
 <li>API: <code>GET /api/monitoring/&lt;ip&gt;</code> — метрики хоста (503, если хост недоступен).</li>
 <li>Зависимости модуля: пакет <code>netdata</code> (apt), сервис <code>netdata</code>.
-  На X96 Max: <code>bind socket to IP = 0.0.0.0</code> в <code>/etc/netdata/netdata.conf</code>, чтобы хост был виден извне.</li>
+  Чтобы хост был виден извне: <code>bind socket to IP = 0.0.0.0</code> в <code>/etc/netdata/netdata.conf</code>.</li>
 <li>Выключенный модуль: вкладка скрыта, <code>/monitoring</code> и <code>/api/monitoring</code> → 404.</li>
 </ul>
 </div>
@@ -787,7 +767,7 @@ mutation-запросы требуют CSRF-токен (заголовок <code
 </div>
 
 <div class="help-section" id="mod-sys-board">
-<h3>📦 X96 Max</h3>
+<h3>📦 Плата</h3>
 <p><strong>Где это:</strong> карточки платы на вкладке «Система».</p>
 <ul>
 <li>Uptime, нагрузка CPU, температура, объём RAM.</li>
@@ -957,7 +937,7 @@ mutation-запросы требуют CSRF-токен (заголовок <code
 <ul>
 <li>Скан окрестных Wi-Fi сетей: SSID, BSSID, канал, уровень сигнала, шифрование; диаграмма каналов для поиска перегруженности.</li>
 <li>API: <code>GET /api/wifi/scan</code> — несколько секунд идёт реальный скан (<code>nmcli dev wifi rescan</code>).</li>
-<li>Нужен Wi-Fi адаптер с поддержкой скана (на X96 Max — <code>wlan0</code>).</li>
+<li>Нужен Wi-Fi адаптер с поддержкой скана (имя интерфейса, например <code>wlan0</code>).</li>
 <li>Выключенный модуль: плитка скрыта, <code>/apps/wifianalyzer</code> и <code>/api/wifi</code> → 404.</li>
 </ul>
 </div>
@@ -1575,7 +1555,7 @@ function diskPowerOff() {
                 "</div></div>";
         })
         .catch(() => {
-            alert("Команда на выключение отправлена. Отключите кабель питания вручную.");
+            toast("Команда на выключение отправлена. Отключите кабель питания вручную.", "info", 8000);
         });
 }
 
@@ -1768,9 +1748,10 @@ async function controlService(service, action) {
 
     } catch (error) {
 
-        alert(
+        toast(
             "Не удалось выполнить операцию: " +
-            error.message
+            error.message,
+            "error"
         );
     }
 }
@@ -1881,9 +1862,10 @@ async function toggleSambaGuest() {
 
     } catch (error) {
 
-        alert(
+        toast(
             "Не удалось изменить гостевой доступ: " +
-            error.message
+            error.message,
+            "error"
         );
     }
 }
@@ -2530,10 +2512,160 @@ CPU --°C · RAM --% · eMMC --% · HDD --% · ↓ -- · ↑ --
 </div>
 <div style="font-size:12px; color:#888; white-space:nowrap; display:flex; align-items:center; gap:10px;">
 <a href="restore.html" target="_blank" style="color:#ff9800; text-decoration:none; font-size:11px; opacity:0.7;" title="Emergency Restore Server — работает даже если app упал">⚠ Restore</a>
-<span>Admin (admin)</span>
+<span>admin (admin)</span>
 <a href="stub.html?to=logout" style="color:#e74c3c; text-decoration:none;">выйти</a>
 </div>
 </div>
 
-<div style="position:fixed;left:0;right:0;bottom:0;background:#12203a;color:#9fb6e8;font:11px/1.8 system-ui,sans-serif;padding:2px 8px;z-index:99998;text-align:center">Демо-режим · слепок от 01.10.2026 20:19 · данные не обновляются · <a href="index.html" style="color:#ffd54f">главная</a></div></body>
+<!-- Jobs widget (PHASE 2.0-3): активные фоновые задачи -->
+<div id="jobs-widget" style="display:none; position:fixed; right:14px; bottom:52px; z-index:1000; max-width:320px; background:rgba(24,26,32,.96); border:1px solid #3a3f4b; border-radius:8px; padding:8px 10px; font-size:12px; color:#ddd; box-shadow:0 4px 16px rgba(0,0,0,.45);"></div>
+<script>
+(function () {
+    var widget = document.getElementById("jobs-widget");
+    if (!widget) return;
+    var TITLES = {
+        "network-scan": "Сканирование сети",
+        "module-install": "Установка модуля",
+        "module-catalog-install": "Установка из каталога",
+        "module-catalog-update": "Обновление из каталога",
+        "db-backup": "Backup БД"
+    };
+    var shownActive = {};
+    var noteIds = {};
+    var noteTimer = null;
+    var lastJobs = [];
+
+    function esc(s) {
+        return String(s).replace(/[&<>"]/g, function (c) {
+            return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+        });
+    }
+    function label(j) {
+        var t = TITLES[j.type] || j.type;
+        var m = j.meta || {};
+        var extra = m.module || m.unit || m.subnet;
+        return extra && extra !== "авто" ? t + " · " + extra : t;
+    }
+    function isActive(j) {
+        return j.status === "queued" || j.status === "running";
+    }
+
+    function render() {
+        var active = lastJobs.filter(isActive);
+        Object.keys(shownActive).forEach(function (id) {
+            var still = active.some(function (j) { return j.id === id; });
+            if (!still) noteIds[id] = true;
+        });
+        shownActive = {};
+        active.forEach(function (j) { shownActive[j.id] = true; });
+        if (Object.keys(noteIds).length && !noteTimer) {
+            noteTimer = setTimeout(function () {
+                noteIds = {};
+                noteTimer = null;
+                render();
+            }, 6000);
+        }
+        if (!active.length && !Object.keys(noteIds).length) {
+            widget.style.display = "none";
+            widget.innerHTML = "";
+            return;
+        }
+        var html = "";
+        lastJobs.forEach(function (j) {
+            if (!noteIds[j.id]) return;
+            var color = j.status === "completed" ? "#7ec97e" :
+                        j.status === "cancelled" ? "#e0a060" : "#e07060";
+            var tail = j.status === "failed" ? (j.error || "ошибка") :
+                       j.status === "cancelled" ? "отменена" : "завершена";
+            html += '<div style="color:' + color + '; margin-bottom:4px;">' +
+                esc(label(j)) + ": " + esc(tail) + "</div>";
+        });
+        active.forEach(function (j) {
+            var pct = (j.progress === null || j.progress === undefined) ? 8 : j.progress;
+            html += '<div style="margin-bottom:6px;">' +
+                '<div style="display:flex; justify-content:space-between; gap:8px;">' +
+                "<span>" + esc(label(j)) + "</span>" +
+                '<span style="color:#999;">' + pct + "%</span></div>" +
+                '<div style="background:#2c2f36; height:5px; border-radius:3px; margin-top:3px; overflow:hidden;">' +
+                '<div style="width:' + pct + '%; height:100%; background:#ff9800; transition:width .5s;"></div></div>';
+
+            if (j.cancelable) {
+                html += '<div style="text-align:right; margin-top:2px;">' +
+                    '<a href="#" data-job-cancel="' + esc(j.id) +
+                    '" style="color:#e07060; font-size:11px;">отменить</a></div>';
+            }
+
+            html += "</div>";
+        });
+        widget.innerHTML = html;
+        widget.style.display = "block";
+    }
+
+    widget.addEventListener("click", function (e) {
+        var a = e.target && e.target.closest ? e.target.closest("[data-job-cancel]") : null;
+        if (!a) return;
+        e.preventDefault();
+        var token = (document.querySelector('meta[name="csrf-token"]') || {}).content || "";
+        fetch("api/jobs/" + a.getAttribute("data-job-cancel") + "cancel", {
+            method: "POST",
+            headers: { "X-CSRFToken": token }
+        }).then(function () { poll(); }).catch(function () {});
+    });
+
+    function poll() {
+        fetch("api/jobs?limit=15")
+            .then(function (r) { return r.json(); })
+            .then(function (d) {
+                if (!d.ok) return;
+                lastJobs = d.jobs || [];
+                render();
+            })
+            .catch(function () {});
+    }
+    poll();
+    setInterval(poll, 4000);
+})();
+</script>
+
+<!-- Единые уведомления и диалоги (Спецификация §23) -->
+<div id="toast-root" class="toast-root" role="status" aria-live="polite"></div>
+<dialog id="confirm-dialog" class="confirm-dialog">
+<form method="dialog">
+<h3 id="confirm-dialog-title">Подтверждение</h3>
+<p id="confirm-dialog-text"></p>
+<div class="confirm-actions">
+<button value="cancel" class="btn">Отмена</button>
+<button value="ok" class="btn btn-primary">OK</button>
+</div>
+</form>
+</dialog>
+<script>
+window.toast = function (msg, type, ttl) {
+    var root = document.getElementById("toast-root");
+    if (!root) return;
+    var el = document.createElement("div");
+    el.className = "toast toast-" + (type || "info");
+    el.textContent = msg;
+    root.appendChild(el);
+    setTimeout(function () { el.classList.add("toast-out"); }, ttl || 5000);
+    setTimeout(function () { el.remove(); }, (ttl || 5000) + 500);
+};
+window.confirmDialog = function (text, title) {
+    var dlg = document.getElementById("confirm-dialog");
+    if (!dlg || typeof dlg.showModal !== "function") {
+        return Promise.resolve(window.confirm(text));
+    }
+    document.getElementById("confirm-dialog-title").textContent = title || "Подтверждение";
+    document.getElementById("confirm-dialog-text").textContent = text;
+    return new Promise(function (resolve) {
+        dlg.addEventListener("close", function handler() {
+            dlg.removeEventListener("close", handler);
+            resolve(dlg.returnValue === "ok");
+        });
+        dlg.showModal();
+    });
+};
+</script>
+
+<div style="position:fixed;left:0;right:0;bottom:0;background:#12203a;color:#9fb6e8;font:11px/1.8 system-ui,sans-serif;padding:2px 8px;z-index:99998;text-align:center">Демо-режим · слепок от 03.10.2026 17:13 · данные не обновляются · <a href="index.html" style="color:#ffd54f">главная</a></div></body>
 </html>

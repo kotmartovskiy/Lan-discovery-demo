@@ -1,1 +1,1 @@
-{"disk": "/dev/sda", "mount": "/srv", "mounted": false, "part": "/dev/sda1", "usage": {"free": "23G", "percent": "19%", "total": "28G", "used": "5.1G"}, "uuid": ""}
+{"error": "Expecting value: line 1 column 1 (char 0)"}

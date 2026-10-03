@@ -5,7 +5,7 @@
 <script src="demo.js"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="csrf-token" content="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WRw.a5orWZQf7EVPSd38hHVddFO42Pk">
+<meta name="csrf-token" content="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENlA.F3WMEsgY6sckiQUYUR4gQG5U3Xg">
 <script>
 (function () {
     var meta = document.querySelector('meta[name="csrf-token"]');
@@ -39,6 +39,7 @@
 
 <body>
 
+
 <a class="skip-link" href="#main">Перейти к содержимому</a>
 
 <header class="header">
@@ -60,94 +61,54 @@
 <circle cx="50" cy="30" r="3" fill="#ffcc02"/>
 </svg>LAN Discovery <span style="font-size:0.5em;font-weight:normal;opacity:0.7;">(x96max)</span></h1>
 
+<nav class="sections" aria-label="Разделы приложения">
+
+<a href="index.html" class="section">
+<span class="section-ico" aria-hidden="true">🏠</span>HOME
+</a>
+
+<a href="stub.html?to=devices" class="section active" aria-current="page">
+<span class="section-ico" aria-hidden="true">🌐</span>NETWORK
+</a>
+
+<a href="history.html" class="section">
+<span class="section-ico" aria-hidden="true">📊</span>MONITORING
+</a>
+
+<a href="stub.html?to=storage" class="section">
+<span class="section-ico" aria-hidden="true">💾</span>STORAGE
+</a>
+
+<a href="apps.html" class="section">
+<span class="section-ico" aria-hidden="true">🧩</span>APPLICATIONS
+</a>
+
+<a href="stub.html?to=capabilities" class="section">
+<span class="section-ico" aria-hidden="true">🔧</span>HARDWARE
+</a>
+
+<a href="system.html" class="section">
+<span class="section-ico" aria-hidden="true">⚙️</span>SYSTEM
+</a>
+
+<a href="modules.html" class="section">
+<span class="section-ico" aria-hidden="true">🛡</span>ADMIN
+</a>
+
+</nav>
+
 <nav class="tabs" aria-label="Разделы панели">
 
 <span class="nav-group">
 <span class="nav-group-label">Устройства</span>
 <span class="nav-group-items">
 
-<a href="index.html" class="">
+<a href="stub.html?to=devices" class="active">
 Устройства
 </a>
 
 <a href="inventory.html" class="">
 Инвентаризация
-</a>
-
-</span>
-</span>
-
-<span class="nav-group">
-<span class="nav-group-label">Мониторинг</span>
-<span class="nav-group-items">
-
-<a href="monitoring.html" class="">
-Мониторинг
-</a>
-
-<a href="history.html" class="">
-История
-</a>
-
-<a href="currencies.html" class="">
-Валюты
-</a>
-
-<a href="weather.html" class="">
-Погода
-</a>
-
-</span>
-</span>
-
-<span class="nav-group">
-<span class="nav-group-label">Приложения</span>
-<span class="nav-group-items">
-
-<a href="torrent.html" class="">
-Торрент
-</a>
-
-<a href="apps.html" class="">
-Приложения
-</a>
-
-</span>
-</span>
-
-<span class="nav-group">
-<span class="nav-group-label">Система</span>
-<span class="nav-group-items">
-
-<a href="system.html" class="">
-Система
-</a>
-
-<a href="stub.html?to=capabilities" class="">
-Возможности
-</a>
-
-<a href="stub.html?to=roles" class="">
-Роли
-</a>
-
-<a href="modules.html" class="">
-Модули
-</a>
-
-<a href="about.html" class="">
-О системе
-</a>
-
-</span>
-</span>
-
-<span class="nav-group">
-<span class="nav-group-label">Помощь</span>
-<span class="nav-group-items">
-
-<a href="help.html" class="">
-Справка
 </a>
 
 </span>
@@ -180,16 +141,16 @@
 <a class="back" href="index.html">← Все устройства</a>
 
 <h2>
-Chromecast
+192.168.1.222
 <span class="small">192.168.1.222</span>
 </h2>
 
 <form method="post" action="stub.html?to=device%2F192.168.1.222%2Fname">
-<input type="hidden" name="csrf_token" value="IjJiODdhM2M1NTcyYjdkYTQzYmE2Y2Q3OTg1MDEzYjBkNzE5NGQ5ZjUi.ar6WRw.a5orWZQf7EVPSd38hHVddFO42Pk">
+<input type="hidden" name="csrf_token" value="IjAzOGJjYTYzNjBjOGRhMGY0MTg4YWJkNmQ4ZTYxZmQyZDFjZTM3MmIi.asENlA.F3WMEsgY6sckiQUYUR4gQG5U3Xg">
 <input
 type="text"
 name="name"
-value="Chromecast"
+value=""
 placeholder="Название устройства"
 >
 
@@ -198,7 +159,7 @@ placeholder="Название устройства"
 <option value="computer">💻 Компьютер</option>
 <option value="mobile">📱 Мобильное устройство</option>
 <option value="iot">🏠 Устройство IoT</option>
-<option value="other" selected>❓ Прочее</option>
+<option value="other">❓ Прочее</option>
 </select>
 
 <button type="submit" class="btn btn-primary btn-sm">
@@ -235,22 +196,22 @@ AzureWave Technology
 
 <div class="info-row">
 <span class="info-label">Тип:</span>
-❓ Прочее
+<span class="na">—</span>
 </div>
 
 <div class="info-row">
 <span class="info-label">Первое обнаружение:</span>
-30.08.2026 00:18:10
+03.10.2026 10:37:06
 </div>
 
 <div class="info-row">
 <span class="info-label">Последнее обнаружение:</span>
-01.10.2026 20:19:46
+03.10.2026 17:12:46
 </div>
 
 <div class="info-row">
 <span class="info-label">Статистика:</span>
-пропусков: 0 · появлений: 12031
+пропусков: 0 · появлений: 85
 </div>
 
 </div>
@@ -261,21 +222,9 @@ AzureWave Technology
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-<div class="empty-state">Открытых портов не обнаружено</div>
-
-
-<div class="small">Инвентаризация от: 2026-09-22 20:43:48 · <a href="inventory.html">вся инвентаризация</a></div>
+<div class="empty-state">
+Нет данных инвентаризации — запустите скан на <a href="inventory.html">странице инвентаризации</a>
+</div>
 
 
 
@@ -299,7 +248,7 @@ AzureWave Technology
 
 <tr>
 
-<td>01.10.2026 14:02:33</td>
+<td>03.10.2026 16:16:18</td>
 
 <td>
 
@@ -317,7 +266,7 @@ AzureWave Technology
 
 <tr>
 
-<td>01.10.2026 14:01:32</td>
+<td>03.10.2026 13:04:39</td>
 
 <td>
 
@@ -335,7 +284,7 @@ AzureWave Technology
 
 <tr>
 
-<td>01.10.2026 10:14:41</td>
+<td>03.10.2026 12:49:30</td>
 
 <td>
 
@@ -353,7 +302,7 @@ AzureWave Technology
 
 <tr>
 
-<td>01.10.2026 03:03:10</td>
+<td>03.10.2026 12:48:32</td>
 
 <td>
 
@@ -371,7 +320,7 @@ AzureWave Technology
 
 <tr>
 
-<td>30.09.2026 17:58:48</td>
+<td>03.10.2026 12:36:04</td>
 
 <td>
 
@@ -389,7 +338,7 @@ AzureWave Technology
 
 <tr>
 
-<td>28.09.2026 15:13:16</td>
+<td>03.10.2026 12:35:06</td>
 
 <td>
 
@@ -407,7 +356,7 @@ AzureWave Technology
 
 <tr>
 
-<td>28.09.2026 11:59:30</td>
+<td>03.10.2026 11:47:35</td>
 
 <td>
 
@@ -425,7 +374,7 @@ AzureWave Technology
 
 <tr>
 
-<td>28.09.2026 02:41:55</td>
+<td>03.10.2026 11:45:25</td>
 
 <td>
 
@@ -443,7 +392,7 @@ AzureWave Technology
 
 <tr>
 
-<td>27.09.2026 20:26:26</td>
+<td>03.10.2026 11:13:33</td>
 
 <td>
 
@@ -461,7 +410,7 @@ AzureWave Technology
 
 <tr>
 
-<td>27.09.2026 20:25:25</td>
+<td>03.10.2026 11:10:26</td>
 
 <td>
 
@@ -479,1615 +428,13 @@ AzureWave Technology
 
 <tr>
 
-<td>27.09.2026 17:37:23</td>
+<td>03.10.2026 10:37:06</td>
 
 <td>
 
 
 
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>27.09.2026 00:00:24</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>26.09.2026 23:03:24</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>26.09.2026 23:02:22</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>26.09.2026 22:50:57</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>26.09.2026 22:49:59</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>26.09.2026 20:20:43</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>26.09.2026 20:18:43</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>26.09.2026 19:19:36</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>26.09.2026 19:17:25</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>26.09.2026 17:54:16</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>26.09.2026 17:53:14</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>26.09.2026 16:02:40</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>26.09.2026 15:19:07</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>26.09.2026 14:57:49</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>26.09.2026 14:55:56</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>26.09.2026 13:50:16</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>26.09.2026 13:49:16</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>26.09.2026 13:42:22</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>26.09.2026 13:40:37</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>26.09.2026 09:09:13</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>26.09.2026 09:02:21</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>26.09.2026 08:31:56</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>26.09.2026 00:58:34</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>25.09.2026 11:06:15</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>25.09.2026 11:04:16</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>25.09.2026 08:54:28</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>25.09.2026 03:13:24</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>25.09.2026 00:03:04</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>25.09.2026 00:02:09</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>24.09.2026 18:58:31</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>24.09.2026 18:57:27</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>24.09.2026 17:09:22</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>24.09.2026 17:08:22</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>24.09.2026 16:12:31</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>24.09.2026 14:07:51</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>24.09.2026 13:10:15</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>24.09.2026 13:09:11</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>24.09.2026 12:47:02</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>23.09.2026 23:18:44</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>23.09.2026 16:37:38</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>23.09.2026 13:35:14</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>23.09.2026 10:12:02</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>22.09.2026 23:55:21</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>22.09.2026 20:28:24</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>22.09.2026 02:10:34</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>22.09.2026 01:51:58</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>22.09.2026 01:50:59</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>21.09.2026 18:08:30</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>21.09.2026 00:03:20</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>20.09.2026 19:24:14</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>20.09.2026 19:19:24</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>20.09.2026 19:05:48</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>20.09.2026 19:04:47</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>20.09.2026 18:38:41</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>20.09.2026 18:37:40</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>20.09.2026 18:17:52</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>20.09.2026 18:16:43</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>20.09.2026 17:40:10</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>20.09.2026 17:35:29</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>20.09.2026 15:49:20</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>20.09.2026 15:47:33</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>20.09.2026 14:51:45</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>20.09.2026 14:20:47</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>20.09.2026 14:15:22</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>20.09.2026 14:09:17</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>20.09.2026 13:50:26</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>20.09.2026 13:46:38</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>20.09.2026 13:14:37</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>20.09.2026 13:12:46</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>20.09.2026 13:02:39</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>20.09.2026 12:57:32</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>20.09.2026 12:25:05</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>20.09.2026 12:23:05</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>20.09.2026 11:51:32</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>20.09.2026 11:50:32</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>20.09.2026 09:59:51</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>20.09.2026 09:58:48</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>20.09.2026 09:39:14</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>20.09.2026 00:03:04</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>19.09.2026 20:45:28</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>19.09.2026 20:44:27</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>19.09.2026 20:04:23</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>19.09.2026 20:03:23</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>19.09.2026 19:16:28</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>19.09.2026 19:15:41</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>19.09.2026 17:55:52</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>19.09.2026 01:29:10</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>18.09.2026 19:07:51</td>
-
-<td>
-
-
-
-<span class="online">● ONLINE</span>
-
-
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>18.09.2026 19:06:38</td>
-
-<td>
-
-
-
-<span class="offline">● OFFLINE</span>
+<span class="new">● NEW</span>
 
 
 
@@ -2715,7 +1062,7 @@ function diskPowerOff() {
                 "</div></div>";
         })
         .catch(() => {
-            alert("Команда на выключение отправлена. Отключите кабель питания вручную.");
+            toast("Команда на выключение отправлена. Отключите кабель питания вручную.", "info", 8000);
         });
 }
 
@@ -2908,9 +1255,10 @@ async function controlService(service, action) {
 
     } catch (error) {
 
-        alert(
+        toast(
             "Не удалось выполнить операцию: " +
-            error.message
+            error.message,
+            "error"
         );
     }
 }
@@ -3021,9 +1369,10 @@ async function toggleSambaGuest() {
 
     } catch (error) {
 
-        alert(
+        toast(
             "Не удалось изменить гостевой доступ: " +
-            error.message
+            error.message,
+            "error"
         );
     }
 }
@@ -3670,10 +2019,160 @@ CPU --°C · RAM --% · eMMC --% · HDD --% · ↓ -- · ↑ --
 </div>
 <div style="font-size:12px; color:#888; white-space:nowrap; display:flex; align-items:center; gap:10px;">
 <a href="restore.html" target="_blank" style="color:#ff9800; text-decoration:none; font-size:11px; opacity:0.7;" title="Emergency Restore Server — работает даже если app упал">⚠ Restore</a>
-<span>Admin (admin)</span>
+<span>admin (admin)</span>
 <a href="stub.html?to=logout" style="color:#e74c3c; text-decoration:none;">выйти</a>
 </div>
 </div>
 
-<div style="position:fixed;left:0;right:0;bottom:0;background:#12203a;color:#9fb6e8;font:11px/1.8 system-ui,sans-serif;padding:2px 8px;z-index:99998;text-align:center">Демо-режим · слепок от 01.10.2026 20:19 · данные не обновляются · <a href="index.html" style="color:#ffd54f">главная</a></div></body>
+<!-- Jobs widget (PHASE 2.0-3): активные фоновые задачи -->
+<div id="jobs-widget" style="display:none; position:fixed; right:14px; bottom:52px; z-index:1000; max-width:320px; background:rgba(24,26,32,.96); border:1px solid #3a3f4b; border-radius:8px; padding:8px 10px; font-size:12px; color:#ddd; box-shadow:0 4px 16px rgba(0,0,0,.45);"></div>
+<script>
+(function () {
+    var widget = document.getElementById("jobs-widget");
+    if (!widget) return;
+    var TITLES = {
+        "network-scan": "Сканирование сети",
+        "module-install": "Установка модуля",
+        "module-catalog-install": "Установка из каталога",
+        "module-catalog-update": "Обновление из каталога",
+        "db-backup": "Backup БД"
+    };
+    var shownActive = {};
+    var noteIds = {};
+    var noteTimer = null;
+    var lastJobs = [];
+
+    function esc(s) {
+        return String(s).replace(/[&<>"]/g, function (c) {
+            return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+        });
+    }
+    function label(j) {
+        var t = TITLES[j.type] || j.type;
+        var m = j.meta || {};
+        var extra = m.module || m.unit || m.subnet;
+        return extra && extra !== "авто" ? t + " · " + extra : t;
+    }
+    function isActive(j) {
+        return j.status === "queued" || j.status === "running";
+    }
+
+    function render() {
+        var active = lastJobs.filter(isActive);
+        Object.keys(shownActive).forEach(function (id) {
+            var still = active.some(function (j) { return j.id === id; });
+            if (!still) noteIds[id] = true;
+        });
+        shownActive = {};
+        active.forEach(function (j) { shownActive[j.id] = true; });
+        if (Object.keys(noteIds).length && !noteTimer) {
+            noteTimer = setTimeout(function () {
+                noteIds = {};
+                noteTimer = null;
+                render();
+            }, 6000);
+        }
+        if (!active.length && !Object.keys(noteIds).length) {
+            widget.style.display = "none";
+            widget.innerHTML = "";
+            return;
+        }
+        var html = "";
+        lastJobs.forEach(function (j) {
+            if (!noteIds[j.id]) return;
+            var color = j.status === "completed" ? "#7ec97e" :
+                        j.status === "cancelled" ? "#e0a060" : "#e07060";
+            var tail = j.status === "failed" ? (j.error || "ошибка") :
+                       j.status === "cancelled" ? "отменена" : "завершена";
+            html += '<div style="color:' + color + '; margin-bottom:4px;">' +
+                esc(label(j)) + ": " + esc(tail) + "</div>";
+        });
+        active.forEach(function (j) {
+            var pct = (j.progress === null || j.progress === undefined) ? 8 : j.progress;
+            html += '<div style="margin-bottom:6px;">' +
+                '<div style="display:flex; justify-content:space-between; gap:8px;">' +
+                "<span>" + esc(label(j)) + "</span>" +
+                '<span style="color:#999;">' + pct + "%</span></div>" +
+                '<div style="background:#2c2f36; height:5px; border-radius:3px; margin-top:3px; overflow:hidden;">' +
+                '<div style="width:' + pct + '%; height:100%; background:#ff9800; transition:width .5s;"></div></div>';
+
+            if (j.cancelable) {
+                html += '<div style="text-align:right; margin-top:2px;">' +
+                    '<a href="#" data-job-cancel="' + esc(j.id) +
+                    '" style="color:#e07060; font-size:11px;">отменить</a></div>';
+            }
+
+            html += "</div>";
+        });
+        widget.innerHTML = html;
+        widget.style.display = "block";
+    }
+
+    widget.addEventListener("click", function (e) {
+        var a = e.target && e.target.closest ? e.target.closest("[data-job-cancel]") : null;
+        if (!a) return;
+        e.preventDefault();
+        var token = (document.querySelector('meta[name="csrf-token"]') || {}).content || "";
+        fetch("api/jobs/" + a.getAttribute("data-job-cancel") + "cancel", {
+            method: "POST",
+            headers: { "X-CSRFToken": token }
+        }).then(function () { poll(); }).catch(function () {});
+    });
+
+    function poll() {
+        fetch("api/jobs?limit=15")
+            .then(function (r) { return r.json(); })
+            .then(function (d) {
+                if (!d.ok) return;
+                lastJobs = d.jobs || [];
+                render();
+            })
+            .catch(function () {});
+    }
+    poll();
+    setInterval(poll, 4000);
+})();
+</script>
+
+<!-- Единые уведомления и диалоги (Спецификация §23) -->
+<div id="toast-root" class="toast-root" role="status" aria-live="polite"></div>
+<dialog id="confirm-dialog" class="confirm-dialog">
+<form method="dialog">
+<h3 id="confirm-dialog-title">Подтверждение</h3>
+<p id="confirm-dialog-text"></p>
+<div class="confirm-actions">
+<button value="cancel" class="btn">Отмена</button>
+<button value="ok" class="btn btn-primary">OK</button>
+</div>
+</form>
+</dialog>
+<script>
+window.toast = function (msg, type, ttl) {
+    var root = document.getElementById("toast-root");
+    if (!root) return;
+    var el = document.createElement("div");
+    el.className = "toast toast-" + (type || "info");
+    el.textContent = msg;
+    root.appendChild(el);
+    setTimeout(function () { el.classList.add("toast-out"); }, ttl || 5000);
+    setTimeout(function () { el.remove(); }, (ttl || 5000) + 500);
+};
+window.confirmDialog = function (text, title) {
+    var dlg = document.getElementById("confirm-dialog");
+    if (!dlg || typeof dlg.showModal !== "function") {
+        return Promise.resolve(window.confirm(text));
+    }
+    document.getElementById("confirm-dialog-title").textContent = title || "Подтверждение";
+    document.getElementById("confirm-dialog-text").textContent = text;
+    return new Promise(function (resolve) {
+        dlg.addEventListener("close", function handler() {
+            dlg.removeEventListener("close", handler);
+            resolve(dlg.returnValue === "ok");
+        });
+        dlg.showModal();
+    });
+};
+</script>
+
+<div style="position:fixed;left:0;right:0;bottom:0;background:#12203a;color:#9fb6e8;font:11px/1.8 system-ui,sans-serif;padding:2px 8px;z-index:99998;text-align:center">Демо-режим · слепок от 03.10.2026 17:13 · данные не обновляются · <a href="index.html" style="color:#ffd54f">главная</a></div></body>
 </html>
